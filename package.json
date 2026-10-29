@@ -1,0 +1,40 @@
+{
+  "name": "@local/dsh-digital-pet",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DeepSeek Harness 电子宠物：陪伴工作的桌面小宠物，用 DSH Token 换金币、照顾成长、六个月一生命周期的纪念养成。Host 权威结算 + Web 设置页 + 全窗口悬浮宠物。",
+  "type": "module",
+  "main": "index.js",
+  "icon": "./icon.svg",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "icon.svg",
+    "assets/**/*",
+    "src/**/*"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "scripts": {
+    "test": "node --test tests/core/*.test.js tests/host.integration.test.mjs tests/accountant.test.mjs",
+    "test:core": "node --test tests/core/*.test.js",
+    "test:host": "node --test tests/host.integration.test.mjs",
+    "test:accountant": "node --test tests/accountant.test.mjs",
+    "test:all": "node --test tests/core/*.test.js tests/host.integration.test.mjs tests/accountant.test.mjs"
+  }
+}

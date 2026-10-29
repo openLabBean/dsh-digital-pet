@@ -1,0 +1,15 @@
+# 运行时与构建产物
+node_modules/
+.tmp/
+*.log
+
+# 系统文件
+.DS_Store
+**/.DS_Store
+
+# 素材中间稿（保留最终精灵与图集；131MB 的 2× 重绘母版不随仓库分发）
+assets/source/redraw-2x/
+
+# 本地测试产物
+.tmp/action-fx/
+/tmp/

@@ -1,0 +1,19 @@
+# DeepSeek Harness 电子宠物（dsh-digital-pet）bundle patch。
+#
+# 只插入一条 Host 行：宠物档案、四状态结算、动作调度、金币经济与持久化都在
+# Host 半（index.js）。浏览器半（client.js）由 package.json 的 `dsh.client`
+# 声明，Web 客户端会把它作为 `/plugins` 上的模块按需加载：
+#   - 设置页左侧栏「电子宠物」= settings.section
+#   - 覆盖整个 AppFrame 的悬浮宠物 = shell.overlay
+#
+# 用 `dsh plugin --profile <name> add <path-or-git-url>` 安装，bundle patch 会
+# 自动应用；不要手动在 profile 的 patch 里重复 insert（重复 id 会让 loader 崩溃）。
+- insert:
+    - id: digital-pet
+      name: '@local/dsh-digital-pet'
+      config:
+        # 存档默认落在 $DSH_HOME/dsh-digital-pet/pet-state.json。
+        # dataFile: /Users/you/.dsh/dsh-digital-pet/pet-state.json
+        # 金币兑换比例：每 N 个有效 Token = 1 金币（2026-10-29 起 1,000,000 = 1 金币）；每日封顶。
+        tokensPerCoin: 1000000
+        dailyCoinCap: 100

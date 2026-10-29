@@ -1,0 +1,286 @@
+{
+  "checks": [
+    "All images load; 54 motion paths are distinct",
+    "54 species/stage profiles: static → hover animation → immediate neutral, all pass",
+    "Real dashboard + floating overlay: drag press, cancel, context menu and window blur stop motion",
+    "Host object-shaped stage switches to the correct profile",
+    "Reduced motion overrides hover",
+    "Care animation takes priority and stops when pointer leaves",
+    "All six care animations retain priority while hovered",
+    "Sleep markers and hunger/thirst effects are static when not hovered",
+    "Touch does not start sticky hover"
+  ],
+  "profiles": [
+    {
+      "species": "whale",
+      "stage": "baby",
+      "animation": "dsh-pet-hover-whale-baby"
+    },
+    {
+      "species": "whale",
+      "stage": "toddler",
+      "animation": "dsh-pet-hover-whale-toddler"
+    },
+    {
+      "species": "whale",
+      "stage": "child",
+      "animation": "dsh-pet-hover-whale-child"
+    },
+    {
+      "species": "whale",
+      "stage": "teen",
+      "animation": "dsh-pet-hover-whale-teen"
+    },
+    {
+      "species": "whale",
+      "stage": "adult",
+      "animation": "dsh-pet-hover-whale-adult"
+    },
+    {
+      "species": "whale",
+      "stage": "elder",
+      "animation": "dsh-pet-hover-whale-elder"
+    },
+    {
+      "species": "monkey",
+      "stage": "baby",
+      "animation": "dsh-pet-hover-monkey-baby"
+    },
+    {
+      "species": "monkey",
+      "stage": "toddler",
+      "animation": "dsh-pet-hover-monkey-toddler"
+    },
+    {
+      "species": "monkey",
+      "stage": "child",
+      "animation": "dsh-pet-hover-monkey-child"
+    },
+    {
+      "species": "monkey",
+      "stage": "teen",
+      "animation": "dsh-pet-hover-monkey-teen"
+    },
+    {
+      "species": "monkey",
+      "stage": "adult",
+      "animation": "dsh-pet-hover-monkey-adult"
+    },
+    {
+      "species": "monkey",
+      "stage": "elder",
+      "animation": "dsh-pet-hover-monkey-elder"
+    },
+    {
+      "species": "duck",
+      "stage": "baby",
+      "animation": "dsh-pet-hover-duck-baby"
+    },
+    {
+      "species": "duck",
+      "stage": "toddler",
+      "animation": "dsh-pet-hover-duck-toddler"
+    },
+    {
+      "species": "duck",
+      "stage": "child",
+      "animation": "dsh-pet-hover-duck-child"
+    },
+    {
+      "species": "duck",
+      "stage": "teen",
+      "animation": "dsh-pet-hover-duck-teen"
+    },
+    {
+      "species": "duck",
+      "stage": "adult",
+      "animation": "dsh-pet-hover-duck-adult"
+    },
+    {
+      "species": "duck",
+      "stage": "elder",
+      "animation": "dsh-pet-hover-duck-elder"
+    },
+    {
+      "species": "chick",
+      "stage": "baby",
+      "animation": "dsh-pet-hover-chick-baby"
+    },
+    {
+      "species": "chick",
+      "stage": "toddler",
+      "animation": "dsh-pet-hover-chick-toddler"
+    },
+    {
+      "species": "chick",
+      "stage": "child",
+      "animation": "dsh-pet-hover-chick-child"
+    },
+    {
+      "species": "chick",
+      "stage": "teen",
+      "animation": "dsh-pet-hover-chick-teen"
+    },
+    {
+      "species": "chick",
+      "stage": "adult",
+      "animation": "dsh-pet-hover-chick-adult"
+    },
+    {
+      "species": "chick",
+      "stage": "elder",
+      "animation": "dsh-pet-hover-chick-elder"
+    },
+    {
+      "species": "cat",
+      "stage": "baby",
+      "animation": "dsh-pet-hover-cat-baby"
+    },
+    {
+      "species": "cat",
+      "stage": "toddler",
+      "animation": "dsh-pet-hover-cat-toddler"
+    },
+    {
+      "species": "cat",
+      "stage": "child",
+      "animation": "dsh-pet-hover-cat-child"
+    },
+    {
+      "species": "cat",
+      "stage": "teen",
+      "animation": "dsh-pet-hover-cat-teen"
+    },
+    {
+      "species": "cat",
+      "stage": "adult",
+      "animation": "dsh-pet-hover-cat-adult"
+    },
+    {
+      "species": "cat",
+      "stage": "elder",
+      "animation": "dsh-pet-hover-cat-elder"
+    },
+    {
+      "species": "dog",
+      "stage": "baby",
+      "animation": "dsh-pet-hover-dog-baby"
+    },
+    {
+      "species": "dog",
+      "stage": "toddler",
+      "animation": "dsh-pet-hover-dog-toddler"
+    },
+    {
+      "species": "dog",
+      "stage": "child",
+      "animation": "dsh-pet-hover-dog-child"
+    },
+    {
+      "species": "dog",
+      "stage": "teen",
+      "animation": "dsh-pet-hover-dog-teen"
+    },
+    {
+      "species": "dog",
+      "stage": "adult",
+      "animation": "dsh-pet-hover-dog-adult"
+    },
+    {
+      "species": "dog",
+      "stage": "elder",
+      "animation": "dsh-pet-hover-dog-elder"
+    },
+    {
+      "species": "cow",
+      "stage": "baby",
+      "animation": "dsh-pet-hover-cow-baby"
+    },
+    {
+      "species": "cow",
+      "stage": "toddler",
+      "animation": "dsh-pet-hover-cow-toddler"
+    },
+    {
+      "species": "cow",
+      "stage": "child",
+      "animation": "dsh-pet-hover-cow-child"
+    },
+    {
+      "species": "cow",
+      "stage": "teen",
+      "animation": "dsh-pet-hover-cow-teen"
+    },
+    {
+      "species": "cow",
+      "stage": "adult",
+      "animation": "dsh-pet-hover-cow-adult"
+    },
+    {
+      "species": "cow",
+      "stage": "elder",
+      "animation": "dsh-pet-hover-cow-elder"
+    },
+    {
+      "species": "goat",
+      "stage": "baby",
+      "animation": "dsh-pet-hover-goat-baby"
+    },
+    {
+      "species": "goat",
+      "stage": "toddler",
+      "animation": "dsh-pet-hover-goat-toddler"
+    },
+    {
+      "species": "goat",
+      "stage": "child",
+      "animation": "dsh-pet-hover-goat-child"
+    },
+    {
+      "species": "goat",
+      "stage": "teen",
+      "animation": "dsh-pet-hover-goat-teen"
+    },
+    {
+      "species": "goat",
+      "stage": "adult",
+      "animation": "dsh-pet-hover-goat-adult"
+    },
+    {
+      "species": "goat",
+      "stage": "elder",
+      "animation": "dsh-pet-hover-goat-elder"
+    },
+    {
+      "species": "dinosaur",
+      "stage": "baby",
+      "animation": "dsh-pet-hover-dinosaur-baby"
+    },
+    {
+      "species": "dinosaur",
+      "stage": "toddler",
+      "animation": "dsh-pet-hover-dinosaur-toddler"
+    },
+    {
+      "species": "dinosaur",
+      "stage": "child",
+      "animation": "dsh-pet-hover-dinosaur-child"
+    },
+    {
+      "species": "dinosaur",
+      "stage": "teen",
+      "animation": "dsh-pet-hover-dinosaur-teen"
+    },
+    {
+      "species": "dinosaur",
+      "stage": "adult",
+      "animation": "dsh-pet-hover-dinosaur-adult"
+    },
+    {
+      "species": "dinosaur",
+      "stage": "elder",
+      "animation": "dsh-pet-hover-dinosaur-elder"
+    }
+  ],
+  "browserErrors": []
+}

@@ -1,0 +1,407 @@
+<!doctype html><meta charset="utf-8"><title>宠物悬停动作 · 54 套</title><style>
+.dsh-digital-pet-overlay { position: fixed; inset: 0; z-index: 60; pointer-events: none; overflow: hidden; }
+.dsh-digital-pet-float { position: absolute; pointer-events: auto; display: flex; flex-direction: column; align-items: center;
+  gap: 4px; transition: transform .18s ease; }
+.dsh-digital-pet-float.dragging { transition: none; }
+.dsh-digital-pet-sprite { display: block; image-rendering: auto; cursor: grab; user-select: none;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.18)); }
+.dsh-digital-pet-sprite.dragging { cursor: grabbing; }
+/* 宠物右键菜单：悬停宠物后右键弹出「隐藏 <昵称>」 */
+.dsh-digital-pet-ctx { position: fixed; z-index: 70; pointer-events: auto; min-width: 132px; max-width: 220px;
+  padding: 4px; border-radius: 10px; background: var(--dsw-alias-bg-layer-2, rgba(32,32,34,.98));
+  border: 1px solid var(--dsw-alias-border-l1, rgba(127,127,127,.28));
+  box-shadow: 0 10px 28px rgba(0,0,0,.22); display: flex; flex-direction: column; gap: 2px; }
+.dsh-digital-pet-ctx-item { appearance: none; border: 0; background: transparent; color: var(--dsw-alias-label-primary, #f5f6f7);
+  font: inherit; font-size: 12px; line-height: 1.4; text-align: left; padding: 7px 10px; border-radius: 6px;
+  cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dsh-digital-pet-ctx-item:hover { background: var(--dsw-alias-interactive-bg-hover, rgba(127,127,127,.16)); }
+.dsh-digital-pet-ctx-item:focus-visible { outline: 2px solid var(--dsw-alias-brand-primary, #4d6bfe); outline-offset: -2px; }
+.dsh-digital-pet-poop { position: absolute; right: -4%; bottom: 4%; height: 40%; image-rendering: auto; pointer-events: none; filter: drop-shadow(0 1px 1px rgba(0,0,0,.15)); }
+.dsh-digital-pet-paw { width: 21px; height: 21px; border-radius: 50%; border: 1px solid var(--dsw-alias-border-l1, rgba(0,0,0,.1));
+  background: var(--dsw-alias-bg-layer-2, #fff); box-shadow: 0 2px 8px rgba(0,0,0,.12); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; font-size: 11px; line-height: 1; transition: transform .15s ease; }
+.dsh-digital-pet-paw:hover { transform: scale(1.08); }
+.dsh-digital-pet-need { max-width: 190px; padding: 4px 10px; border-radius: 99px; font-size: 11px; line-height: 1.4;
+  background: var(--dsw-alias-bg-layer-2, #fff); border: 1px solid var(--dsw-alias-border-l1, rgba(0,0,0,.08));
+  color: var(--dsw-alias-label-primary, #222); box-shadow: 0 2px 8px rgba(0,0,0,.1); text-align: center; }
+.dsh-digital-pet-panel { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+  display: grid; grid-template-columns: repeat(2, minmax(58px, auto)); gap: 6px;
+  padding: 8px; border-radius: 12px; pointer-events: auto;
+  background: var(--dsw-alias-bg-layer-2, #fff); border: 1px solid var(--dsw-alias-border-l1, rgba(0,0,0,.08));
+  box-shadow: var(--dsw-alias-shadow-lg, 0 10px 28px rgba(0,0,0,.2)); backdrop-filter: blur(8px); }
+.dsh-digital-pet-panel.left { right: calc(100% + 8px); }
+.dsh-digital-pet-panel.right { left: calc(100% + 8px); }
+.dsh-digital-pet-panel-btn { appearance: none; padding: 6px 12px; border-radius: 9px; cursor: pointer;
+  border: 1px solid var(--dsw-alias-border-l1, rgba(0,0,0,.1)); background: var(--dsw-alias-bg-layer-1, rgba(0,0,0,.03));
+  color: var(--dsw-alias-label-primary, #222); font-family: inherit; font-size: 12px; line-height: 1.4; white-space: nowrap;
+  transition: background .12s ease, border-color .12s ease; }
+.dsh-digital-pet-panel-btn:hover { background: var(--dsw-alias-interactive-bg-hover, rgba(0,0,0,.06)); }
+.dsh-digital-pet-panel-btn:disabled { opacity: .45; cursor: not-allowed; }
+.dsh-digital-pet-panel-btn:focus-visible { outline: 2px solid var(--dsw-alias-brand-primary, #4d6bfe); outline-offset: 1px; }
+.dsh-digital-pet-bars { display: grid; grid-template-columns: 1fr; gap: 4px; }
+.dsh-digital-pet-bar-row { display: grid; grid-template-columns: 30px 1fr 30px; align-items: center; gap: 6px; }
+.dsh-digital-pet-bar { height: 6px; border-radius: 99px; background: var(--dsw-alias-bg-layer-1, rgba(0,0,0,.08)); overflow: hidden; }
+.dsh-digital-pet-bar > i { display: block; height: 100%; border-radius: 99px; transition: width .3s ease; }
+.dsh-digital-pet-hint { margin-top: 6px; color: var(--dsw-alias-label-secondary, #777); font-size: 11px; line-height: 1.5; }
+.dsh-digital-pet-settings { padding: 20px 24px 48px; max-width: 880px; color: var(--dsw-alias-label-primary, #222); }
+.dsh-digital-pet-h1 { font-size: 20px; font-weight: 700; margin: 0 0 4px; }
+.dsh-digital-pet-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; column-gap: 12px; }
+.dsh-digital-pet-head-main { min-width: 0; }
+.dsh-digital-pet-head-toggle { display: flex; align-items: center; gap: 8px; margin-top: 2px; white-space: nowrap; }
+.dsh-digital-pet-sub { color: var(--dsw-alias-label-secondary, #777); font-size: 13px; margin: 0 0 18px; line-height: 1.6; }
+.dsh-digital-pet-card { border: 1px solid var(--dsw-alias-border-l1, rgba(0,0,0,.08)); border-radius: 14px; padding: 16px 18px;
+  background: var(--dsw-alias-bg-layer-2, #fff); margin-bottom: 14px; }
+.dsh-digital-pet-card h2 { font-size: 15px; margin: 0 0 10px; font-weight: 600; }
+.dsh-digital-pet-card h3 { font-size: 13px; margin: 14px 0 8px; font-weight: 600; color: var(--dsw-alias-label-secondary, #555); }
+.dsh-digital-pet-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 10px; }
+.dsh-digital-pet-species { border: 1px solid var(--dsw-alias-border-l1, rgba(0,0,0,.1)); border-radius: 12px; padding: 10px;
+  background: var(--dsw-alias-bg-layer-1, rgba(0,0,0,.02)); cursor: pointer; text-align: center; transition: all .15s ease; }
+.dsh-digital-pet-species:hover { border-color: var(--dsw-alias-brand-primary, #4d6bfe); transform: translateY(-1px); }
+.dsh-digital-pet-species.selected { border-color: var(--dsw-alias-brand-primary, #4d6bfe); box-shadow: 0 0 0 2px var(--dsw-alias-interactive-bg-hover-accent, rgba(77,107,254,.16)); }
+.dsh-digital-pet-species.disabled { opacity: .5; cursor: not-allowed; }
+.dsh-digital-pet-species img { width: 64px; height: 64px; object-fit: contain; image-rendering: auto; }
+.dsh-digital-pet-species-name { font-size: 12px; font-weight: 600; margin-top: 4px; }
+.dsh-digital-pet-species-en { font-size: 10px; color: var(--dsw-alias-label-secondary, #888); }
+.dsh-digital-pet-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+.dsh-digital-pet-input { flex: 1 1 200px; min-width: 160px; padding: 8px 10px; border-radius: 9px; font-size: 13px;
+  border: 1px solid var(--dsw-alias-border-l1, rgba(0,0,0,.14)); background: var(--dsw-alias-bg-base, #fff);
+  color: var(--dsw-alias-label-primary, #222); }
+.dsh-digital-pet-btn { appearance: none; border: 1px solid transparent; border-radius: 9px; padding: 8px 14px; font-size: 13px;
+  font-weight: 600; cursor: pointer; background: var(--dsw-alias-brand-primary, #4d6bfe); color: var(--dsw-alias-label-primary-foreground, #fff); transition: filter .15s ease; }
+.dsh-digital-pet-btn:hover { filter: brightness(1.06); }
+.dsh-digital-pet-btn:disabled { opacity: .45; cursor: not-allowed; }
+.dsh-digital-pet-btn.ghost { background: transparent; color: var(--dsw-alias-label-primary, #222);
+  border-color: var(--dsw-alias-border-l1, rgba(0,0,0,.16)); }
+.dsh-digital-pet-btn.sm { padding: 5px 10px; font-size: 12px; border-radius: 8px; }
+.dsh-digital-pet-muted { color: var(--dsw-alias-label-secondary, #777); font-size: 12px; }
+.dsh-digital-pet-error { color: var(--dsw-alias-state-error-primary, #d33); font-size: 12px; margin-top: 8px; }
+.dsh-digital-pet-dash { display: grid; grid-template-columns: 180px 1fr; gap: 18px; }
+@media (max-width: 720px) { .dsh-digital-pet-dash { grid-template-columns: 1fr; } }
+.dsh-digital-pet-hero { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.dsh-digital-pet-hero img { width: 132px; height: 132px; image-rendering: auto; object-fit: contain; }
+.dsh-digital-pet-stage { font-size: 11px; padding: 2px 8px; border-radius: 99px; background: var(--dsw-alias-bg-layer-1, rgba(0,0,0,.06)); }
+.dsh-digital-pet-chip-row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.dsh-digital-pet-chip { font-size: 12px; padding: 3px 9px; border-radius: 99px; border: 1px solid var(--dsw-alias-border-l1, rgba(0,0,0,.1));
+  background: var(--dsw-alias-bg-layer-1, rgba(0,0,0,.03)); }
+.dsh-digital-pet-chip.gold { border-color: rgba(214,158,46,.4); background: rgba(250,220,140,.18); }
+.dsh-digital-pet-coin { vertical-align: -2px; margin-right: 3px; flex: none; }
+.dsh-digital-pet-shop-price { display: inline-flex; align-items: center; gap: 2px; }
+.dsh-digital-pet-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+.dsh-digital-pet-action { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 10px; cursor: pointer;
+  border: 1px solid var(--dsw-alias-border-l1, rgba(0,0,0,.1)); background: var(--dsw-alias-bg-layer-1, rgba(0,0,0,.02));
+  font-size: 13px; color: var(--dsw-alias-label-primary, #222); }
+.dsh-digital-pet-action:hover { border-color: var(--dsw-alias-brand-primary, #4d6bfe); }
+.dsh-digital-pet-action:disabled { opacity: .45; cursor: not-allowed; }
+.dsh-digital-pet-action img { width: 30px; height: 30px; object-fit: contain; image-rendering: auto; }
+.dsh-digital-pet-kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; font-size: 13px; }
+.dsh-digital-pet-kv > dt { color: var(--dsw-alias-label-secondary, #777); }
+.dsh-digital-pet-kv > dd { margin: 0; }
+.dsh-digital-pet-shop-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 0;
+  border-bottom: 1px dashed var(--dsw-alias-border-l1, rgba(0,0,0,.08)); }
+.dsh-digital-pet-shop-item:last-child { border-bottom: 0; }
+.dsh-digital-pet-shop-name { font-size: 13px; font-weight: 600; }
+.dsh-digital-pet-shop-desc { font-size: 11px; color: var(--dsw-alias-label-secondary, #888); margin-top: 2px; }
+.dsh-digital-pet-mem-item { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px dashed var(--dsw-alias-border-l1, rgba(0,0,0,.08)); }
+.dsh-digital-pet-mem-item:last-child { border-bottom: 0; }
+.dsh-digital-pet-mem-item img { width: 44px; height: 44px; image-rendering: auto; object-fit: contain; filter: grayscale(.35); }
+/* Rest is truly static. Hover gestures are defined per species × growth stage. */
+.dsh-digital-pet-sprite { transform-origin: 50% 100%; }
+.dsh-digital-pet-sprite[data-mood="hungry"], .dsh-digital-pet-sprite[data-mood="thirsty"] {
+  filter: saturate(.82) drop-shadow(0 6px 10px rgba(0,0,0,.18)); }
+.dsh-digital-pet-mood-bubble { position: absolute; bottom: 82%; left: 50%; z-index: 2; font-size: 15px; line-height: 1;
+  pointer-events: none; animation: dsh-digital-pet-mood-float 5.6s ease-in-out infinite; text-shadow: 0 1px 2px rgba(0,0,0,.18); }
+@keyframes dsh-digital-pet-mood-float {
+  0%, 55% { opacity: 0; transform: translate(-50%, 4px) scale(.85); }
+  65% { opacity: 1; transform: translate(-50%, -4px) scale(1); }
+  85% { opacity: 1; transform: translate(-50%, -8px) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -12px) scale(.95); }
+}
+/* ---------------------------------------------------------------------------
+ * 照护动作动效
+ * 素材是单帧动作姿态图（assets/sprites/<species>/<action>.png），没有逐帧序列，
+ * 所以动作反馈用「姿态变形 + 小道具 + 粒子」程序化合成，纯 CSS 驱动：
+ *   .dsh-digital-pet-act-stage  动作舞台（悬浮宠物与设置页大图共用）
+ *   .dsh-digital-pet-fx-under   身体后面的道具（水槽；喂食的饭碗已在动作姿态图里）
+ *   .dsh-digital-pet-fx-over    身体前面的道具/粒子（泡沫、水珠、扫把、星星）
+ * 舞台用 --pet-size 对齐精灵尺寸，两处渲染同比例缩放。
+ * ------------------------------------------------------------------------- */
+.dsh-digital-pet-act-stage { position: relative; display: flex; align-items: flex-end; justify-content: center; }
+.dsh-digital-pet-hero-stage { width: 132px; height: 132px; --pet-size: 132px; }
+.dsh-digital-pet-hero-stage .dsh-digital-pet-zzz { top: -14px; }
+.dsh-digital-pet-hero-stage img { position: relative; z-index: 2; }
+.dsh-digital-pet-sprite { position: relative; z-index: 2; }
+/* 睡觉符号：头顶三个 Z（纯符号、无文字），逐个上浮淡出 */
+.dsh-digital-pet-pet-wrap { position: relative; display: inline-flex; align-items: flex-end; justify-content: center; }
+.dsh-digital-pet-zzz { position: absolute; top: calc(var(--pet-size, 72px) * -0.27); left: 50%; transform: translateX(-50%); z-index: 4; display: flex; align-items: flex-end; gap: 0;
+  pointer-events: none; font-weight: 800; line-height: 1; user-select: none;
+  color: var(--dsw-alias-label-primary, #2f3440); }
+.dsh-digital-pet-zzz > span { display: block; transform-origin: 50% 100%; animation: dsh-digital-pet-zzz-float 2.6s ease-in-out infinite; }
+.dsh-digital-pet-zzz > span:nth-child(1) { font-size: 10px; animation-delay: 0s; }
+.dsh-digital-pet-zzz > span:nth-child(2) { font-size: 13px; animation-delay: .42s; }
+.dsh-digital-pet-zzz > span:nth-child(3) { font-size: 17px; animation-delay: .84s; }
+@keyframes dsh-digital-pet-zzz-float {
+  0% { transform: translateY(3px) scale(.9); opacity: .35; }
+  30% { transform: translateY(-2px) scale(1.04); opacity: 1; }
+  100% { transform: translateY(-10px) scale(1.1); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dsh-digital-pet-zzz > span { animation: none; opacity: .95; }
+}
+.dsh-digital-pet-fx { position: absolute; left: 50%; bottom: 0; z-index: 1;
+  width: var(--pet-size, 72px); height: var(--pet-size, 72px); transform: translateX(-50%); pointer-events: none; }
+.dsh-digital-pet-fx-over { z-index: 3; }
+.dsh-digital-pet-fx > span { position: absolute; display: block; }
+/* 动作进行中的姿态动画（按 data-action 区分；未知动作回落到轻微起伏） */
+@keyframes dsh-digital-pet-act-bob {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate(0, -2.5%) rotate(1deg) scale(1.012); }
+}
+/* 喂食：低头一口一口咀嚼 */
+@keyframes dsh-digital-pet-act-eat {
+  0%, 16%, 36%, 56%, 76%, 100% { transform: translate(0, 0) rotate(0deg) scaleY(1); }
+  7%, 27%, 47%, 67% { transform: translate(-2.5%, 2.5%) rotate(-2.6deg) scaleY(.955); }
+}
+/* 洗澡：被擦洗时左右扭动 */
+@keyframes dsh-digital-pet-act-bathe {
+  0%, 100% { transform: rotate(0deg) scaleX(1); }
+  10% { transform: rotate(-4.5deg) scaleX(1.02); }
+  22% { transform: rotate(3.8deg) scaleX(.985); }
+  34% { transform: rotate(-3.4deg) scaleX(1.018); }
+  46% { transform: rotate(3deg) scaleX(.99); }
+  58% { transform: rotate(-2deg) scaleX(1.008); }
+  70%, 100% { transform: rotate(0deg) scaleX(1); }
+}
+/* 逛街：左右来回走，走到边缘转身（scaleX 翻转），带脚步起伏 */
+@keyframes dsh-digital-pet-act-walk {
+  0% { transform: translateX(-13%) translateY(0) scaleX(1); }
+  12% { transform: translateX(-9.5%) translateY(-3.2%) scaleX(1); }
+  24% { transform: translateX(-2%) translateY(0) scaleX(1); }
+  36% { transform: translateX(5.5%) translateY(-3.2%) scaleX(1); }
+  48% { transform: translateX(12%) translateY(0) scaleX(1); }
+  50% { transform: translateX(12%) translateY(0) scaleX(-1); }
+  62% { transform: translateX(5.5%) translateY(-3.2%) scaleX(-1); }
+  74% { transform: translateX(-2%) translateY(0) scaleX(-1); }
+  86% { transform: translateX(-9.5%) translateY(-3.2%) scaleX(-1); }
+  100% { transform: translateX(-13%) translateY(0) scaleX(-1); }
+}
+/* 喝水：两次低头 */
+@keyframes dsh-digital-pet-act-drink {
+  0%, 24%, 64%, 100% { transform: translate(0, 0) rotate(0deg) scaleY(1); }
+  14%, 34%, 54%, 74% { transform: translate(-2%, 2%) rotate(-2.2deg) scaleY(.96); }
+}
+/* 铲屎：轻侧身清扫 */
+@keyframes dsh-digital-pet-act-sweep {
+  0%, 100% { transform: translate(1.5%, 0) rotate(-1deg); }
+  50% { transform: translate(3%, 1%) rotate(1.5deg); }
+}
+.dsh-digital-pet-sprite[data-mood="acting"],
+.dsh-digital-pet-hero img[data-mood="acting"] { animation: dsh-digital-pet-act-bob 1.7s ease-in-out infinite; }
+/* 动作姿态以脚底为轴，吃/洗澡/铲屎的转动才不会整体漂浮 */
+.dsh-digital-pet-sprite[data-action],
+.dsh-digital-pet-hero img[data-action] { transform-origin: 50% 100%; }
+.dsh-digital-pet-sprite[data-action="feed"],
+.dsh-digital-pet-hero img[data-action="feed"] { animation: dsh-digital-pet-act-eat 1.8s ease-in-out infinite; }
+.dsh-digital-pet-sprite[data-action="water"],
+.dsh-digital-pet-hero img[data-action="water"] { animation: dsh-digital-pet-act-drink 1.6s ease-in-out infinite; }
+.dsh-digital-pet-sprite[data-action="bathe"],
+.dsh-digital-pet-hero img[data-action="bathe"] { animation: dsh-digital-pet-act-bathe 1.5s ease-in-out infinite; }
+.dsh-digital-pet-sprite[data-action="groom"],
+.dsh-digital-pet-hero img[data-action="groom"] { animation: dsh-digital-pet-act-bathe 1.8s ease-in-out infinite; }
+.dsh-digital-pet-sprite[data-action="walk"],
+.dsh-digital-pet-hero img[data-action="walk"] { animation: dsh-digital-pet-act-walk 2.8s ease-in-out infinite; }
+.dsh-digital-pet-sprite[data-action="cleanWaste"],
+.dsh-digital-pet-hero img[data-action="cleanWaste"] { animation: dsh-digital-pet-act-sweep 1.1s ease-in-out infinite; }
+/* 拖动时不播放姿态动画（否则位移动画会和跟随手指冲突） */
+.dsh-digital-pet-sprite.dragging { animation: none !important; }
+/* 喂食道具：饭碗（身后）+ 飞溅的口粮 + 星星 */
+.dsh-digital-pet-fx-crumb { width: 7%; height: 7%; left: 16%; bottom: 22%; border-radius: 50%; background: #8d5a29; opacity: 0;
+  animation: dsh-digital-pet-fx-crumb 1.5s ease-out infinite; }
+.dsh-digital-pet-fx-crumb-2 { left: 10%; animation-delay: .45s; }
+.dsh-digital-pet-fx-crumb-3 { left: 22%; animation-delay: .9s; }
+@keyframes dsh-digital-pet-fx-crumb {
+  0% { opacity: 0; transform: translate(0, 0) scale(.5); }
+  14% { opacity: 1; }
+  62% { opacity: 1; transform: translate(30%, -190%) scale(1.05); }
+  100% { opacity: 0; transform: translate(58%, -95%) scale(.7); }
+}
+.dsh-digital-pet-fx-spark { top: 30%; left: 68%; width: 11%; height: 11%; background: #ffd76e; opacity: 0;
+  clip-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%);
+  animation: dsh-digital-pet-fx-twinkle 1.5s ease-in-out infinite; }
+@keyframes dsh-digital-pet-fx-twinkle {
+  0%, 100% { opacity: 0; transform: scale(.4) rotate(0deg); }
+  45% { opacity: 1; transform: scale(1.1) rotate(25deg); }
+}
+/* 洗澡道具：泡沫 + 泡泡 + 海绵搓洗 + 水珠 */
+.dsh-digital-pet-fx-foam { left: 8%; right: 8%; top: 24%; height: 32%; border-radius: 50%; opacity: 0;
+  background: radial-gradient(circle at 20% 42%, rgba(255, 255, 255, .96) 0 23%, transparent 25%),
+    radial-gradient(circle at 44% 26%, rgba(255, 255, 255, .96) 0 21%, transparent 23%),
+    radial-gradient(circle at 70% 40%, rgba(255, 255, 255, .94) 0 22%, transparent 24%),
+    radial-gradient(circle at 56% 64%, rgba(255, 255, 255, .9) 0 20%, transparent 22%),
+    radial-gradient(circle at 30% 70%, rgba(255, 255, 255, .86) 0 17%, transparent 19%);
+  filter: blur(.7px); animation: dsh-digital-pet-fx-foam 1.4s ease-in-out infinite; }
+@keyframes dsh-digital-pet-fx-foam {
+  0%, 100% { opacity: .55; transform: scale(.97); }
+  50% { opacity: .95; transform: scale(1.03); }
+}
+.dsh-digital-pet-fx-bubble { left: 16%; bottom: 26%; width: 8%; height: 8%; border-radius: 50%; opacity: 0;
+  border: 1.5px solid rgba(255, 255, 255, .92);
+  background: radial-gradient(circle at 32% 30%, rgba(255, 255, 255, .95), rgba(206, 236, 255, .42) 58%, transparent 64%);
+  animation: dsh-digital-pet-fx-bubble 2.4s ease-in infinite; }
+.dsh-digital-pet-fx-bubble-2 { left: 44%; animation-delay: .7s; }
+.dsh-digital-pet-fx-bubble-3 { left: 70%; animation-delay: 1.3s; }
+@keyframes dsh-digital-pet-fx-bubble {
+  0% { opacity: 0; transform: translateY(0) scale(.5); }
+  18% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-150%) scale(1.1); }
+}
+.dsh-digital-pet-fx-sponge { top: 46%; left: 50%; width: 26%; height: 13%; border-radius: 26%;
+  background: linear-gradient(135deg, #d7ecfb 0 32%, #74b9ea 55%, #4f9bd6 100%);
+  box-shadow: inset 0 -2px 2px rgba(0, 0, 0, .12), inset 0 2px 2px rgba(255, 255, 255, .5);
+  animation: dsh-digital-pet-fx-scrub 1.05s ease-in-out infinite alternate; }
+@keyframes dsh-digital-pet-fx-scrub {
+  from { transform: translate(-96%, 4%) rotate(-16deg); }
+  to { transform: translate(26%, 10%) rotate(12deg); }
+}
+.dsh-digital-pet-fx-drop { left: 84%; top: 28%; width: 6%; height: 10%; opacity: 0;
+  border-radius: 50% 50% 50% 50% / 34% 34% 72% 72%; background: #8fd1f0;
+  animation: dsh-digital-pet-fx-drop 1.3s ease-in infinite; }
+.dsh-digital-pet-fx-drop-2 { left: 76%; top: 34%; animation-delay: .5s; }
+@keyframes dsh-digital-pet-fx-drop {
+  0% { opacity: 0; transform: translateY(0); }
+  25% { opacity: .95; }
+  100% { opacity: 0; transform: translateY(190%) scaleY(1.15); }
+}
+/* 逛街道具：脚下的尘土 */
+.dsh-digital-pet-fx-dust { left: 40%; bottom: 1%; width: 15%; height: 5%; border-radius: 50%; opacity: 0;
+  background: rgba(146, 128, 100, .42); filter: blur(1px);
+  animation: dsh-digital-pet-fx-dust 1.35s ease-out infinite; }
+.dsh-digital-pet-fx-dust-2 { left: 48%; animation-delay: .45s; }
+.dsh-digital-pet-fx-dust-3 { left: 56%; animation-delay: .9s; }
+@keyframes dsh-digital-pet-fx-dust {
+  0% { opacity: 0; transform: scaleX(.5) translateX(0); }
+  22% { opacity: .85; }
+  100% { opacity: 0; transform: scaleX(1.5) translateX(-60%); }
+}
+/* 铲屎道具：扫把 + 便便被打扫飞走 */
+.dsh-digital-pet-fx-broom { right: 0; bottom: 0; width: 32%; height: 36%; transform-origin: 80% 96%;
+  animation: dsh-digital-pet-fx-sweep 1.05s ease-in-out infinite alternate; }
+.dsh-digital-pet-fx-broom::before { content: ''; position: absolute; right: 2%; bottom: 0; width: 54%; height: 34%;
+  border-radius: 16% 16% 28% 28%;
+  background: repeating-linear-gradient(90deg, #f3cd72 0 12%, #dcae50 12% 24%); }
+.dsh-digital-pet-fx-broom::after { content: ''; position: absolute; right: 26%; bottom: 30%; width: 9%; height: 74%;
+  border-radius: 99px; background: linear-gradient(90deg, #b9863f, #8a5c25);
+  transform: rotate(24deg); transform-origin: bottom center; }
+@keyframes dsh-digital-pet-fx-sweep {
+  from { transform: rotate(-22deg) translate(-8%, 2%); }
+  to { transform: rotate(18deg) translate(2%, 0); }
+}
+.dsh-digital-pet-act-stage[data-action="cleanWaste"] .dsh-digital-pet-poop { animation: dsh-digital-pet-poop-away 3s ease-in forwards; }
+@keyframes dsh-digital-pet-poop-away {
+  0% { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1); }
+  30% { opacity: 1; transform: translate(14%, -8%) rotate(8deg) scale(1); }
+  100% { opacity: 0; transform: translate(64%, -6%) rotate(18deg) scale(.5); }
+}
+/* 喝水道具：水槽 + 水面波动 */
+.dsh-digital-pet-fx-trough { left: 2%; bottom: 1%; width: 36%; height: 12%;
+  border-radius: 4% 4% 46% 46% / 4% 4% 92% 92%;
+  background: linear-gradient(180deg, #c9e9fa 0%, #67b4ee 48%, #2f7fc4 100%);
+  box-shadow: inset 0 2px 2px rgba(255, 255, 255, .6), 0 2px 3px rgba(0, 0, 0, .12); }
+.dsh-digital-pet-fx-trough::after { content: ''; position: absolute; left: 12%; right: 12%; top: -14%; height: 22%; border-radius: 50%;
+  background: rgba(255, 255, 255, .55); animation: dsh-digital-pet-fx-water 1.6s ease-in-out infinite; }
+@keyframes dsh-digital-pet-fx-water {
+  0%, 100% { opacity: .45; transform: scaleX(.9); }
+  50% { opacity: .7; transform: scaleX(1.05); }
+}
+.dsh-digital-pet-panel-btn:focus-visible, .dsh-digital-pet-paw:focus-visible, .dsh-digital-pet-species:focus-visible,
+.dsh-digital-pet-action:focus-visible, .dsh-digital-pet-btn:focus-visible, .dsh-digital-pet-sprite:focus-visible {
+  outline: 2px solid var(--dsw-alias-brand-primary, #4d6bfe); outline-offset: 2px; }
+.dsh-digital-pet-heart { position: absolute; bottom: 82%; left: 50%; z-index: 3; font-size: 18px; line-height: 1; color: #f0609a;
+  pointer-events: none; animation: dsh-digital-pet-heart-up .95s ease-out forwards; text-shadow: 0 1px 2px rgba(0,0,0,.15); }
+@keyframes dsh-digital-pet-heart-up {
+  0% { opacity: 0; transform: translate(-50%, 4px) scale(.7); }
+  25% { opacity: 1; transform: translate(-50%, -6px) scale(1.05); }
+  100% { opacity: 0; transform: translate(-50%, -26px) scale(1); }
+}
+.dsh-digital-pet-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .dsh-digital-pet-sprite, .dsh-digital-pet-hero img, .dsh-digital-pet-mood-bubble,
+  .dsh-digital-pet-poop, .dsh-digital-pet-fx, .dsh-digital-pet-fx > span,
+  .dsh-digital-pet-fx > span::before, .dsh-digital-pet-fx > span::after { animation: none !important; }
+  .dsh-digital-pet-fx { display: none !important; }
+  .dsh-digital-pet-panel-btn, .dsh-digital-pet-paw, .dsh-digital-pet-species, .dsh-digital-pet-bar > i { transition: none !important; }
+}
+@keyframes dsh-pet-hover-whale-baby {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(1.900deg) scale(1.010, 0.991)}30% {transform:translate(0.980%, -0.840%) rotate(-1.900deg) scale(0.996, 1.005)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.006, 0.994)}68% {transform:translate(0.000%, 0.000%) rotate(0.950deg) scale(0.998, 1.002)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-whale-toddler {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(-0.637%, 1.000%) rotate(3.500deg) scale(1.018, 0.983)}30% {transform:translate(1.820%, -3.900%) rotate(-3.500deg) scale(0.993, 1.009)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.011, 0.989)}68% {transform:translate(-1.092%, -1.950%) rotate(3.500deg) scale(0.996, 1.004)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-whale-child {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(-2.800%, 1.000%) rotate(2.000deg) scale(1.025, 0.975)}30% {transform:translate(2.800%, -6.000%) rotate(-5.000deg) scale(0.990, 1.012)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.016, 0.984)}68% {transform:translate(-2.800%, -4.800%) rotate(5.000deg) scale(0.994, 1.006)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-whale-teen {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(1.680%, 2.000%) rotate(5.750deg) scale(1.029, 0.971)}30% {transform:translate(-3.360%, -7.200%) rotate(-2.875deg) scale(0.989, 1.014)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.019, 0.981)}68% {transform:translate(3.360%, -2.160%) rotate(-5.750deg) scale(0.993, 1.007)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-whale-adult {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 1.000%) rotate(-1.050deg) scale(1.018, 0.983)}30% {transform:translate(1.400%, -0.900%) rotate(3.500deg) scale(0.993, 1.009)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.011, 0.989)}68% {transform:translate(-0.350%, 0.000%) rotate(-1.050deg) scale(0.996, 1.004)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-whale-elder {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(0.480deg) scale(1.006, 0.994)}30% {transform:translate(0.336%, 0.000%) rotate(-1.200deg) scale(0.998, 1.003)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.004, 0.996)}68% {transform:translate(0.000%, 0.000%) rotate(0.360deg) scale(0.999, 1.002)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-monkey-baby {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(-3.420deg) scale(1.021, 0.979)}30% {transform:translate(1.750%, -1.120%) rotate(3.420deg) scale(0.992, 1.010)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.014, 0.986)}68% {transform:translate(0.000%, 0.000%) rotate(-1.710deg) scale(0.995, 1.005)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-monkey-toddler {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(-1.137%, 1.000%) rotate(-6.300deg) scale(1.038, 0.962)}30% {transform:translate(3.250%, -5.200%) rotate(6.300deg) scale(0.985, 1.019)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.025, 0.975)}68% {transform:translate(-1.950%, -2.600%) rotate(-6.300deg) scale(0.990, 1.010)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-monkey-child {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(-5.000%, 1.000%) rotate(-3.600deg) scale(1.055, 0.945)}30% {transform:translate(5.000%, -8.000%) rotate(9.000deg) scale(0.978, 1.028)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.036, 0.964)}68% {transform:translate(-5.000%, -6.400%) rotate(-9.000deg) scale(0.986, 1.014)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-monkey-teen {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(3.000%, 2.000%) rotate(-10.350deg) scale(1.063, 0.937)}30% {transform:translate(-6.000%, -9.600%) rotate(5.175deg) scale(0.975, 1.032)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.041, 0.959)}68% {transform:translate(6.000%, -2.880%) rotate(10.350deg) scale(0.984, 1.016)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-monkey-adult {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 1.000%) rotate(1.890deg) scale(1.038, 0.962)}30% {transform:translate(2.500%, -1.200%) rotate(-6.300deg) scale(0.985, 1.019)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.025, 0.975)}68% {transform:translate(-0.625%, 0.000%) rotate(1.890deg) scale(0.990, 1.010)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-monkey-elder {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(-0.864deg) scale(1.013, 0.987)}30% {transform:translate(0.600%, 0.000%) rotate(2.160deg) scale(0.995, 1.007)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.009, 0.991)}68% {transform:translate(0.000%, 0.000%) rotate(-0.648deg) scale(0.997, 1.003)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-duck-baby {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(3.040deg) scale(1.015, 0.985)}30% {transform:translate(1.400%, -0.420%) rotate(-3.040deg) scale(0.994, 1.008)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.010, 0.990)}68% {transform:translate(0.000%, 0.000%) rotate(1.520deg) scale(0.996, 1.004)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-duck-toddler {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(-0.910%, 1.000%) rotate(5.600deg) scale(1.028, 0.972)}30% {transform:translate(2.600%, -1.950%) rotate(-5.600deg) scale(0.989, 1.014)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.018, 0.982)}68% {transform:translate(-1.560%, -0.975%) rotate(5.600deg) scale(0.993, 1.007)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-duck-child {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(-4.000%, 1.000%) rotate(3.200deg) scale(1.040, 0.960)}30% {transform:translate(4.000%, -3.000%) rotate(-8.000deg) scale(0.984, 1.020)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.026, 0.974)}68% {transform:translate(-4.000%, -2.400%) rotate(8.000deg) scale(0.990, 1.010)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-duck-teen {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(2.400%, 2.000%) rotate(9.200deg) scale(1.046, 0.954)}30% {transform:translate(-4.800%, -3.600%) rotate(-4.600deg) scale(0.982, 1.023)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.030, 0.970)}68% {transform:translate(4.800%, -1.080%) rotate(-9.200deg) scale(0.989, 1.012)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-duck-adult {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 1.000%) rotate(-1.680deg) scale(1.028, 0.972)}30% {transform:translate(2.000%, -0.450%) rotate(5.600deg) scale(0.989, 1.014)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.018, 0.982)}68% {transform:translate(-0.500%, 0.000%) rotate(-1.680deg) scale(0.993, 1.007)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-duck-elder {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(0.768deg) scale(1.010, 0.990)}30% {transform:translate(0.480%, 0.000%) rotate(-1.920deg) scale(0.996, 1.005)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.006, 0.994)}68% {transform:translate(0.000%, 0.000%) rotate(0.576deg) scale(0.998, 1.002)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-chick-baby {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(-1.520deg) scale(1.025, 0.975)}30% {transform:translate(0.700%, -1.260%) rotate(1.520deg) scale(0.990, 1.012)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.016, 0.984)}68% {transform:translate(0.000%, 0.000%) rotate(-0.760deg) scale(0.994, 1.006)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-chick-toddler {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(-0.455%, 1.000%) rotate(-2.800deg) scale(1.046, 0.955)}30% {transform:translate(1.300%, -5.850%) rotate(2.800deg) scale(0.982, 1.023)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.030, 0.970)}68% {transform:translate(-0.780%, -2.925%) rotate(-2.800deg) scale(0.989, 1.011)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-chick-child {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(-2.000%, 1.000%) rotate(-1.600deg) scale(1.065, 0.935)}30% {transform:translate(2.000%, -9.000%) rotate(4.000deg) scale(0.974, 1.032)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.042, 0.958)}68% {transform:translate(-2.000%, -7.200%) rotate(-4.000deg) scale(0.984, 1.016)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-chick-teen {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(1.200%, 2.000%) rotate(-4.600deg) scale(1.075, 0.925)}30% {transform:translate(-2.400%, -10.800%) rotate(2.300deg) scale(0.970, 1.037)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.049, 0.951)}68% {transform:translate(2.400%, -3.240%) rotate(4.600deg) scale(0.981, 1.019)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-chick-adult {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 1.000%) rotate(0.840deg) scale(1.046, 0.955)}30% {transform:translate(1.000%, -1.350%) rotate(-2.800deg) scale(0.982, 1.023)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.030, 0.970)}68% {transform:translate(-0.250%, 0.000%) rotate(0.840deg) scale(0.989, 1.011)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-chick-elder {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(-0.384deg) scale(1.016, 0.984)}30% {transform:translate(0.240%, 0.000%) rotate(0.960deg) scale(0.994, 1.008)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.010, 0.990)}68% {transform:translate(0.000%, 0.000%) rotate(-0.288deg) scale(0.996, 1.004)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-cat-baby {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(2.280deg) scale(1.013, 0.987)}30% {transform:translate(-1.400%, -0.560%) rotate(-2.280deg) scale(0.995, 1.007)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.009, 0.991)}68% {transform:translate(0.000%, 0.000%) rotate(1.140deg) scale(0.997, 1.003)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-cat-toddler {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.910%, 1.000%) rotate(4.200deg) scale(1.024, 0.976)}30% {transform:translate(-2.600%, -2.600%) rotate(-4.200deg) scale(0.990, 1.012)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.016, 0.984)}68% {transform:translate(1.560%, -1.300%) rotate(4.200deg) scale(0.994, 1.006)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-cat-child {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(4.000%, 1.000%) rotate(2.400deg) scale(1.035, 0.965)}30% {transform:translate(-4.000%, -4.000%) rotate(-6.000deg) scale(0.986, 1.018)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.023, 0.977)}68% {transform:translate(4.000%, -3.200%) rotate(6.000deg) scale(0.991, 1.009)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-cat-teen {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(-2.400%, 2.000%) rotate(6.900deg) scale(1.040, 0.960)}30% {transform:translate(4.800%, -4.800%) rotate(-3.450deg) scale(0.984, 1.020)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.026, 0.974)}68% {transform:translate(-4.800%, -1.440%) rotate(-6.900deg) scale(0.990, 1.010)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-cat-adult {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 1.000%) rotate(-1.260deg) scale(1.024, 0.976)}30% {transform:translate(-2.000%, -0.600%) rotate(4.200deg) scale(0.990, 1.012)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.016, 0.984)}68% {transform:translate(0.500%, 0.000%) rotate(-1.260deg) scale(0.994, 1.006)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-cat-elder {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(0.576deg) scale(1.008, 0.992)}30% {transform:translate(-0.480%, 0.000%) rotate(-1.440deg) scale(0.997, 1.004)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.005, 0.995)}68% {transform:translate(0.000%, 0.000%) rotate(0.432deg) scale(0.998, 1.002)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-dog-baby {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(-2.660deg) scale(1.019, 0.981)}30% {transform:translate(1.575%, -0.980%) rotate(2.660deg) scale(0.992, 1.010)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.012, 0.988)}68% {transform:translate(0.000%, 0.000%) rotate(-1.330deg) scale(0.995, 1.005)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-dog-toddler {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(-1.024%, 1.000%) rotate(-4.900deg) scale(1.035, 0.965)}30% {transform:translate(2.925%, -4.550%) rotate(4.900deg) scale(0.986, 1.018)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.023, 0.977)}68% {transform:translate(-1.755%, -2.275%) rotate(-4.900deg) scale(0.991, 1.009)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-dog-child {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(-4.500%, 1.000%) rotate(-2.800deg) scale(1.050, 0.950)}30% {transform:translate(4.500%, -7.000%) rotate(7.000deg) scale(0.980, 1.025)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.032, 0.968)}68% {transform:translate(-4.500%, -5.600%) rotate(-7.000deg) scale(0.988, 1.012)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-dog-teen {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(2.700%, 2.000%) rotate(-8.050deg) scale(1.058, 0.943)}30% {transform:translate(-5.400%, -8.400%) rotate(4.025deg) scale(0.977, 1.029)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.037, 0.963)}68% {transform:translate(5.400%, -2.520%) rotate(8.050deg) scale(0.986, 1.014)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-dog-adult {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 1.000%) rotate(1.470deg) scale(1.035, 0.965)}30% {transform:translate(2.250%, -1.050%) rotate(-4.900deg) scale(0.986, 1.018)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.023, 0.977)}68% {transform:translate(-0.563%, 0.000%) rotate(1.470deg) scale(0.991, 1.009)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-dog-elder {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(-0.672deg) scale(1.012, 0.988)}30% {transform:translate(0.540%, 0.000%) rotate(1.680deg) scale(0.995, 1.006)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.008, 0.992)}68% {transform:translate(0.000%, 0.000%) rotate(-0.504deg) scale(0.997, 1.003)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-cow-baby {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(-1.900deg) scale(1.017, 0.983)}30% {transform:translate(-0.875%, -0.350%) rotate(1.900deg) scale(0.993, 1.009)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.011, 0.989)}68% {transform:translate(0.000%, 0.000%) rotate(-0.950deg) scale(0.996, 1.004)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-cow-toddler {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.569%, 1.000%) rotate(-3.500deg) scale(1.032, 0.969)}30% {transform:translate(-1.625%, -1.625%) rotate(3.500deg) scale(0.987, 1.016)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.020, 0.980)}68% {transform:translate(0.975%, -0.813%) rotate(-3.500deg) scale(0.992, 1.008)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-cow-child {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(2.500%, 1.000%) rotate(-2.000deg) scale(1.045, 0.955)}30% {transform:translate(-2.500%, -2.500%) rotate(5.000deg) scale(0.982, 1.022)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.029, 0.971)}68% {transform:translate(2.500%, -2.000%) rotate(-5.000deg) scale(0.989, 1.011)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-cow-teen {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(-1.500%, 2.000%) rotate(-5.750deg) scale(1.052, 0.948)}30% {transform:translate(3.000%, -3.000%) rotate(2.875deg) scale(0.979, 1.026)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.034, 0.966)}68% {transform:translate(-3.000%, -0.900%) rotate(5.750deg) scale(0.987, 1.013)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-cow-adult {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 1.000%) rotate(1.050deg) scale(1.032, 0.969)}30% {transform:translate(-1.250%, -0.375%) rotate(-3.500deg) scale(0.987, 1.016)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.020, 0.980)}68% {transform:translate(0.313%, 0.000%) rotate(1.050deg) scale(0.992, 1.008)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-cow-elder {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(-0.480deg) scale(1.011, 0.989)}30% {transform:translate(-0.300%, 0.000%) rotate(1.200deg) scale(0.996, 1.005)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.007, 0.993)}68% {transform:translate(0.000%, 0.000%) rotate(-0.360deg) scale(0.997, 1.003)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-goat-baby {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(2.660deg) scale(1.015, 0.985)}30% {transform:translate(-1.575%, -1.190%) rotate(-2.660deg) scale(0.994, 1.008)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.010, 0.990)}68% {transform:translate(0.000%, 0.000%) rotate(1.330deg) scale(0.996, 1.004)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-goat-toddler {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(1.024%, 1.000%) rotate(4.900deg) scale(1.028, 0.972)}30% {transform:translate(-2.925%, -5.525%) rotate(-4.900deg) scale(0.989, 1.014)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.018, 0.982)}68% {transform:translate(1.755%, -2.763%) rotate(4.900deg) scale(0.993, 1.007)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-goat-child {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(4.500%, 1.000%) rotate(2.800deg) scale(1.040, 0.960)}30% {transform:translate(-4.500%, -8.500%) rotate(-7.000deg) scale(0.984, 1.020)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.026, 0.974)}68% {transform:translate(4.500%, -6.800%) rotate(7.000deg) scale(0.990, 1.010)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-goat-teen {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(-2.700%, 2.000%) rotate(8.050deg) scale(1.046, 0.954)}30% {transform:translate(5.400%, -10.200%) rotate(-4.025deg) scale(0.982, 1.023)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.030, 0.970)}68% {transform:translate(-5.400%, -3.060%) rotate(-8.050deg) scale(0.989, 1.012)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-goat-adult {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 1.000%) rotate(-1.470deg) scale(1.028, 0.972)}30% {transform:translate(-2.250%, -1.275%) rotate(4.900deg) scale(0.989, 1.014)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.018, 0.982)}68% {transform:translate(0.563%, 0.000%) rotate(-1.470deg) scale(0.993, 1.007)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-goat-elder {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(0.672deg) scale(1.010, 0.990)}30% {transform:translate(-0.540%, 0.000%) rotate(-1.680deg) scale(0.996, 1.005)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.006, 0.994)}68% {transform:translate(0.000%, 0.000%) rotate(0.504deg) scale(0.998, 1.002)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-dinosaur-baby {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(3.420deg) scale(1.019, 0.981)}30% {transform:translate(-1.225%, -0.770%) rotate(-3.420deg) scale(0.992, 1.010)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.012, 0.988)}68% {transform:translate(0.000%, 0.000%) rotate(1.710deg) scale(0.995, 1.005)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-dinosaur-toddler {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.796%, 1.000%) rotate(6.300deg) scale(1.035, 0.965)}30% {transform:translate(-2.275%, -3.575%) rotate(-6.300deg) scale(0.986, 1.018)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.023, 0.977)}68% {transform:translate(1.365%, -1.788%) rotate(6.300deg) scale(0.991, 1.009)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-dinosaur-child {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(3.500%, 1.000%) rotate(3.600deg) scale(1.050, 0.950)}30% {transform:translate(-3.500%, -5.500%) rotate(-9.000deg) scale(0.980, 1.025)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.032, 0.968)}68% {transform:translate(3.500%, -4.400%) rotate(9.000deg) scale(0.988, 1.012)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-dinosaur-teen {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(-2.100%, 2.000%) rotate(10.350deg) scale(1.058, 0.943)}30% {transform:translate(4.200%, -6.600%) rotate(-5.175deg) scale(0.977, 1.029)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.037, 0.963)}68% {transform:translate(-4.200%, -1.980%) rotate(-10.350deg) scale(0.986, 1.014)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-dinosaur-adult {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 1.000%) rotate(-1.890deg) scale(1.035, 0.965)}30% {transform:translate(-1.750%, -0.825%) rotate(6.300deg) scale(0.986, 1.018)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.023, 0.977)}68% {transform:translate(0.438%, 0.000%) rotate(-1.890deg) scale(0.991, 1.009)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+@keyframes dsh-pet-hover-dinosaur-elder {0% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}12% {transform:translate(0.000%, 0.000%) rotate(0.864deg) scale(1.012, 0.988)}30% {transform:translate(-0.420%, 0.000%) rotate(-2.160deg) scale(0.995, 1.006)}48% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.008, 0.992)}68% {transform:translate(0.000%, 0.000%) rotate(0.648deg) scale(0.997, 1.003)}84% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}100% {transform:translate(0.000%, 0.000%) rotate(0.000deg) scale(1.000, 1.000)}}
+.dsh-digital-pet-float .dsh-digital-pet-hover-stage { touch-action: none; }
+.dsh-digital-pet-hover-stage[data-hovering="true"] img[data-mood]:not([data-action]) {
+  transform-origin: 50% 100%; will-change: transform;
+  animation: var(--pet-hover-name) var(--pet-hover-duration) cubic-bezier(.36,0,.3,1) infinite;
+}
+.dsh-digital-pet-hover-stage:not([data-hovering="true"]) *,
+.dsh-digital-pet-hover-stage:not([data-hovering="true"]) *::before,
+.dsh-digital-pet-hover-stage:not([data-hovering="true"]) *::after {
+  animation: none !important; will-change: auto;
+}
+.dsh-digital-pet-hover-stage:not([data-hovering="true"]) .dsh-digital-pet-zzz > span { opacity: 1; }
+.dsh-digital-pet-hover-stage:not([data-hovering="true"]) .dsh-digital-pet-mood-bubble,
+.dsh-digital-pet-hover-stage:not([data-hovering="true"]) .dsh-digital-pet-heart { opacity: 0; }
+.dsh-digital-pet-hover-stage:not([data-hovering="true"]) .dsh-digital-pet-fx { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .dsh-digital-pet-hover-stage *, .dsh-digital-pet-hover-stage *::before,
+  .dsh-digital-pet-hover-stage *::after { animation: none !important; will-change: auto !important; }
+}
+
+body{font:14px system-ui;background:#f4f6fb;padding:24px;color:#172033}h1{font-size:24px}.gallery{display:grid;grid-template-columns:repeat(6,minmax(130px,1fr));gap:16px}article{text-align:center;background:white;border-radius:16px;padding:18px 8px}.sample{width:120px;height:120px;display:flex;align-items:flex-end;justify-content:center;margin:auto}.sample img{width:105px;height:105px;object-fit:contain}small{color:#667085}@media(max-width:850px){.gallery{grid-template-columns:repeat(3,1fr)}}</style><h1>宠物悬停动作 · 54 套</h1><p>移入卡片中的宠物播放，移开立即恢复静态。复用高清 PNG，通过位移、旋转和伸缩合成动作。</p><section class="gallery"><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-whale-baby;--pet-hover-duration:2600ms"><img data-mood="awake" src="../../assets/sprites/whale/baby.png"></div><p>鲸鱼 · 婴儿</p><small>摇篮漂浮</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-whale-toddler;--pet-hover-duration:1750ms"><img data-mood="awake" src="../../assets/sprites/whale/toddler.png"></div><p>鲸鱼 · 幼儿</p><small>轻轻扑腾</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-whale-child;--pet-hover-duration:1450ms"><img data-mood="awake" src="../../assets/sprites/whale/child.png"></div><p>鲸鱼 · 少儿</p><small>跃出水面</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-whale-teen;--pet-hover-duration:1650ms"><img data-mood="awake" src="../../assets/sprites/whale/teen.png"></div><p>鲸鱼 · 青年</p><small>侧身冲浪</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-whale-adult;--pet-hover-duration:2250ms"><img data-mood="awake" src="../../assets/sprites/whale/adult.png"></div><p>鲸鱼 · 壮年</p><small>悠游致意</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-whale-elder;--pet-hover-duration:3200ms"><img data-mood="awake" src="../../assets/sprites/whale/elder.png"></div><p>鲸鱼 · 老年</p><small>缓缓点头</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-monkey-baby;--pet-hover-duration:2631ms"><img data-mood="awake" src="../../assets/sprites/monkey/baby.png"></div><p>猴子 · 婴儿</p><small>害羞摇摆</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-monkey-toddler;--pet-hover-duration:1781ms"><img data-mood="awake" src="../../assets/sprites/monkey/toddler.png"></div><p>猴子 · 幼儿</p><small>蹦蹦学步</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-monkey-child;--pet-hover-duration:1481ms"><img data-mood="awake" src="../../assets/sprites/monkey/child.png"></div><p>猴子 · 少儿</p><small>左右蹦跳</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-monkey-teen;--pet-hover-duration:1681ms"><img data-mood="awake" src="../../assets/sprites/monkey/teen.png"></div><p>猴子 · 青年</p><small>腾跃欢呼</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-monkey-adult;--pet-hover-duration:2281ms"><img data-mood="awake" src="../../assets/sprites/monkey/adult.png"></div><p>猴子 · 壮年</p><small>俏皮探身</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-monkey-elder;--pet-hover-duration:3231ms"><img data-mood="awake" src="../../assets/sprites/monkey/elder.png"></div><p>猴子 · 老年</p><small>慢慢招呼</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-duck-baby;--pet-hover-duration:2662ms"><img data-mood="awake" src="../../assets/sprites/duck/baby.png"></div><p>鸭子 · 婴儿</p><small>软软晃动</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-duck-toddler;--pet-hover-duration:1812ms"><img data-mood="awake" src="../../assets/sprites/duck/toddler.png"></div><p>鸭子 · 幼儿</p><small>摇摆学步</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-duck-child;--pet-hover-duration:1512ms"><img data-mood="awake" src="../../assets/sprites/duck/child.png"></div><p>鸭子 · 少儿</p><small>扑腾小跳</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-duck-teen;--pet-hover-duration:1712ms"><img data-mood="awake" src="../../assets/sprites/duck/teen.png"></div><p>鸭子 · 青年</p><small>昂首踏步</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-duck-adult;--pet-hover-duration:2312ms"><img data-mood="awake" src="../../assets/sprites/duck/adult.png"></div><p>鸭子 · 壮年</p><small>鞠躬问好</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-duck-elder;--pet-hover-duration:3262ms"><img data-mood="awake" src="../../assets/sprites/duck/elder.png"></div><p>鸭子 · 老年</p><small>悠闲摇摆</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-chick-baby;--pet-hover-duration:2693ms"><img data-mood="awake" src="../../assets/sprites/chick/baby.png"></div><p>小鸡 · 婴儿</p><small>绒球轻颤</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-chick-toddler;--pet-hover-duration:1843ms"><img data-mood="awake" src="../../assets/sprites/chick/toddler.png"></div><p>小鸡 · 幼儿</p><small>啄啄小跳</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-chick-child;--pet-hover-duration:1543ms"><img data-mood="awake" src="../../assets/sprites/chick/child.png"></div><p>小鸡 · 少儿</p><small>连续弹跳</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-chick-teen;--pet-hover-duration:1743ms"><img data-mood="awake" src="../../assets/sprites/chick/teen.png"></div><p>小鸡 · 青年</p><small>挺胸扑腾</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-chick-adult;--pet-hover-duration:2343ms"><img data-mood="awake" src="../../assets/sprites/chick/adult.png"></div><p>小鸡 · 壮年</p><small>低头啄啄</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-chick-elder;--pet-hover-duration:3293ms"><img data-mood="awake" src="../../assets/sprites/chick/elder.png"></div><p>小鸡 · 老年</p><small>轻轻颔首</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-cat-baby;--pet-hover-duration:2724ms"><img data-mood="awake" src="../../assets/sprites/cat/baby.png"></div><p>猫猫 · 婴儿</p><small>蜷身轻晃</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-cat-toddler;--pet-hover-duration:1874ms"><img data-mood="awake" src="../../assets/sprites/cat/toddler.png"></div><p>猫猫 · 幼儿</p><small>歪头探看</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-cat-child;--pet-hover-duration:1574ms"><img data-mood="awake" src="../../assets/sprites/cat/child.png"></div><p>猫猫 · 少儿</p><small>蓄力扑跳</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-cat-teen;--pet-hover-duration:1774ms"><img data-mood="awake" src="../../assets/sprites/cat/teen.png"></div><p>猫猫 · 青年</p><small>舒展跃起</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-cat-adult;--pet-hover-duration:2374ms"><img data-mood="awake" src="../../assets/sprites/cat/adult.png"></div><p>猫猫 · 壮年</p><small>伸懒腰</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-cat-elder;--pet-hover-duration:3324ms"><img data-mood="awake" src="../../assets/sprites/cat/elder.png"></div><p>猫猫 · 老年</p><small>慢慢蹭蹭</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-dog-baby;--pet-hover-duration:2755ms"><img data-mood="awake" src="../../assets/sprites/dog/baby.png"></div><p>狗狗 · 婴儿</p><small>奶团摇摇</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-dog-toddler;--pet-hover-duration:1905ms"><img data-mood="awake" src="../../assets/sprites/dog/toddler.png"></div><p>狗狗 · 幼儿</p><small>开心颠步</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-dog-child;--pet-hover-duration:1605ms"><img data-mood="awake" src="../../assets/sprites/dog/child.png"></div><p>狗狗 · 少儿</p><small>欢快蹦跳</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-dog-teen;--pet-hover-duration:1805ms"><img data-mood="awake" src="../../assets/sprites/dog/teen.png"></div><p>狗狗 · 青年</p><small>前倾邀玩</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-dog-adult;--pet-hover-duration:2405ms"><img data-mood="awake" src="../../assets/sprites/dog/adult.png"></div><p>狗狗 · 壮年</p><small>俯身问候</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-dog-elder;--pet-hover-duration:3355ms"><img data-mood="awake" src="../../assets/sprites/dog/elder.png"></div><p>狗狗 · 老年</p><small>温柔点头</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-cow-baby;--pet-hover-duration:2786ms"><img data-mood="awake" src="../../assets/sprites/cow/baby.png"></div><p>牛牛 · 婴儿</p><small>团团轻摆</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-cow-toddler;--pet-hover-duration:1936ms"><img data-mood="awake" src="../../assets/sprites/cow/toddler.png"></div><p>牛牛 · 幼儿</p><small>踏踏学步</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-cow-child;--pet-hover-duration:1636ms"><img data-mood="awake" src="../../assets/sprites/cow/child.png"></div><p>牛牛 · 少儿</p><small>笨拙小跃</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-cow-teen;--pet-hover-duration:1836ms"><img data-mood="awake" src="../../assets/sprites/cow/teen.png"></div><p>牛牛 · 青年</p><small>欢快踏步</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-cow-adult;--pet-hover-duration:2436ms"><img data-mood="awake" src="../../assets/sprites/cow/adult.png"></div><p>牛牛 · 壮年</p><small>沉稳点头</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-cow-elder;--pet-hover-duration:3386ms"><img data-mood="awake" src="../../assets/sprites/cow/elder.png"></div><p>牛牛 · 老年</p><small>缓缓致意</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-goat-baby;--pet-hover-duration:2817ms"><img data-mood="awake" src="../../assets/sprites/goat/baby.png"></div><p>山羊 · 婴儿</p><small>毛团摇摇</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-goat-toddler;--pet-hover-duration:1967ms"><img data-mood="awake" src="../../assets/sprites/goat/toddler.png"></div><p>山羊 · 幼儿</p><small>试探踮脚</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-goat-child;--pet-hover-duration:1667ms"><img data-mood="awake" src="../../assets/sprites/goat/child.png"></div><p>山羊 · 少儿</p><small>山坡蹦跳</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-goat-teen;--pet-hover-duration:1867ms"><img data-mood="awake" src="../../assets/sprites/goat/teen.png"></div><p>山羊 · 青年</p><small>轻巧跃起</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-goat-adult;--pet-hover-duration:2467ms"><img data-mood="awake" src="../../assets/sprites/goat/adult.png"></div><p>山羊 · 壮年</p><small>昂头致意</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-goat-elder;--pet-hover-duration:3417ms"><img data-mood="awake" src="../../assets/sprites/goat/elder.png"></div><p>山羊 · 老年</p><small>低头慢摇</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-dinosaur-baby;--pet-hover-duration:2848ms"><img data-mood="awake" src="../../assets/sprites/dinosaur/baby.png"></div><p>恐龙 · 婴儿</p><small>抱抱摇摆</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-dinosaur-toddler;--pet-hover-duration:1998ms"><img data-mood="awake" src="../../assets/sprites/dinosaur/toddler.png"></div><p>恐龙 · 幼儿</p><small>短腿踏步</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-dinosaur-child;--pet-hover-duration:1698ms"><img data-mood="awake" src="../../assets/sprites/dinosaur/child.png"></div><p>恐龙 · 少儿</p><small>开心蹦跶</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-dinosaur-teen;--pet-hover-duration:1898ms"><img data-mood="awake" src="../../assets/sprites/dinosaur/teen.png"></div><p>恐龙 · 青年</p><small>昂首小吼</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-dinosaur-adult;--pet-hover-duration:2498ms"><img data-mood="awake" src="../../assets/sprites/dinosaur/adult.png"></div><p>恐龙 · 壮年</p><small>探头招呼</small></article><article><div class="sample dsh-digital-pet-hover-stage" data-hovering="false" style="--pet-hover-name:dsh-pet-hover-dinosaur-elder;--pet-hover-duration:3448ms"><img data-mood="awake" src="../../assets/sprites/dinosaur/elder.png"></div><p>恐龙 · 老年</p><small>拄杖点头</small></article></section><script>for(const e of document.querySelectorAll(".sample")){e.onpointerenter=v=>{if(v.pointerType==="mouse"&&!v.buttons)e.dataset.hovering="true"};e.onpointerleave=()=>e.dataset.hovering="false"}window.onblur=()=>document.querySelectorAll(".sample").forEach(e=>e.dataset.hovering="false")</script>

@@ -1,0 +1,3711 @@
+{
+  "version": "3.0.2",
+  "description": "135 张宠物素材逐张 imagegen 高清重绘；宽高均为替换前精确 2 倍；原文件名与相对路径保持一致。",
+  "slotMeta": {
+    "baby": {
+      "nameZh": "婴儿",
+      "nameEn": "Baby",
+      "category": "stage"
+    },
+    "toddler": {
+      "nameZh": "幼儿",
+      "nameEn": "Toddler",
+      "category": "stage"
+    },
+    "child": {
+      "nameZh": "少儿",
+      "nameEn": "Child",
+      "category": "stage"
+    },
+    "teen": {
+      "nameZh": "青年",
+      "nameEn": "Teen",
+      "category": "stage"
+    },
+    "adult": {
+      "nameZh": "壮年",
+      "nameEn": "Adult",
+      "category": "stage"
+    },
+    "elder": {
+      "nameZh": "老年",
+      "nameEn": "Elder",
+      "category": "stage"
+    },
+    "poop": {
+      "nameZh": "便便",
+      "nameEn": "Poop",
+      "category": "need"
+    },
+    "grave": {
+      "nameZh": "坟墓",
+      "nameEn": "Grave",
+      "category": "status"
+    },
+    "cleanWaste": {
+      "nameZh": "铲屎",
+      "nameEn": "Clean waste",
+      "category": "care"
+    },
+    "bathe": {
+      "nameZh": "洗澡",
+      "nameEn": "Bathe",
+      "category": "care"
+    },
+    "groom": {
+      "nameZh": "梳理",
+      "nameEn": "Groom",
+      "category": "care"
+    },
+    "feed": {
+      "nameZh": "喂食",
+      "nameEn": "Feed",
+      "category": "care"
+    },
+    "water": {
+      "nameZh": "喂水",
+      "nameEn": "Water",
+      "category": "care"
+    },
+    "walk": {
+      "nameZh": "逛街",
+      "nameEn": "Walk",
+      "category": "fun"
+    }
+  },
+  "pipeline": {
+    "tool": "built-in image_gen.imagegen",
+    "mode": "individual-redraw-2x",
+    "method": "high-resolution reference-grounded redraw -> alpha-bbox crop -> premultiplied RGBA Lanczos fit -> exact doubled canvas",
+    "padding": 4,
+    "scale": 2,
+    "run": "~/Documents/Program/whalecloud/output/imagegen/pet-redraw-2x-20261028",
+    "originalBackup": "~/Documents/Program/whalecloud/output/imagegen/pet-redraw-2x-20261028/original-assets.zip"
+  },
+  "preview": "preview-sheet.png",
+  "generatedBy": "built-in imagegen + fit_asset.py",
+  "species": [
+    {
+      "id": "whale",
+      "nameZh": "泡泡",
+      "nameEn": "Bubbles",
+      "sprites": {
+        "baby": {
+          "file": "sprites/whale/baby.png",
+          "width": 276,
+          "height": 236,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 54438,
+          "sha256": "53a2a21d33bacabbd984e4a415182ac9b5ec76757dda0698f0c40e1917ee8760",
+          "sourceFile": "source/redraw-2x/whale/baby.png",
+          "sourceSha256": "f6219f192f3ee05920089de1e5f1ea116ceda2fd5254cd0087ca150195365f70",
+          "sourceCrop": [
+            46,
+            47,
+            1318,
+            1111
+          ],
+          "fitScale": 0.21069182389937108,
+          "originalSize": [
+            138,
+            118
+          ],
+          "originalSha256": "9fd16c5b61bed5987ce86fe51ea7f0e9c9026d3f45bd08e0372369ceac788143",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "toddler": {
+          "file": "sprites/whale/toddler.png",
+          "width": 292,
+          "height": 284,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 73483,
+          "sha256": "09c691259f95d03dcf0fab951388e967787cf3afaaee745d394eb0a60c3c46fc",
+          "sourceFile": "source/redraw-2x/whale/toddler.png",
+          "sourceSha256": "0e9d08f418848e9c38e9018a40288c8bd3052ce2e9df40c20db31739b073cdb6",
+          "sourceCrop": [
+            78,
+            27,
+            1256,
+            1182
+          ],
+          "fitScale": 0.23896103896103896,
+          "originalSize": [
+            146,
+            142
+          ],
+          "originalSha256": "2d36c4fc499a4ea4aab99ca61a17d4f54c5a80bbbca9f4b7fec5655f7a839ee6",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "child": {
+          "file": "sprites/whale/child.png",
+          "width": 360,
+          "height": 354,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 98513,
+          "sha256": "bf497283398d23222dd3aab53a8ec723e09d58d0a8330daebe6ef8d834fadfc9",
+          "sourceFile": "source/redraw-2x/whale/child.png",
+          "sourceSha256": "c9964d2fd4f333fa737badefdec10b1cf72b40077c2e8f93bcf4b486e6d1d861",
+          "sourceCrop": [
+            16,
+            18,
+            1252,
+            1221
+          ],
+          "fitScale": 0.284789644012945,
+          "originalSize": [
+            180,
+            177
+          ],
+          "originalSha256": "dfde1ad65b58857d572378740fa4db2c2bee8d515911ae930c88b6c559d52122",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "teen": {
+          "file": "sprites/whale/teen.png",
+          "width": 454,
+          "height": 428,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 140242,
+          "sha256": "7a79db09ef9bf1dec741a2cb241ae1ee17f55bcdf2b9d98463994ce1b41223fc",
+          "sourceFile": "source/redraw-2x/whale/teen.png",
+          "sourceSha256": "84728d28c165db7e4f830e72979ac5d95536602112074df83aef252a9ee6196b",
+          "sourceCrop": [
+            22,
+            28,
+            1272,
+            1184
+          ],
+          "fitScale": 0.3568,
+          "originalSize": [
+            227,
+            214
+          ],
+          "originalSha256": "fd172261d2b39acb0197c91fd78e24710aff898070172caa5d2265996dc3639a",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "adult": {
+          "file": "sprites/whale/adult.png",
+          "width": 462,
+          "height": 446,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 149871,
+          "sha256": "e80f6846ec2ceecaec96370c002e30d088789b71f4c51654ac384575e17545ce",
+          "sourceFile": "source/redraw-2x/whale/adult.png",
+          "sourceSha256": "186fc745f48221d19a10248f977096c1232a7eea97ce12a1a7452f4296a792b0",
+          "sourceCrop": [
+            72,
+            62,
+            1252,
+            1185
+          ],
+          "fitScale": 0.3847457627118644,
+          "originalSize": [
+            231,
+            223
+          ],
+          "originalSha256": "c3f5f9171dcc8d6b175c48e24475c590b747166fe08bd4e2ef48179fec2f39a0",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "elder": {
+          "file": "sprites/whale/elder.png",
+          "width": 406,
+          "height": 402,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 145867,
+          "sha256": "67737c31db94fe3c45167eeac4897a09f4a4773d338c9bc6b4dd2dc62aff2f74",
+          "sourceFile": "source/redraw-2x/whale/elder.png",
+          "sourceSha256": "cf3c24f2f11ee963acc6090577debe51ed2bbfb2c1a80ad8da8ee65047625ae5",
+          "sourceCrop": [
+            31,
+            11,
+            1251,
+            1223
+          ],
+          "fitScale": 0.3250825082508251,
+          "originalSize": [
+            203,
+            201
+          ],
+          "originalSha256": "ba804fa04943a53428f32a1b51b7191904bc26dcccd2631708ea1ed205222019",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "poop": {
+          "file": "sprites/whale/poop.png",
+          "width": 126,
+          "height": 166,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 16129,
+          "sha256": "440687be5632c2207c0153f297a8602fc7f353924f52f6e16a9ed5c459d23451",
+          "sourceFile": "source/redraw-2x/whale/poop.png",
+          "sourceSha256": "ddb89783eec0602ec2ef28e8df112088689ad498c78b35cb9d24ca26aa42adbc",
+          "sourceCrop": [
+            164,
+            59,
+            1211,
+            1051
+          ],
+          "fitScale": 0.11270296084049666,
+          "originalSize": [
+            63,
+            83
+          ],
+          "originalSha256": "43c542433a7d9551fd1d77bea99df9c3deb0744136c90e6297c857efb1ed7ec0",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "grave": {
+          "file": "sprites/whale/grave.png",
+          "width": 394,
+          "height": 240,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 78843,
+          "sha256": "6ead684bf398e1f3f8a221cfec03add267bbf81ef5bde1f41e46734ce2639a34",
+          "sourceFile": "source/redraw-2x/whale/grave.png",
+          "sourceSha256": "2b02fd49a6b253beded7079ea11d4002c5692e243f9af725959eaa14c39d87d9",
+          "sourceCrop": [
+            22,
+            37,
+            1588,
+            960
+          ],
+          "fitScale": 0.24648786717752236,
+          "originalSize": [
+            197,
+            120
+          ],
+          "originalSha256": "8abff571b229d846f0243fbbea7e329f6e4f47c3f5c50aca70a927bee5136bf7",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "cleanWaste": {
+          "file": "sprites/whale/cleanWaste.png",
+          "width": 448,
+          "height": 400,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 152842,
+          "sha256": "310bc305912e20954eb6af25dafe2eaac89e0337c45c9a1a0f446757648e17cf",
+          "sourceFile": "source/redraw-2x/whale/cleanWaste.png",
+          "sourceSha256": "40ff8dd5c2efc9fd2da0f0634fb691e0520970f385931beacb78c5f5d47eaa4e",
+          "sourceCrop": [
+            15,
+            21,
+            1315,
+            1162
+          ],
+          "fitScale": 0.3384615384615385,
+          "originalSize": [
+            224,
+            200
+          ],
+          "originalSha256": "a935e34d553788a45949087cec2f288fbb95e63b353ae4064374c5d791d28469",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "bathe": {
+          "file": "sprites/whale/bathe.png",
+          "width": 442,
+          "height": 428,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 180774,
+          "sha256": "4db99d7aa4e8390adc0a703ed2963f28db1a11b3f1a30f13f1f0b1c0b4c9f5d3",
+          "sourceFile": "source/redraw-2x/whale/bathe.png",
+          "sourceSha256": "b1a62c8b1c5c9eeba3f9721503b23f48a75a5e9c4c2a3fa4e0c585c71a4186ea",
+          "sourceCrop": [
+            25,
+            10,
+            1257,
+            1200
+          ],
+          "fitScale": 0.3522727272727273,
+          "originalSize": [
+            221,
+            214
+          ],
+          "originalSha256": "ff16c43fd741fceafe19150085b6effa69c71b671c901c5c5d73b7231f93b528",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "groom": {
+          "file": "sprites/whale/groom.png",
+          "width": 482,
+          "height": 378,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 168629,
+          "sha256": "381951da18bc0838b8a5becf49c3ba0b3c638d880425bc77adf04ca5e9192140",
+          "sourceFile": "source/redraw-2x/whale/groom.png",
+          "sourceSha256": "7c37d6bd77a5ee30a03026b382c3b3a69e82460d130dc1cb063578f544277292",
+          "sourceCrop": [
+            38,
+            35,
+            1379,
+            1081
+          ],
+          "fitScale": 0.3534675615212528,
+          "originalSize": [
+            241,
+            189
+          ],
+          "originalSha256": "f8835abd66e2b380ccd9427a27651bc8571e899a30dd375e9ad8341e2da9ff29",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "feed": {
+          "file": "sprites/whale/feed.png",
+          "width": 394,
+          "height": 406,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 145215,
+          "sha256": "0a0e88436b9ebcd7178e71a0c01976b09626431e71c7c609b74982a97c058206",
+          "sourceFile": "source/redraw-2x/whale/feed.png",
+          "sourceSha256": "15cb2c93df9fb371915d8381aa081d0442eb47a617105ff3f19acb8b88746d2c",
+          "sourceCrop": [
+            18,
+            9,
+            1224,
+            1262
+          ],
+          "fitScale": 0.31763766959297685,
+          "originalSize": [
+            197,
+            203
+          ],
+          "originalSha256": "c3fedce42a7cf0b2bf8c17a3b2ebb2e848a8b3ede6c93bae20b52f16872cf420",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "water": {
+          "file": "sprites/whale/water.png",
+          "width": 432,
+          "height": 368,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 123663,
+          "sha256": "e357d5d3179ac747e2267b63bc2eee4f84358fc042e22bef2aafb0d5e842f364",
+          "sourceFile": "source/redraw-2x/whale/water.png",
+          "sourceSha256": "c2abd73836b8cc4305e34facb7b133d2984a4b0588bb003ae85c12ebd3dd6200",
+          "sourceCrop": [
+            36,
+            33,
+            1343,
+            1128
+          ],
+          "fitScale": 0.324407039020658,
+          "originalSize": [
+            216,
+            184
+          ],
+          "originalSha256": "a7c72ded1fe17e0d714f515fd3e284bdfd4fb8ab1eb9d6e09f03b38cdabbba66",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "walk": {
+          "file": "sprites/whale/walk.png",
+          "width": 406,
+          "height": 406,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 140056,
+          "sha256": "5415937a7baad1a20cf4ae971720cb55fd9371aa95e95f5249e42fa3f1a2d671",
+          "sourceFile": "source/redraw-2x/whale/walk.png",
+          "sourceSha256": "4a1ca63b84bb165394222b0f73fc62552b9909f7da445b34a9d197c987b35864",
+          "sourceCrop": [
+            19,
+            16,
+            1240,
+            1230
+          ],
+          "fitScale": 0.32596232596232594,
+          "originalSize": [
+            203,
+            203
+          ],
+          "originalSha256": "b1c746d2a1b2a489a78aaa871310c128edbf996db3f40a50db3f861f76153bc0",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "extras": {
+        "adultWithPoop": {
+          "file": "sprites/whale/adult-with-poop.png",
+          "width": 404,
+          "height": 362,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 112647,
+          "sha256": "cc765ebc322c5d738683768b97edf5df253c23c3366abe0ad480a483481cd40a",
+          "sourceFile": "source/redraw-2x/whale/adult-with-poop.png",
+          "sourceSha256": "f78a381601b73a31a87f94b544e03114eb32789b2396cc72f3334365a40c6f0a",
+          "sourceCrop": [
+            16,
+            16,
+            1309,
+            1170
+          ],
+          "fitScale": 0.3062645011600928,
+          "originalSize": [
+            202,
+            181
+          ],
+          "originalSha256": "480771c3c056805fe8d3c246a8de65c79f7e120c99e8bda6fbf9903d292d9e36",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "notes": [
+        "All 15 PNGs individually redrawn with built-in imagegen. Every canvas is exactly twice the previous width and height. Transparent alpha preserved; source images are per-asset under source/redraw-2x/."
+      ],
+      "legacySource": {
+        "sourceFile": "whale.png",
+        "sourceSha256": "4dc308f78f9fd99e362b188b5b5532059844ab568e353ebfe04b156771d4b4a5"
+      }
+    },
+    {
+      "id": "monkey",
+      "nameZh": "桃桃",
+      "nameEn": "Peaches",
+      "sprites": {
+        "baby": {
+          "file": "sprites/monkey/baby.png",
+          "width": 300,
+          "height": 208,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 57875,
+          "sha256": "c34b1a1ee0df291ced6f43fa89e88cb3deb167de93ca2f26598c6ca6f58ee36f",
+          "sourceFile": "source/redraw-2x/monkey/baby.png",
+          "sourceSha256": "6600681c7e28cac311729a319fd1299392081dbe984fb4942de65606da81c095",
+          "sourceCrop": [
+            20,
+            41,
+            1484,
+            977
+          ],
+          "fitScale": 0.1994535519125683,
+          "originalSize": [
+            150,
+            104
+          ],
+          "originalSha256": "7464699606be7c58714b60bf9cd31b2ecc84b4b7c08360341169d2f962474d5c",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "toddler": {
+          "file": "sprites/monkey/toddler.png",
+          "width": 280,
+          "height": 262,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 75409,
+          "sha256": "5ac2b46555ac47eb545c60efb481aa194195f82c7ca6eb81c6266ac1743bf400",
+          "sourceFile": "source/redraw-2x/monkey/toddler.png",
+          "sourceSha256": "e0dd4f94b30026adc7b57d382926969d3ab633edff95e1bedfec5617e606022f",
+          "sourceCrop": [
+            30,
+            20,
+            1265,
+            1181
+          ],
+          "fitScale": 0.21877691645133507,
+          "originalSize": [
+            140,
+            131
+          ],
+          "originalSha256": "ea28495c667cf0d594363305d7e6bbfc5c2b0ad3bcb287786bb29511d0005693",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "child": {
+          "file": "sprites/monkey/child.png",
+          "width": 346,
+          "height": 296,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 92012,
+          "sha256": "23ea72b41ea60d2a5a0798ee95d54c29e18cb97e089ca9567a724a70f0e4c6eb",
+          "sourceFile": "source/redraw-2x/monkey/child.png",
+          "sourceSha256": "caae41eee71d971f31da8703e2523a3c492d5045143119eca056588d8bbbc079",
+          "sourceCrop": [
+            48,
+            45,
+            1314,
+            1094
+          ],
+          "fitScale": 0.2669826224328594,
+          "originalSize": [
+            173,
+            148
+          ],
+          "originalSha256": "b366b0dec8233f9c1ef1c5742ef4a8c2b056fc257cdbed47864a40afc8d7650f",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "teen": {
+          "file": "sprites/monkey/teen.png",
+          "width": 380,
+          "height": 348,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 102098,
+          "sha256": "426c023c4c26ae4d2a9b44475e929479a50c780dcc6c2466e0241336fc9a1371",
+          "sourceFile": "source/redraw-2x/monkey/teen.png",
+          "sourceSha256": "35f0f56359c05a9b010dfcf56c8a9be1c8ea06d0acba66147a6d0b887a5020b7",
+          "sourceCrop": [
+            47,
+            29,
+            1332,
+            1111
+          ],
+          "fitScale": 0.28949416342412454,
+          "originalSize": [
+            190,
+            174
+          ],
+          "originalSha256": "c5cbe4c2e65f7f8014b386195d8956043c9980f05b4df6f07e851f0f4e6cf1bf",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "adult": {
+          "file": "sprites/monkey/adult.png",
+          "width": 414,
+          "height": 374,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 127226,
+          "sha256": "70aba8089671a55254d00b8360b416ac76730b1ca7c1bc2c8c069a1221278548",
+          "sourceFile": "source/redraw-2x/monkey/adult.png",
+          "sourceSha256": "0a35c8636a66285959edb3b7fca5019a6ce1524e6b6c99fd17d891bcd8df0f49",
+          "sourceCrop": [
+            32,
+            29,
+            1313,
+            1131
+          ],
+          "fitScale": 0.31693989071038253,
+          "originalSize": [
+            207,
+            187
+          ],
+          "originalSha256": "8819e5f4358d500cff8d274487052def1eeef4413064410a4d9db2d3034e6b76",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "elder": {
+          "file": "sprites/monkey/elder.png",
+          "width": 384,
+          "height": 332,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 127871,
+          "sha256": "2630342830b3956628ca9dbe31f2c9a75e8f30b233462d05993632c0891d22dd",
+          "sourceFile": "source/redraw-2x/monkey/elder.png",
+          "sourceSha256": "12b2e39e34db6c6058d14e9092036bdd3b39172a213d37896252f95dd1687fdc",
+          "sourceCrop": [
+            41,
+            27,
+            1336,
+            1121
+          ],
+          "fitScale": 0.29034749034749036,
+          "originalSize": [
+            192,
+            166
+          ],
+          "originalSha256": "2b6ea0fb072f94c8295f4c368a17a0504929d793646fbf5e45a5e69c159016ac",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "poop": {
+          "file": "sprites/monkey/poop.png",
+          "width": 110,
+          "height": 152,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 12150,
+          "sha256": "a3ba79cf6122af4bad3eb02956d16d6740b58675ba2f0111efc41383cf999be5",
+          "sourceFile": "source/redraw-2x/monkey/poop.png",
+          "sourceSha256": "4050b7af30daf92cd8068eac74e6b2fadd76860ff30c722ad5c07a16cc41e0ac",
+          "sourceCrop": [
+            116,
+            132,
+            1188,
+            1067
+          ],
+          "fitScale": 0.09514925373134328,
+          "originalSize": [
+            55,
+            76
+          ],
+          "originalSha256": "cfbc771ba3b95d03a9ecbf370556dbc5473d04b065fb0dd305ab9b3270afb772",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "grave": {
+          "file": "sprites/monkey/grave.png",
+          "width": 372,
+          "height": 230,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 60045,
+          "sha256": "16ee40512ae018914bdf41fb7e5d6d8a85a8a62b1f3f36af579780e523dec8c9",
+          "sourceFile": "source/redraw-2x/monkey/grave.png",
+          "sourceSha256": "f41c5f0c89aa581833a2ea5275d8a6cf52ed467f7f5c565c2e821747483b81df",
+          "sourceCrop": [
+            63,
+            48,
+            1536,
+            970
+          ],
+          "fitScale": 0.24078091106290672,
+          "originalSize": [
+            186,
+            115
+          ],
+          "originalSha256": "29571ee9138dfb239e8ccff67f2853f5e08c4d43362a8511d95ece617d12e597",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "cleanWaste": {
+          "file": "sprites/monkey/cleanWaste.png",
+          "width": 426,
+          "height": 356,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 136849,
+          "sha256": "5b8f98c734948651f327066270d768fa4d2139dd1ecea7d9cb5ae2f3c56739eb",
+          "sourceFile": "source/redraw-2x/monkey/cleanWaste.png",
+          "sourceSha256": "6efbd763d42ac649343a08708a9aaefda8ebe93bf1c9a55baec2e306bb333e23",
+          "sourceCrop": [
+            55,
+            36,
+            1327,
+            1088
+          ],
+          "fitScale": 0.32861635220125784,
+          "originalSize": [
+            213,
+            178
+          ],
+          "originalSha256": "080dfb62a5f6c500a2b12fc93ffddcb169149256905d9787699d846ad5ae2aea",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "bathe": {
+          "file": "sprites/monkey/bathe.png",
+          "width": 392,
+          "height": 396,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 157279,
+          "sha256": "c536c51ddb1692131e000dc4659bfc50344aa30bd79be5073660c33a9861ef05",
+          "sourceFile": "source/redraw-2x/monkey/bathe.png",
+          "sourceSha256": "4f3c6d9e34d9f1528069800db44e6e1877436265f88f188b6d6a44838131959f",
+          "sourceCrop": [
+            34,
+            18,
+            1218,
+            1203
+          ],
+          "fitScale": 0.32432432432432434,
+          "originalSize": [
+            196,
+            198
+          ],
+          "originalSha256": "1e808627f63b214c54287c346b647f6f2778ee29034f29771a1af526636b5d28",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "groom": {
+          "file": "sprites/monkey/groom.png",
+          "width": 442,
+          "height": 354,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 152532,
+          "sha256": "e9fbab2fb8f1def1f677acfe454fdc842d1be4386db4cd055bf5b99ffcbd8b4f",
+          "sourceFile": "source/redraw-2x/monkey/groom.png",
+          "sourceSha256": "5369a2db44038b3bc27c5749c4973d903a1228a111b2d51aec9f2373ac6fec86",
+          "sourceCrop": [
+            34,
+            22,
+            1379,
+            1071
+          ],
+          "fitScale": 0.3226765799256506,
+          "originalSize": [
+            221,
+            177
+          ],
+          "originalSha256": "916bca8a3753fed58b497c1d3d342d63bdcd6b6dad16b31542f4f2febda15994",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "feed": {
+          "file": "sprites/monkey/feed.png",
+          "width": 424,
+          "height": 362,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 144201,
+          "sha256": "cbaf6bfb3710f09128081de3fe375d749b0519a025e1f321e957d0247648ef2b",
+          "sourceFile": "source/redraw-2x/monkey/feed.png",
+          "sourceSha256": "49ee2e31381ba37089a5d6e04364c74ab2688f3c25b2733d2fe01c6f768c99c8",
+          "sourceCrop": [
+            34,
+            21,
+            1332,
+            1140
+          ],
+          "fitScale": 0.3163538873994638,
+          "originalSize": [
+            212,
+            181
+          ],
+          "originalSha256": "acb0e6dd0d667a152b00f57b3b2b987864d4c8a7f653e3b7086edbe3bea91b19",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "water": {
+          "file": "sprites/monkey/water.png",
+          "width": 410,
+          "height": 314,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 112207,
+          "sha256": "2255f6732bca67de5499ce676a893dd29f4a7ed9488176b0911b4006effeed56",
+          "sourceFile": "source/redraw-2x/monkey/water.png",
+          "sourceSha256": "9882a200f102fce76ea564f9f1de1d7ebd78e60d3655d12620e5265507b08091",
+          "sourceCrop": [
+            67,
+            33,
+            1410,
+            1057
+          ],
+          "fitScale": 0.298828125,
+          "originalSize": [
+            205,
+            157
+          ],
+          "originalSha256": "a8e4740b1b828d30862843680414263f211fdfb793f08f2c5e387f29d8347e3e",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "walk": {
+          "file": "sprites/monkey/walk.png",
+          "width": 394,
+          "height": 352,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 122428,
+          "sha256": "8ed18e4a26920ce0bb64ea981dfaaec82ddebc3bba6dfbc3770491a38d27ad30",
+          "sourceFile": "source/redraw-2x/monkey/walk.png",
+          "sourceSha256": "22e4419b488b09ab54b928793e21f07d8b133c39f8231aadd298013525f5881e",
+          "sourceCrop": [
+            42,
+            33,
+            1291,
+            1125
+          ],
+          "fitScale": 0.3090472377902322,
+          "originalSize": [
+            197,
+            176
+          ],
+          "originalSha256": "45d5c8113f9372b7fe395f839fce5e14176edbf241a5ef25ff78d178259a48c9",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "extras": {
+        "adultWithPoop": {
+          "file": "sprites/monkey/adult-with-poop.png",
+          "width": 358,
+          "height": 322,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 100822,
+          "sha256": "3c0c3e01448d36015310aad5031ee010101caa685c66175e9e82dcad2854e382",
+          "sourceFile": "source/redraw-2x/monkey/adult-with-poop.png",
+          "sourceSha256": "8dd9cae3d345509e2d5589343f63b7914230ecc449dcea4228587079836071f7",
+          "sourceCrop": [
+            29,
+            28,
+            1303,
+            1136
+          ],
+          "fitScale": 0.27472527472527475,
+          "originalSize": [
+            179,
+            161
+          ],
+          "originalSha256": "e76c9ba46830bf411372d18a0370d9402c2887c0ff324ce8c8a27b254b99f8fc",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "notes": [
+        "All 15 PNGs individually redrawn with built-in imagegen. Every canvas is exactly twice the previous width and height. Transparent alpha preserved; source images are per-asset under source/redraw-2x/."
+      ],
+      "legacySource": {
+        "sourceFile": "monkey.png",
+        "sourceSha256": "6ee211287a170e4c324eb622d606d5038d3aacafd9d415185510a039227c0c49"
+      }
+    },
+    {
+      "id": "duck",
+      "nameZh": "嘎嘎",
+      "nameEn": "Waddles",
+      "sprites": {
+        "baby": {
+          "file": "sprites/duck/baby.png",
+          "width": 288,
+          "height": 220,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 55067,
+          "sha256": "f8beb6079e7edd3f79a81290d9c7ddf28501ce22f111a271eae4923571ef3470",
+          "sourceFile": "source/redraw-2x/duck/baby.png",
+          "sourceSha256": "5040aa7d48c6bae526a4afddaa5157e90df6f8a8cbbee703796b885f7c6514e2",
+          "sourceCrop": [
+            57,
+            64,
+            1378,
+            994
+          ],
+          "fitScale": 0.21196063588190764,
+          "originalSize": [
+            144,
+            110
+          ],
+          "originalSha256": "5b2cb501050d7abafd5160c63c5c1699885c6849932b40129d7d670212fafb04",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "toddler": {
+          "file": "sprites/duck/toddler.png",
+          "width": 260,
+          "height": 272,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 65668,
+          "sha256": "9bedcf409e7cd0762af0b7445fd14546d2c017b2188a895acf52ae6395771f63",
+          "sourceFile": "source/redraw-2x/duck/toddler.png",
+          "sourceSha256": "46962621da9dad434afea9fa3dd00e2a1690ab068184a40870d18b33e14411b9",
+          "sourceCrop": [
+            51,
+            31,
+            1138,
+            1234
+          ],
+          "fitScale": 0.2194513715710723,
+          "originalSize": [
+            130,
+            136
+          ],
+          "originalSha256": "ba067adb546dd3582c1032edd78d27d6c1b8dca41500353d3c5ca691daf47c04",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "child": {
+          "file": "sprites/duck/child.png",
+          "width": 308,
+          "height": 330,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 86382,
+          "sha256": "06901521face68200464908f307c3ccf0de39dff121f884662b0cf27da86ff9d",
+          "sourceFile": "source/redraw-2x/duck/child.png",
+          "sourceSha256": "6d2016a960f9877d6d19715bf610a647b61244bad21852845f080bad375db237",
+          "sourceCrop": [
+            42,
+            22,
+            1170,
+            1234
+          ],
+          "fitScale": 0.26567656765676567,
+          "originalSize": [
+            154,
+            165
+          ],
+          "originalSha256": "2bbedcf7e82dc45d44fe896cf71994743d4a4f0143db98be96215ffe90b2c3ae",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "teen": {
+          "file": "sprites/duck/teen.png",
+          "width": 344,
+          "height": 370,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 107597,
+          "sha256": "43f56940b95d26a6cc55e09418783f2a1ae300f27b5436de5fceccbd1e73750b",
+          "sourceFile": "source/redraw-2x/duck/teen.png",
+          "sourceSha256": "6e41af56cda47e896ff583f85a14484299b6c23b51a2c340f714655bc96aceaf",
+          "sourceCrop": [
+            39,
+            8,
+            1170,
+            1249
+          ],
+          "fitScale": 0.29170024174053183,
+          "originalSize": [
+            172,
+            185
+          ],
+          "originalSha256": "8eb80c943a887431359f5be69149f063b36c6ef3914dea2ff499fb9979f6d7cb",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "adult": {
+          "file": "sprites/duck/adult.png",
+          "width": 382,
+          "height": 390,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 121032,
+          "sha256": "f99755b3c66fde53f8363f872ce1019f704380f3b42d83c50325c7934d2e64e7",
+          "sourceFile": "source/redraw-2x/duck/adult.png",
+          "sourceSha256": "bcc28c157fcae43919957df639a19ace81bf36605fac13607c78e57c4f81d18f",
+          "sourceCrop": [
+            29,
+            15,
+            1211,
+            1208
+          ],
+          "fitScale": 0.3164128595600677,
+          "originalSize": [
+            191,
+            195
+          ],
+          "originalSha256": "00c2df133cab6bfa85449e29e729a4a8f54f5d41d940a936cf238cee566f8d81",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "elder": {
+          "file": "sprites/duck/elder.png",
+          "width": 366,
+          "height": 352,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 112710,
+          "sha256": "0e3682ad59a1d9afbcacb8815e246f327f8baf0a526aa86892d5b44a7c84d39f",
+          "sourceFile": "source/redraw-2x/duck/elder.png",
+          "sourceSha256": "4e71b3881e51e940d84ea49b68c622be87b7bb150d9a9ec1ff8ea79f56f74e6c",
+          "sourceCrop": [
+            22,
+            0,
+            1244,
+            1200
+          ],
+          "fitScale": 0.2866666666666667,
+          "originalSize": [
+            183,
+            176
+          ],
+          "originalSha256": "dec93e1e88fa1b312730f673db2580894a53ead61e68e1754fd3ddb2cd6cb984",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "poop": {
+          "file": "sprites/duck/poop.png",
+          "width": 128,
+          "height": 126,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 16541,
+          "sha256": "1954fc737089046de97df3ce16a0e40f74c4a94c67df2e2c1d9ed7f0114f0cad",
+          "sourceFile": "source/redraw-2x/duck/poop.png",
+          "sourceSha256": "219282430e43edca952ff4032f2f3a6094773eb585e7884a895ed6990313a688",
+          "sourceCrop": [
+            111,
+            78,
+            1143,
+            1055
+          ],
+          "fitScale": 0.11627906976744186,
+          "originalSize": [
+            64,
+            63
+          ],
+          "originalSha256": "bd274a1f694c0c703e9f14a6701265723d8c2b6518ece555e784c7b8c9bf1cff",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "grave": {
+          "file": "sprites/duck/grave.png",
+          "width": 346,
+          "height": 242,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 61459,
+          "sha256": "de796b628ae0f58ca261341cb8380875644cdf23efee690b017877a4c0bab5e0",
+          "sourceFile": "source/redraw-2x/duck/grave.png",
+          "sourceSha256": "0b470cd935073baf0120bf721023553dfe4f1843d1c4f25aae2339200c6203e7",
+          "sourceCrop": [
+            51,
+            33,
+            1449,
+            1024
+          ],
+          "fitScale": 0.23612512613521694,
+          "originalSize": [
+            173,
+            121
+          ],
+          "originalSha256": "1094403893b2863952e78afa0ba1f00ab1f510fad3b9352fe66b024247ca7329",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "cleanWaste": {
+          "file": "sprites/duck/cleanWaste.png",
+          "width": 404,
+          "height": 366,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 135595,
+          "sha256": "f74b5a7e6cdb0e596fccb15205b08f5ad68a5d2c5854a006a3d684045e9811d4",
+          "sourceFile": "source/redraw-2x/duck/cleanWaste.png",
+          "sourceSha256": "5802e5458e0db59964fe2a17c1f023a81617f6fa6403dda8d56f343189fe83a4",
+          "sourceCrop": [
+            24,
+            16,
+            1296,
+            1171
+          ],
+          "fitScale": 0.30995670995670993,
+          "originalSize": [
+            202,
+            183
+          ],
+          "originalSha256": "a6d5e486731b4d981a94c6b6c3698905dd9bb434aced7a7f006f1a8c5a7b91d7",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "bathe": {
+          "file": "sprites/duck/bathe.png",
+          "width": 438,
+          "height": 380,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 157066,
+          "sha256": "7ea1e097dabca05f341fd51dc85cff44e6d0e321a9a4c185c3aa4781cc914af0",
+          "sourceFile": "source/redraw-2x/duck/bathe.png",
+          "sourceSha256": "e412f4435e2778f247b769e796632f8dfb3159d0871928e8dd98a1116fd6af27",
+          "sourceCrop": [
+            27,
+            21,
+            1318,
+            1132
+          ],
+          "fitScale": 0.3330751355538342,
+          "originalSize": [
+            219,
+            190
+          ],
+          "originalSha256": "54fccbb2fba0c340cde527d205c37c88fbbb4da40f15805750e32d4a8227d0ed",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "groom": {
+          "file": "sprites/duck/groom.png",
+          "width": 446,
+          "height": 356,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 142336,
+          "sha256": "4b0fc731b31809343c506a65fbbd041982ac6a4a55e64a4d285b576d723ab68a",
+          "sourceFile": "source/redraw-2x/duck/groom.png",
+          "sourceSha256": "eca2120ac32a61c07a293a2a228620a44fa86b644127261838cede45afc4352c",
+          "sourceCrop": [
+            45,
+            11,
+            1382,
+            1081
+          ],
+          "fitScale": 0.3252336448598131,
+          "originalSize": [
+            223,
+            178
+          ],
+          "originalSha256": "438833cf31b583ae855ff02142aaf895d1575ff9a34d407e056922b2c4f25893",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "feed": {
+          "file": "sprites/duck/feed.png",
+          "width": 328,
+          "height": 330,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 102551,
+          "sha256": "d190939984abe0c962023cf850e38bcde4ce9f7e2145336e072d44cf4fa0edb2",
+          "sourceFile": "source/redraw-2x/duck/feed.png",
+          "sourceSha256": "fa9caffe3c578f6ac9448de2bc216258e26bca331361bc135242663a6686fc9f",
+          "sourceCrop": [
+            43,
+            18,
+            1188,
+            1237
+          ],
+          "fitScale": 0.2641509433962264,
+          "originalSize": [
+            164,
+            165
+          ],
+          "originalSha256": "3c563bfaabaeff879ba4b79f5d2e1ab1694dfa30471244abd5cb1b68eb9b27b4",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "water": {
+          "file": "sprites/duck/water.png",
+          "width": 380,
+          "height": 304,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 95065,
+          "sha256": "abc61318cbfb07680c3fdab4337a838482bfbdf3a587af9a323f08d3bc111bcf",
+          "sourceFile": "source/redraw-2x/duck/water.png",
+          "sourceSha256": "e0ab07fce159e3cdefe60634073c3a5baed0d5a7d1738e78b8422e9ccc26ba75",
+          "sourceCrop": [
+            52,
+            17,
+            1367,
+            1088
+          ],
+          "fitScale": 0.27637721755368816,
+          "originalSize": [
+            190,
+            152
+          ],
+          "originalSha256": "91377e64ebafe97a0f5ef8727bd9e03025dd3ca3698c32dc918d6d10abcc131e",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "walk": {
+          "file": "sprites/duck/walk.png",
+          "width": 358,
+          "height": 342,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 108805,
+          "sha256": "8739e4aa66fb570ffff419f8f6747f335de3bf5f4c6f109e78cb9459145e9101",
+          "sourceFile": "source/redraw-2x/duck/walk.png",
+          "sourceSha256": "7575c68df5af04256869976ee9663f95ed9d8d9c089fb1abbaf2a570b6f9a825",
+          "sourceCrop": [
+            33,
+            24,
+            1248,
+            1170
+          ],
+          "fitScale": 0.2880658436213992,
+          "originalSize": [
+            179,
+            171
+          ],
+          "originalSha256": "6ed6dd9afd23f48bb3c6ed71a45ac10b9dacf833098d0c4669bacdba5ebac8bb",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "extras": {
+        "adultWithPoop": {
+          "file": "sprites/duck/adult-with-poop.png",
+          "width": 326,
+          "height": 338,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 92226,
+          "sha256": "811e1dd58c2ecdb5b3c4cdb2cf671566446cca5ed458fb5b905411330a9a307c",
+          "sourceFile": "source/redraw-2x/duck/adult-with-poop.png",
+          "sourceSha256": "1c7e1e35178ed6d83c540426bd44e5ded587a8fb4a96a654c08758bb5a0b76a4",
+          "sourceCrop": [
+            22,
+            12,
+            1188,
+            1224
+          ],
+          "fitScale": 0.2722772277227723,
+          "originalSize": [
+            163,
+            169
+          ],
+          "originalSha256": "3d6b864fa1be52685d501c0d5ff578450bce10bc180e02ef68fb4ed4fb02ec38",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "notes": [
+        "All 15 PNGs individually redrawn with built-in imagegen. Every canvas is exactly twice the previous width and height. Transparent alpha preserved; source images are per-asset under source/redraw-2x/."
+      ],
+      "legacySource": {
+        "sourceFile": "duck.png",
+        "sourceSha256": "39ed67153c8e2a9c1b1457f689c18cbad82472ad3ff138e0156b7878c5d812ca"
+      }
+    },
+    {
+      "id": "chick",
+      "nameZh": "啾啾",
+      "nameEn": "Chirpy",
+      "sprites": {
+        "baby": {
+          "file": "sprites/chick/baby.png",
+          "width": 280,
+          "height": 242,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 58632,
+          "sha256": "8338ceae57ad79e86ad39d44e4c943165e6f66de5ef7c0907fbeefcc30a9511c",
+          "sourceFile": "source/redraw-2x/chick/baby.png",
+          "sourceSha256": "8f10b1ca4baf78a8bc9a8a6182c4d3386614f7ccf2edf369638b8dce5044a231",
+          "sourceCrop": [
+            87,
+            93,
+            1265,
+            1063
+          ],
+          "fitScale": 0.23089983022071306,
+          "originalSize": [
+            140,
+            121
+          ],
+          "originalSha256": "444eb5375b1ffde0d271bfc14b64043621960be004e1645f670f526fbb37e0c2",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "toddler": {
+          "file": "sprites/chick/toddler.png",
+          "width": 284,
+          "height": 292,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 69379,
+          "sha256": "72c903004dd9f925c1eb2e4e607752073681b635402142a66625218f2b27ce05",
+          "sourceFile": "source/redraw-2x/chick/toddler.png",
+          "sourceSha256": "369b1de3fc6279bb702c619f691e56af377e4b93f257b768911071b316a693a4",
+          "sourceCrop": [
+            36,
+            51,
+            1199,
+            1173
+          ],
+          "fitScale": 0.23731728288907997,
+          "originalSize": [
+            142,
+            146
+          ],
+          "originalSha256": "d0a3eacc6e8407880efca8b9c837394f13fe57c067327faf352b3814fdba1ec6",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "child": {
+          "file": "sprites/chick/child.png",
+          "width": 358,
+          "height": 366,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 101811,
+          "sha256": "5c4db57e5435f81e48b11ef2bf44dd525fee9b21c32244289df630bd3973816b",
+          "sourceFile": "source/redraw-2x/chick/child.png",
+          "sourceSha256": "9fb6089bd8ddd301e4663e92a532c0ace7e0393a78a0d269af9d5ef93daded88",
+          "sourceCrop": [
+            67,
+            90,
+            1175,
+            1164
+          ],
+          "fitScale": 0.315884476534296,
+          "originalSize": [
+            179,
+            183
+          ],
+          "originalSha256": "8d60edf38baba21007f6e6870d8ea69784d651e6e60135a3db383e8ea40eddaa",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "teen": {
+          "file": "sprites/chick/teen.png",
+          "width": 380,
+          "height": 394,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 116021,
+          "sha256": "48ccd9f9818fbfe38bed301792870262e471de355cbd901e5dda7d15fbc9be84",
+          "sourceFile": "source/redraw-2x/chick/teen.png",
+          "sourceSha256": "b1da5a617a563365083a530576fab4e47cb4b54d500d2c961ae3aedc0ff27561",
+          "sourceCrop": [
+            30,
+            40,
+            1204,
+            1209
+          ],
+          "fitScale": 0.31686541737649065,
+          "originalSize": [
+            190,
+            197
+          ],
+          "originalSha256": "3d1d3fe9365d32828f0d3f81b549c3df6d4bbc8c7db0d9e1776d1da0b9221301",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "adult": {
+          "file": "sprites/chick/adult.png",
+          "width": 408,
+          "height": 398,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 125405,
+          "sha256": "082de98288cef74cf311049afdc198b939bba605f88d6ec5c5146a80b02519f8",
+          "sourceFile": "source/redraw-2x/chick/adult.png",
+          "sourceSha256": "e2c8b2440fc6767da61681f18a6a7126bda1ce49297b32c488a09caa6d453f84",
+          "sourceCrop": [
+            53,
+            65,
+            1216,
+            1175
+          ],
+          "fitScale": 0.34393809114359414,
+          "originalSize": [
+            204,
+            199
+          ],
+          "originalSha256": "b621be7588f736629f78e24c4e15ce603d3fc93db043206760a5862a852808b4",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "elder": {
+          "file": "sprites/chick/elder.png",
+          "width": 380,
+          "height": 368,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 121744,
+          "sha256": "904d7b8ce1da0b6eb3a59f5eae416317cc8e04f78691a20a0b1f6f2274a1eb0c",
+          "sourceFile": "source/redraw-2x/chick/elder.png",
+          "sourceSha256": "d5a3d08e39a390ff2daa240680af2b11f41d42d6d7abb00926bf9cab6959ee48",
+          "sourceCrop": [
+            58,
+            58,
+            1223,
+            1137
+          ],
+          "fitScale": 0.31931330472103003,
+          "originalSize": [
+            190,
+            184
+          ],
+          "originalSha256": "2c089799ad73fa57a6f48f076470ab24eab3b8afabc01b0fafd4873243927abd",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "poop": {
+          "file": "sprites/chick/poop.png",
+          "width": 130,
+          "height": 154,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 18927,
+          "sha256": "798024b02ecb97d240993712a5d0ad73db734d312ead173d6a53fb0cea86d9d3",
+          "sourceFile": "source/redraw-2x/chick/poop.png",
+          "sourceSha256": "f0d5f43453cf91618568daa12c287e73250a4b3e167b3706a748e59a9ee14747",
+          "sourceCrop": [
+            90,
+            90,
+            1164,
+            1150
+          ],
+          "fitScale": 0.11359404096834265,
+          "originalSize": [
+            65,
+            77
+          ],
+          "originalSha256": "e32f8ae38fcf03637bdf78531a78969a99744ebc5960a01e760fc81178c72fc3",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "grave": {
+          "file": "sprites/chick/grave.png",
+          "width": 360,
+          "height": 286,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 81092,
+          "sha256": "040db63093ee44c801b8b173b0b296b9c2dbcb0ea0842fb321a09033ffec7894",
+          "sourceFile": "source/redraw-2x/chick/grave.png",
+          "sourceSha256": "c9fc88f068fa0f65adb2d52edaaf88e1a4f85980a2f791ccb96214ef42a52dbf",
+          "sourceCrop": [
+            92,
+            94,
+            1348,
+            1019
+          ],
+          "fitScale": 0.2802547770700637,
+          "originalSize": [
+            180,
+            143
+          ],
+          "originalSha256": "ff5a25e5d064be48b6d7be554be87ea4e1421ecfd152fef1b4684f26f5a2b885",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "cleanWaste": {
+          "file": "sprites/chick/cleanWaste.png",
+          "width": 460,
+          "height": 366,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 137722,
+          "sha256": "0daa54293c3976bede55ee98c783e7d3d2e514f788f3695c0dd7b4ab1661012b",
+          "sourceFile": "source/redraw-2x/chick/cleanWaste.png",
+          "sourceSha256": "2c6b894e0ef0a6d5e3a19c686597198a20cb6f091e6260feb33399b29e26f68a",
+          "sourceCrop": [
+            68,
+            89,
+            1346,
+            1042
+          ],
+          "fitScale": 0.3536776212832551,
+          "originalSize": [
+            230,
+            183
+          ],
+          "originalSha256": "44072928b1bc05fe85f8f8811f8896b68a78bddbe2bb9bd7070a1a01ab10a434",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "bathe": {
+          "file": "sprites/chick/bathe.png",
+          "width": 430,
+          "height": 394,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 165480,
+          "sha256": "e6dca639969bbb16b6cde99af5b3009b30a721b12bf603e993126988b3fbc376",
+          "sourceFile": "source/redraw-2x/chick/bathe.png",
+          "sourceSha256": "a40fc40bcc9d53e61a8de5431ae03f8bedd66bde2c8a00dc95a2ee57397ac307",
+          "sourceCrop": [
+            36,
+            37,
+            1276,
+            1163
+          ],
+          "fitScale": 0.3403225806451613,
+          "originalSize": [
+            215,
+            197
+          ],
+          "originalSha256": "88092ffde255849ddc7ebe0f320bd1b14e5b9eb45dda3bdb4d61fe6fd7740ebb",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "groom": {
+          "file": "sprites/chick/groom.png",
+          "width": 458,
+          "height": 342,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 126285,
+          "sha256": "d940a82ddb3260a8cb8c2f38dbf59bfc6bd886a578006b2b6e62de9845bc4236",
+          "sourceFile": "source/redraw-2x/chick/groom.png",
+          "sourceSha256": "62770e8aef8b7e2a2d524e195597fd7613faf7e27afc969423fa1c425f3100ea",
+          "sourceCrop": [
+            92,
+            25,
+            1393,
+            1035
+          ],
+          "fitScale": 0.3306930693069307,
+          "originalSize": [
+            229,
+            171
+          ],
+          "originalSha256": "526a13b51fd08e52a93f20e5078cb3cad68b2a9815704166ab0995f3d58197a7",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "feed": {
+          "file": "sprites/chick/feed.png",
+          "width": 338,
+          "height": 352,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 109571,
+          "sha256": "cacef063298b7bb32c8a639df46fcdba09c690258fb49e7cc57cd32150156999",
+          "sourceFile": "source/redraw-2x/chick/feed.png",
+          "sourceSha256": "c492fe1d175dceb60d5bead4f47a10f0d5735b94127163745ce2c5f43037a253",
+          "sourceCrop": [
+            84,
+            80,
+            1199,
+            1212
+          ],
+          "fitScale": 0.29596412556053814,
+          "originalSize": [
+            169,
+            176
+          ],
+          "originalSha256": "b40c8cd1ba4a9185f8a6aff993404570e5790a1e30e0e358fbc080881f4e99f3",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "water": {
+          "file": "sprites/chick/water.png",
+          "width": 376,
+          "height": 340,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 106750,
+          "sha256": "17969fda143b51abbafe3fa531df19ed22e412f79b519d5e4fa1a622dd5d5dc1",
+          "sourceFile": "source/redraw-2x/chick/water.png",
+          "sourceSha256": "87e863b3dce6a9070bdcb81e82b03f1b9774d059faab1731adfacadaa6e642f4",
+          "sourceCrop": [
+            75,
+            76,
+            1247,
+            1116
+          ],
+          "fitScale": 0.31399317406143346,
+          "originalSize": [
+            188,
+            170
+          ],
+          "originalSha256": "3d288f56b5ad4cb224231995e0a036d684969224f31e5c5f32e25614ee55d262",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "walk": {
+          "file": "sprites/chick/walk.png",
+          "width": 430,
+          "height": 366,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 127712,
+          "sha256": "a477083955182002695e827855b7a1f3928291c17d83200a5cb4f0e0b07dfa88",
+          "sourceFile": "source/redraw-2x/chick/walk.png",
+          "sourceSha256": "541d750b4ef862474ea4dcb24fdf8a667fcdcc370283f5a8ab3ccaec4f1358a4",
+          "sourceCrop": [
+            82,
+            38,
+            1339,
+            1073
+          ],
+          "fitScale": 0.33571996817820204,
+          "originalSize": [
+            215,
+            183
+          ],
+          "originalSha256": "40b9be39683e52011968fe265f2885e7646a728925e0ade8d1c4d41e4c6b5de9",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "extras": {
+        "adultWithPoop": {
+          "file": "sprites/chick/adult-with-poop.png",
+          "width": 358,
+          "height": 342,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 98289,
+          "sha256": "227fed70e4b43b21ae2dbce1581597d2eb21dd1b521c54881107273bf0609873",
+          "sourceFile": "source/redraw-2x/chick/adult-with-poop.png",
+          "sourceSha256": "0f738e677b9229a239d6437672178707319c5089cdefd6f7038e26fe7c699812",
+          "sourceCrop": [
+            80,
+            84,
+            1201,
+            1147
+          ],
+          "fitScale": 0.31222123104371097,
+          "originalSize": [
+            179,
+            171
+          ],
+          "originalSha256": "3bc027e034894b76aba048ba93eb2ad4ed52c1cc53d6ec79edd5629145f855fc",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "notes": [
+        "All 15 PNGs individually redrawn with built-in imagegen. Every canvas is exactly twice the previous width and height. Transparent alpha preserved; source images are per-asset under source/redraw-2x/."
+      ],
+      "legacySource": {
+        "sourceFile": "chick.png",
+        "sourceSha256": "a1254058bb3738561e2f60a46c6a91d9c39d41c81ec95cd1fc8a0abe9ebf6e1b"
+      }
+    },
+    {
+      "id": "cat",
+      "nameZh": "糯糯",
+      "nameEn": "Mochi",
+      "sprites": {
+        "baby": {
+          "file": "sprites/cat/baby.png",
+          "width": 326,
+          "height": 226,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 63848,
+          "sha256": "5fdb2bb7ea4f171720c9b8bb64bda46be9d309689f25b700a71f339227c6679f",
+          "sourceFile": "source/redraw-2x/cat/baby.png",
+          "sourceSha256": "5981630c4e020b1376813e4eb6b99c18d1b6d8f81f109ca6d2b26d26999c34fe",
+          "sourceCrop": [
+            36,
+            139,
+            1477,
+            970
+          ],
+          "fitScale": 0.22068008327550312,
+          "originalSize": [
+            163,
+            113
+          ],
+          "originalSha256": "c2c18e7c21b26a59bfdfb0ae5404f3b0303069779c1354a390209b375442b4a8",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "toddler": {
+          "file": "sprites/cat/toddler.png",
+          "width": 366,
+          "height": 300,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 94221,
+          "sha256": "abb0bb126f362445fae93ff832fe15fba507fdedc042fe979df4de2e4e474320",
+          "sourceFile": "source/redraw-2x/cat/toddler.png",
+          "sourceSha256": "90f12d1d1eda3833c30bf750c8bf1752fe1c28687f466df3511f374cbf5b667c",
+          "sourceCrop": [
+            83,
+            150,
+            1309,
+            1056
+          ],
+          "fitScale": 0.29200652528548127,
+          "originalSize": [
+            183,
+            150
+          ],
+          "originalSha256": "cd33df5793b79900a22df5744ad4bd828338b678bdd11ab6b81758ead15a1106",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "child": {
+          "file": "sprites/cat/child.png",
+          "width": 416,
+          "height": 370,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 119427,
+          "sha256": "2297e9cc61a108b8df2cb72576a502889e784f9a4cb19518dc19e513ffed01bb",
+          "sourceFile": "source/redraw-2x/cat/child.png",
+          "sourceSha256": "46ae263e1310dca893a137cd8b7e50e410f39e844f7685de68c36dab94131b7a",
+          "sourceCrop": [
+            42,
+            133,
+            1296,
+            1089
+          ],
+          "fitScale": 0.3253588516746411,
+          "originalSize": [
+            208,
+            185
+          ],
+          "originalSha256": "8c93e1c6c32bb5d08114aa6a558c1095be5ade554995da0367da8851831e9516",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "teen": {
+          "file": "sprites/cat/teen.png",
+          "width": 466,
+          "height": 394,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 144730,
+          "sha256": "5d4c1d84a3b8738a2f6b8ab8ee76cb8459b910741099ef01426500a19ba454b3",
+          "sourceFile": "source/redraw-2x/cat/teen.png",
+          "sourceSha256": "3b3ee5943c1436d8254262d09f7b2238c9e8046a06e5e0662969e826d6e246e9",
+          "sourceCrop": [
+            69,
+            92,
+            1335,
+            1087
+          ],
+          "fitScale": 0.3617693522906793,
+          "originalSize": [
+            233,
+            197
+          ],
+          "originalSha256": "584612a2ee3b9ed6394ccaa85ef76e1fb7bd88b8532861df38b1d5e2a56de3fd",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "adult": {
+          "file": "sprites/cat/adult.png",
+          "width": 452,
+          "height": 370,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 129257,
+          "sha256": "91f8242e32ebf304bf290874fe1bc37f0090ce1ac2e5cbf4bb21dd093cf10319",
+          "sourceFile": "source/redraw-2x/cat/adult.png",
+          "sourceSha256": "2a8b8032ec5d4e5fc48df32389234bdab8203b8adfcd52f0ac997faffce5a3ad",
+          "sourceCrop": [
+            48,
+            94,
+            1346,
+            1063
+          ],
+          "fitScale": 0.3420647149460709,
+          "originalSize": [
+            226,
+            185
+          ],
+          "originalSha256": "359b300d783ba13ef273d06467644390d83c0ec52da482842494df6f09509ebc",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "elder": {
+          "file": "sprites/cat/elder.png",
+          "width": 450,
+          "height": 358,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 141500,
+          "sha256": "55ad371ae5b9095ae366140b14dce3ca5a5501e701efd8234ba81d343800dcc1",
+          "sourceFile": "source/redraw-2x/cat/elder.png",
+          "sourceSha256": "4ea9c9ff7632c6171c48808df28bb5858d3595c5db2856a47fad2e054d2d73c3",
+          "sourceCrop": [
+            56,
+            80,
+            1379,
+            1054
+          ],
+          "fitScale": 0.3340891912320484,
+          "originalSize": [
+            225,
+            179
+          ],
+          "originalSha256": "44367af3e059241f2dcb44799eb859a35ac17a00c7fe1748fcfbbe8e351bf756",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "poop": {
+          "file": "sprites/cat/poop.png",
+          "width": 148,
+          "height": 134,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 18351,
+          "sha256": "6994f844506c77c30233fe5ae07b65c1eb1cd6445924e17233f347117aa0b87d",
+          "sourceFile": "source/redraw-2x/cat/poop.png",
+          "sourceSha256": "1a466dcec942280fc17903d051b501b995faf1ca5d5344b7127c449247fcacf1",
+          "sourceCrop": [
+            144,
+            201,
+            1114,
+            1031
+          ],
+          "fitScale": 0.14432989690721648,
+          "originalSize": [
+            74,
+            67
+          ],
+          "originalSha256": "f183004106d646400b4199a5f3d3fbe34a8e139c88be8268803f833ec4959082",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "grave": {
+          "file": "sprites/cat/grave.png",
+          "width": 396,
+          "height": 340,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 99220,
+          "sha256": "c30a13246e9f7d0fb393cde654a935d6040a65a821a3bc7c1434c5b4aa91b59a",
+          "sourceFile": "source/redraw-2x/cat/grave.png",
+          "sourceSha256": "086b4079db2819db1f153dd5a0f2b99b91b92d71833c60536b4aedeb15940b24",
+          "sourceCrop": [
+            82,
+            99,
+            1267,
+            1088
+          ],
+          "fitScale": 0.32742616033755273,
+          "originalSize": [
+            198,
+            170
+          ],
+          "originalSha256": "c70e3c5bd7bff0657e6be708270d1df530bf87cb80e48c4709ec077526eba85b",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "cleanWaste": {
+          "file": "sprites/cat/cleanWaste.png",
+          "width": 496,
+          "height": 390,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 165406,
+          "sha256": "07bc598590facc8015f823ddfaeb032ae0c465d2456b9882512d2ae2a7dcb950",
+          "sourceFile": "source/redraw-2x/cat/cleanWaste.png",
+          "sourceSha256": "ba58388910f91eea73c8a6b038ae1a36dfd31efa5673399a7a606b6ba4b6b747",
+          "sourceCrop": [
+            37,
+            71,
+            1388,
+            1062
+          ],
+          "fitScale": 0.3612139156180607,
+          "originalSize": [
+            248,
+            195
+          ],
+          "originalSha256": "0f3ecf4c1613f64313528d9cbe3c487dace88542836402db583baafb98044880",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "bathe": {
+          "file": "sprites/cat/bathe.png",
+          "width": 442,
+          "height": 472,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 196124,
+          "sha256": "bec02c5722bc945d7a8550955998db4398bc1e7b075f44e08c19836bbc28bf69",
+          "sourceFile": "source/redraw-2x/cat/bathe.png",
+          "sourceSha256": "6b1a8fbf440fb43d1b70cc25b6a404659fd3e50fde8bec73257c9260999c46b8",
+          "sourceCrop": [
+            26,
+            31,
+            1198,
+            1250
+          ],
+          "fitScale": 0.3703071672354949,
+          "originalSize": [
+            221,
+            236
+          ],
+          "originalSha256": "c9f3c362ee21d3f91d174eb732d688d61fd7790aaaeeb3c1c772d1e5af01d27f",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "groom": {
+          "file": "sprites/cat/groom.png",
+          "width": 532,
+          "height": 364,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 190386,
+          "sha256": "2fc13d747119adfe4a23af288587266ffee9477760d75fd4a4c601c58ca4ce94",
+          "sourceFile": "source/redraw-2x/cat/groom.png",
+          "sourceSha256": "ce6bbd0e4810c86e84f48031684b616c96a8a4ba32f9323cc3a45ed0cdfa9701",
+          "sourceCrop": [
+            132,
+            97,
+            1393,
+            989
+          ],
+          "fitScale": 0.3991031390134529,
+          "originalSize": [
+            266,
+            182
+          ],
+          "originalSha256": "5ddf15468894cb594b8d26e8055ee5dfe802f71d9f5e89c2f1e3219409d4383a",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "feed": {
+          "file": "sprites/cat/feed.png",
+          "width": 402,
+          "height": 352,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 119724,
+          "sha256": "26d9d84610004f8b7869ede29779548f3504b97c8b30d5db7e53f2075604b701",
+          "sourceFile": "source/redraw-2x/cat/feed.png",
+          "sourceSha256": "91153fe959936a236041bc2170e85ebc9f030df73c54c1bfe1483aa6a5935efc",
+          "sourceCrop": [
+            74,
+            151,
+            1328,
+            1094
+          ],
+          "fitScale": 0.3141945773524721,
+          "originalSize": [
+            201,
+            176
+          ],
+          "originalSha256": "a933ed5015bb54fd098caf9592498a2d1f47106f6bece66d88dc44f052198eae",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "water": {
+          "file": "sprites/cat/water.png",
+          "width": 442,
+          "height": 342,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 133093,
+          "sha256": "c26a5241a0a6c983bd4ece3556738fbdefd607be341188bf3d093b232bcbff29",
+          "sourceFile": "source/redraw-2x/cat/water.png",
+          "sourceSha256": "38746b0afbc21ec67c71c99be891cfc3b1642161b75b48e8ad30fdb350c3525f",
+          "sourceCrop": [
+            94,
+            115,
+            1406,
+            1033
+          ],
+          "fitScale": 0.3307926829268293,
+          "originalSize": [
+            221,
+            171
+          ],
+          "originalSha256": "64bed79e1fb01ccaa78850840f6a260231d6d32db9a91db12dea1023df41967d",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "walk": {
+          "file": "sprites/cat/walk.png",
+          "width": 460,
+          "height": 372,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 137301,
+          "sha256": "11567ed3a5d7bd073335c926141fa576f72284e1f2e3191ced39cc82b2b9fa8e",
+          "sourceFile": "source/redraw-2x/cat/walk.png",
+          "sourceSha256": "d49423ca98113a1ad5ca2b7418c1815544010c1bbd7919e5c4f92547f155be78",
+          "sourceCrop": [
+            73,
+            135,
+            1354,
+            1077
+          ],
+          "fitScale": 0.35284933645589384,
+          "originalSize": [
+            230,
+            186
+          ],
+          "originalSha256": "29145c61f557e1aa20401c129f322997e61b69d8b8c1fba71c50343590c41eb7",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "extras": {
+        "adultWithPoop": {
+          "file": "sprites/cat/adult-with-poop.png",
+          "width": 386,
+          "height": 360,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 110908,
+          "sha256": "7eeb34738d3c20510af11e9bfa25ea649de272037dbd63c415ad0ecb9a43744c",
+          "sourceFile": "source/redraw-2x/cat/adult-with-poop.png",
+          "sourceSha256": "d475853e79235ffb8ccd608304d3783b69e32b1af3960d42c45f7930d62a2fa2",
+          "sourceCrop": [
+            78,
+            158,
+            1243,
+            1089
+          ],
+          "fitScale": 0.3244635193133047,
+          "originalSize": [
+            193,
+            180
+          ],
+          "originalSha256": "76d21b40f67115f0aef609546d6bdc670d9887b0c8af98af79a9cc4057e07e41",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "notes": [
+        "All 15 PNGs individually redrawn with built-in imagegen. Every canvas is exactly twice the previous width and height. Transparent alpha preserved; source images are per-asset under source/redraw-2x/."
+      ],
+      "legacySource": {
+        "sourceFile": "cat.png",
+        "sourceSha256": "5d90603f4209dce1359a6022bdf96835cbd483d9a53eeef1afa4cdb8fe750b81"
+      }
+    },
+    {
+      "id": "dog",
+      "nameZh": "豆豆",
+      "nameEn": "Biscuit",
+      "sprites": {
+        "baby": {
+          "file": "sprites/dog/baby.png",
+          "width": 314,
+          "height": 204,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 58909,
+          "sha256": "45615974afddf31b359227f81cbef3884c5aa517696959b61e9b618160982c7f",
+          "sourceFile": "source/redraw-2x/dog/baby.png",
+          "sourceSha256": "1b9eb8869d97a69d35c00254276d809207777d68820db90a5999efbcdca11f95",
+          "sourceCrop": [
+            58,
+            81,
+            1499,
+            939
+          ],
+          "fitScale": 0.21235253296322,
+          "originalSize": [
+            157,
+            102
+          ],
+          "originalSha256": "b81e7adbb4453ec432101c6ea4eb7ee55b234e1ff70c2af6ff57d2ca7b5e9e0f",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "toddler": {
+          "file": "sprites/dog/toddler.png",
+          "width": 344,
+          "height": 270,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 88202,
+          "sha256": "a14e88225f93270932c0b428868eb6864da45fd8cfc91dd8f7d548bd19a5f777",
+          "sourceFile": "source/redraw-2x/dog/toddler.png",
+          "sourceSha256": "aeb235d15c772aa7f6648679f8c4a8d136e3e50e51d244a243524d715f89e7f5",
+          "sourceCrop": [
+            49,
+            56,
+            1374,
+            1046
+          ],
+          "fitScale": 0.25358490566037734,
+          "originalSize": [
+            172,
+            135
+          ],
+          "originalSha256": "8a50481b70507ee6fb6e3178ee25cc8ce8c1815448d5fe3d2cd0f4bb531c92d9",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "child": {
+          "file": "sprites/dog/child.png",
+          "width": 370,
+          "height": 310,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 101810,
+          "sha256": "1a3444c0a924e72a9b71f9c7bea09fc19d84d2fdbb87601915750c4b670677be",
+          "sourceFile": "source/redraw-2x/dog/child.png",
+          "sourceSha256": "6541acd1d3b2c4f04c122ed4eaf99fda8596bf7fcdfa45ed5a58cef2aeea6646",
+          "sourceCrop": [
+            50,
+            52,
+            1328,
+            1089
+          ],
+          "fitScale": 0.28325508607198746,
+          "originalSize": [
+            185,
+            155
+          ],
+          "originalSha256": "ffb6b8d07b59852af8ae55009faee53a7f8a852a1fdc18e3ec71136e8cef227b",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "teen": {
+          "file": "sprites/dog/teen.png",
+          "width": 436,
+          "height": 334,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 126899,
+          "sha256": "0f975a8b609f58685ca017d7249e884fd657251cf3e6d3777bdf6dc8ac82353b",
+          "sourceFile": "source/redraw-2x/dog/teen.png",
+          "sourceSha256": "6f3b8d2e91d191f85e25e1bb2507154c31c396ac29556eec26fba72525c2d147",
+          "sourceCrop": [
+            16,
+            29,
+            1415,
+            1063
+          ],
+          "fitScale": 0.3059328091493924,
+          "originalSize": [
+            218,
+            167
+          ],
+          "originalSha256": "f5b4bfce5e8354165d9d46622e0dd7eb11c7e8ad1daa69f1391af342d46e1952",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "adult": {
+          "file": "sprites/dog/adult.png",
+          "width": 426,
+          "height": 360,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 136104,
+          "sha256": "bda0c1d42e42aa781d074e461275ac3b6b05ae393aab7af251165c8a94421d21",
+          "sourceFile": "source/redraw-2x/dog/adult.png",
+          "sourceSha256": "def067e0fa2513aabc0140d3d0902480e0f7f72a488559b3d9284daf040cfeac",
+          "sourceCrop": [
+            32,
+            22,
+            1340,
+            1121
+          ],
+          "fitScale": 0.3195718654434251,
+          "originalSize": [
+            213,
+            180
+          ],
+          "originalSha256": "bb652d2344bce7b73d678bbad53d8e0eff3b539b9e31343f35be05b7e1f2dba7",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "elder": {
+          "file": "sprites/dog/elder.png",
+          "width": 412,
+          "height": 360,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 154758,
+          "sha256": "43335620afeeac1b7ee8b9608f1a46d04a353b8d95264e7f68b9282f112aa146",
+          "sourceFile": "source/redraw-2x/dog/elder.png",
+          "sourceSha256": "20dde4a9a8730aafdff24d961cf0d3a2505b63ae2d878e17aa41aa9083add494",
+          "sourceCrop": [
+            44,
+            28,
+            1315,
+            1134
+          ],
+          "fitScale": 0.31785995279307633,
+          "originalSize": [
+            206,
+            180
+          ],
+          "originalSha256": "edabc21381b006d67bd9e660ec514d51885b7da25b6f6a5e6eba8047eb09b445",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "poop": {
+          "file": "sprites/dog/poop.png",
+          "width": 160,
+          "height": 152,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 24003,
+          "sha256": "64b2d77be6c02470574cf069ebf2a3e2bf9148b46b7372cef803e64b6c775d26",
+          "sourceFile": "source/redraw-2x/dog/poop.png",
+          "sourceSha256": "96ed9d2290d0e791d3bf1a34f18b685434a1c3c021c43124ddd4659ebfe25d3a",
+          "sourceCrop": [
+            100,
+            71,
+            1209,
+            1143
+          ],
+          "fitScale": 0.13432835820895522,
+          "originalSize": [
+            80,
+            76
+          ],
+          "originalSha256": "41b04c0c508def899b6d4782fe416e6748b375aa5b12c170c5bcdca770883c25",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "grave": {
+          "file": "sprites/dog/grave.png",
+          "width": 430,
+          "height": 298,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 84972,
+          "sha256": "d47106346e37656100b66be4dcaf6da91f7d0ecd5354501fd1a3c1da16213dcc",
+          "sourceFile": "source/redraw-2x/dog/grave.png",
+          "sourceSha256": "5573ff3624e7243852adcf5374f97e955b455badd373ead670809ebe2e844b07",
+          "sourceCrop": [
+            28,
+            54,
+            1481,
+            1014
+          ],
+          "fitScale": 0.2904335856847901,
+          "originalSize": [
+            215,
+            149
+          ],
+          "originalSha256": "6b8453798efb6a76af92104d87597d8219d079e5bba65bb016ba076a9952f2c3",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "cleanWaste": {
+          "file": "sprites/dog/cleanWaste.png",
+          "width": 454,
+          "height": 362,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 153403,
+          "sha256": "b3eedeffa8ee36619feaf4e123b07d93d8642197aebcc419523e8ae17e3c52eb",
+          "sourceFile": "source/redraw-2x/dog/cleanWaste.png",
+          "sourceSha256": "9dd7e515b4a57046bab601204ed7702b768cd254502a0d0ce4a67e1f73fa998c",
+          "sourceCrop": [
+            39,
+            39,
+            1372,
+            1089
+          ],
+          "fitScale": 0.3345836459114779,
+          "originalSize": [
+            227,
+            181
+          ],
+          "originalSha256": "9db05548421ada798a2296c925f7ec01e31ea02aa95d7e2844c62f43aba2abdf",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "bathe": {
+          "file": "sprites/dog/bathe.png",
+          "width": 468,
+          "height": 414,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 187437,
+          "sha256": "416ce737eff3cdd51df6b11a12d47386d870ed95f1581a7e3f521dd8b6cacee3",
+          "sourceFile": "source/redraw-2x/dog/bathe.png",
+          "sourceSha256": "1299eb7aa832466b2a1b41779d1fbf65772a6d7c3436d382ae9645a69f99bda8",
+          "sourceCrop": [
+            7,
+            6,
+            1334,
+            1170
+          ],
+          "fitScale": 0.346646571213263,
+          "originalSize": [
+            234,
+            207
+          ],
+          "originalSha256": "cbb21a0c103b96ab6d986e87dbe6d83734bdb2b8a726c0ae5131b95ff05a25d6",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "groom": {
+          "file": "sprites/dog/groom.png",
+          "width": 528,
+          "height": 408,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 187208,
+          "sha256": "c10ca9c63402ae0d7892eef249eb74c2447b5c227cc15396b9e196780eba5fbb",
+          "sourceFile": "source/redraw-2x/dog/groom.png",
+          "sourceSha256": "680c33afcc119f5c09a71a6059c6958bf89443f6574b263bc4fc9cf4785af096",
+          "sourceCrop": [
+            42,
+            20,
+            1392,
+            1070
+          ],
+          "fitScale": 0.38095238095238093,
+          "originalSize": [
+            264,
+            204
+          ],
+          "originalSha256": "5e1c6db49d47cc83438dc9af2792870c3ed5c77eb9d1dbef794f8dc3f51d2c6e",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "feed": {
+          "file": "sprites/dog/feed.png",
+          "width": 392,
+          "height": 338,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 131511,
+          "sha256": "241efa81de3f280359e8b95f266797f1055db4faf1f35502b06dd46d9182bd08",
+          "sourceFile": "source/redraw-2x/dog/feed.png",
+          "sourceSha256": "0389a0a6e0787f2aa736f4c4ef3938a43ad3f474cdf2f61ced46f9738b95cfa8",
+          "sourceCrop": [
+            42,
+            57,
+            1301,
+            1126
+          ],
+          "fitScale": 0.3050039714058777,
+          "originalSize": [
+            196,
+            169
+          ],
+          "originalSha256": "f5297b62e4d4d2b5bfbd1b2b560f38f761e79b1a541dc36314a350ab2b9da58c",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "water": {
+          "file": "sprites/dog/water.png",
+          "width": 450,
+          "height": 336,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 135567,
+          "sha256": "cf5258597a179fd108c2eebb0832838c4292df405edcca98fa117f99e138c0bd",
+          "sourceFile": "source/redraw-2x/dog/water.png",
+          "sourceSha256": "77dddec7d54a9e2d5e9b6751a3e264796cae1697007d186f274115b553eb3ee2",
+          "sourceCrop": [
+            22,
+            30,
+            1423,
+            1054
+          ],
+          "fitScale": 0.31548893647394716,
+          "originalSize": [
+            225,
+            168
+          ],
+          "originalSha256": "942821cef17595aad22a2ffd91915d3b0386809a9785e8dc376676bcecc8c7ae",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "walk": {
+          "file": "sprites/dog/walk.png",
+          "width": 408,
+          "height": 326,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 124277,
+          "sha256": "78b1a88d93daa80249a4edf5972218d6fc3dcee202052f25c3978bc7da3cc903",
+          "sourceFile": "source/redraw-2x/dog/walk.png",
+          "sourceSha256": "d638a1deb6bad8fdecc3c1bab3047885a1b889084ad7ffc0880360d62f8616e4",
+          "sourceCrop": [
+            93,
+            39,
+            1358,
+            1051
+          ],
+          "fitScale": 0.3142292490118577,
+          "originalSize": [
+            204,
+            163
+          ],
+          "originalSha256": "fd1502283bec1d8cacd7a0d0de951a8a43602a827081c9b5aa19cf913afb4517",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "extras": {
+        "adultWithPoop": {
+          "file": "sprites/dog/adult-with-poop.png",
+          "width": 380,
+          "height": 326,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 111009,
+          "sha256": "bb20cd3b67ec8fa215e901f2ec84e481e3343006365f2c117151be1f04b1ceb6",
+          "sourceFile": "source/redraw-2x/dog/adult-with-poop.png",
+          "sourceSha256": "928d6783a0ff0cecf44a5d534ac0c789c21a2879c77a7760d1d2a8ac2878731c",
+          "sourceCrop": [
+            40,
+            38,
+            1317,
+            1113
+          ],
+          "fitScale": 0.2913077525450274,
+          "originalSize": [
+            190,
+            163
+          ],
+          "originalSha256": "c46044802a1056ab4bc0bd8294e5b9e2b2a4a2047766da057d37375e9307b41f",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "notes": [
+        "All 15 PNGs individually redrawn with built-in imagegen. Every canvas is exactly twice the previous width and height. Transparent alpha preserved; source images are per-asset under source/redraw-2x/."
+      ],
+      "legacySource": {
+        "sourceFile": "dog.png",
+        "sourceSha256": "1b0d864db39bb9753c2d9329cce1abcd0affdfe655afc24be37dba1bf0d0d988"
+      }
+    },
+    {
+      "id": "cow",
+      "nameZh": "奶糖",
+      "nameEn": "Toffee",
+      "sprites": {
+        "baby": {
+          "file": "sprites/cow/baby.png",
+          "width": 332,
+          "height": 216,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 65988,
+          "sha256": "b4d56cf99a65642ac4621a9735668e4188ee26213c2f17d3c779769968e182d5",
+          "sourceFile": "source/redraw-2x/cow/baby.png",
+          "sourceSha256": "db9192de7571e1dfc6dd1735c6dd07cfda710aae7d85ba2c197cea0fe6117979",
+          "sourceCrop": [
+            88,
+            86,
+            1486,
+            916
+          ],
+          "fitScale": 0.2317596566523605,
+          "originalSize": [
+            166,
+            108
+          ],
+          "originalSha256": "6ad99ec5fcacc6e479a22345e0f6ec7f80a7b90211c192d47434f1927bb034e0",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "toddler": {
+          "file": "sprites/cow/toddler.png",
+          "width": 322,
+          "height": 288,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 84655,
+          "sha256": "37092950331c7a67d87f57f4eab86be149519984083fb2ea6e773677b9440d45",
+          "sourceFile": "source/redraw-2x/cow/toddler.png",
+          "sourceSha256": "106a23fdb9ef4744245c5f7dd482bcc1c0c2a2817865d963c4cca1d317325434",
+          "sourceCrop": [
+            74,
+            86,
+            1278,
+            1106
+          ],
+          "fitScale": 0.260797342192691,
+          "originalSize": [
+            161,
+            144
+          ],
+          "originalSha256": "bb20fb350ca927319c28daaf8b47cf053d11865b911e674b0e980dfa190d74b3",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "child": {
+          "file": "sprites/cow/child.png",
+          "width": 354,
+          "height": 328,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 100236,
+          "sha256": "ae84ce314702cddbc6003abd3fb186c35efffb96a02373fbeafbfcb61d23385c",
+          "sourceFile": "source/redraw-2x/cow/child.png",
+          "sourceSha256": "90651b29d74fc48e5de4aa3bd39a2b99c1d3667c4ae5f95fb72ba1c87d831a68",
+          "sourceCrop": [
+            64,
+            117,
+            1253,
+            1109
+          ],
+          "fitScale": 0.2910008410428932,
+          "originalSize": [
+            177,
+            164
+          ],
+          "originalSha256": "e9d674ed79e7b3ac705a0f2416284f20a726a34ba1d2eddc52da837c172a9466",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "teen": {
+          "file": "sprites/cow/teen.png",
+          "width": 462,
+          "height": 374,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 147566,
+          "sha256": "c24e65ffdebde2339925995914aad486775b1aec375030d574a9ed2bad32ee75",
+          "sourceFile": "source/redraw-2x/cow/teen.png",
+          "sourceSha256": "87afab10af8bb57e2780b25bd0664d792c1c52ed46500fac8c71571906869324",
+          "sourceCrop": [
+            134,
+            44,
+            1360,
+            1057
+          ],
+          "fitScale": 0.36130306021717673,
+          "originalSize": [
+            231,
+            187
+          ],
+          "originalSha256": "cdc4be2a8880abe53e121b0d5884e15ab6668aaa56f0f51fe6bd8e8fbb9323ee",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "adult": {
+          "file": "sprites/cow/adult.png",
+          "width": 398,
+          "height": 362,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 123855,
+          "sha256": "b6a8881eeb0002ae0a2d85f1e2fb4b545457eba91d4f34fd52d4ad4447faa73b",
+          "sourceFile": "source/redraw-2x/cow/adult.png",
+          "sourceSha256": "4bbe016a2faeecb6da14ac1ec2592d199b4850365670332a02b92514622017bb",
+          "sourceCrop": [
+            85,
+            124,
+            1254,
+            1082
+          ],
+          "fitScale": 0.33361847733105215,
+          "originalSize": [
+            199,
+            181
+          ],
+          "originalSha256": "5f875a7674c94aa51d978613e1edb5467b58a3d8ff8d8da2cd7aac852eed1589",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "elder": {
+          "file": "sprites/cow/elder.png",
+          "width": 408,
+          "height": 358,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 150103,
+          "sha256": "c7d89e705a95bdd0e6e43142dd09ccf996e09b5c7aee55f596d2a11af044617a",
+          "sourceFile": "source/redraw-2x/cow/elder.png",
+          "sourceSha256": "0386ba36b7d16bb31c994ee9f3bdc62cae2f5991200772081b608d3439861a7c",
+          "sourceCrop": [
+            87,
+            69,
+            1289,
+            1079
+          ],
+          "fitScale": 0.33277870216306155,
+          "originalSize": [
+            204,
+            179
+          ],
+          "originalSha256": "540eef66b66990d955758ff6de01b04caabd53b58b128c589b46c8aa17e28921",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "poop": {
+          "file": "sprites/cow/poop.png",
+          "width": 132,
+          "height": 176,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 18130,
+          "sha256": "ece982a529bf2aec29b37dbac0ad1efbc2cb0d3d61db54bfc78eb023229a579c",
+          "sourceFile": "source/redraw-2x/cow/poop.png",
+          "sourceSha256": "ec177b57b666ed23c28e0874ffd63a48943b2264e9fb3fa644709ee7b2744247",
+          "sourceCrop": [
+            135,
+            111,
+            1160,
+            1062
+          ],
+          "fitScale": 0.12097560975609756,
+          "originalSize": [
+            66,
+            88
+          ],
+          "originalSha256": "9c2ae7eef5cb1c90c785086d958923e02e98746082a1bb27e1e46f32eaf96c3d",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "grave": {
+          "file": "sprites/cow/grave.png",
+          "width": 468,
+          "height": 290,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 89891,
+          "sha256": "bff716b3cc85d91a4a1fe059c9573a482f05fc91c8279002402671b536de2ea8",
+          "sourceFile": "source/redraw-2x/cow/grave.png",
+          "sourceSha256": "70855445ed4e212517cd22857a8154b6fd4aae6736a6f4c4843677b7b981f313",
+          "sourceCrop": [
+            35,
+            55,
+            1556,
+            961
+          ],
+          "fitScale": 0.30243261012491784,
+          "originalSize": [
+            234,
+            145
+          ],
+          "originalSha256": "cac0d8a10a00a10bf592dfaa05cb23cebf6fd1dc75c0a40195a0d8a7d7f82366",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "cleanWaste": {
+          "file": "sprites/cow/cleanWaste.png",
+          "width": 436,
+          "height": 340,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 143964,
+          "sha256": "5ab57674271dbab39e1828377678d8e9b1ff0fceb0f4afaf5c25b0ac39219efc",
+          "sourceFile": "source/redraw-2x/cow/cleanWaste.png",
+          "sourceSha256": "2f732e958b8ec83da9bd3e4cd13e291063a7e6be3e2d5bcd0bbce88393c9b38f",
+          "sourceCrop": [
+            36,
+            33,
+            1386,
+            1070
+          ],
+          "fitScale": 0.31703703703703706,
+          "originalSize": [
+            218,
+            170
+          ],
+          "originalSha256": "3f14d29ad02f6b7ba896e12591d128ab54f508635e5d830e717e22a278fffabb",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "bathe": {
+          "file": "sprites/cow/bathe.png",
+          "width": 438,
+          "height": 358,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 141800,
+          "sha256": "a24269770414d024576b3d921ed819274506b0dbafb39c8ed73a2a43ae335c45",
+          "sourceFile": "source/redraw-2x/cow/bathe.png",
+          "sourceSha256": "ea82d593623c3e95064b0748506726ec11a2f501880726ed1653e3cfdc099713",
+          "sourceCrop": [
+            27,
+            33,
+            1365,
+            1087
+          ],
+          "fitScale": 0.3213751868460389,
+          "originalSize": [
+            219,
+            179
+          ],
+          "originalSha256": "81f4f67da545165be0f1966bea2eb6090e272d64b67e83d60054a7389b3169ca",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "groom": {
+          "file": "sprites/cow/groom.png",
+          "width": 510,
+          "height": 336,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 158849,
+          "sha256": "561e51db9e3653bc79f73becfff9a02ad3cc822592061d7f01ce3ba0cc0f7833",
+          "sourceFile": "source/redraw-2x/cow/groom.png",
+          "sourceSha256": "d504d8cb0dbcfb88111f5db2962d1278b6b98f9e318802a3b2dd150c96e13a12",
+          "sourceCrop": [
+            31,
+            38,
+            1513,
+            972
+          ],
+          "fitScale": 0.33873144399460187,
+          "originalSize": [
+            255,
+            168
+          ],
+          "originalSha256": "c8f3fb4cffe8fd4ad00ac975d00cb883faa9f28628e85f394b10abebd6a6a36e",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "feed": {
+          "file": "sprites/cow/feed.png",
+          "width": 370,
+          "height": 304,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 122376,
+          "sha256": "cc39f2b373309f86f879620dae78870b690f018a43432e2bbb85413e9773a13f",
+          "sourceFile": "source/redraw-2x/cow/feed.png",
+          "sourceSha256": "87bce0a91139732bc8e0202303f1549e06cb49fadde1c1469ba1675575226c4b",
+          "sourceCrop": [
+            24,
+            28,
+            1349,
+            1072
+          ],
+          "fitScale": 0.2732075471698113,
+          "originalSize": [
+            185,
+            152
+          ],
+          "originalSha256": "6c1b0661ef5332cd9583c519816e95012523cf208fc4b93ac79bc319eded6e02",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "water": {
+          "file": "sprites/cow/water.png",
+          "width": 380,
+          "height": 294,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 113666,
+          "sha256": "f27cb8e621cf240d38f01ab96cbcbd295a6d4191d79893cafcefba9b003f7736",
+          "sourceFile": "source/redraw-2x/cow/water.png",
+          "sourceSha256": "6cbd86e7b0e656e34ed4c54b61889d94c99e1edcb5bfef475197528a501585b1",
+          "sourceCrop": [
+            52,
+            28,
+            1399,
+            1057
+          ],
+          "fitScale": 0.27616926503340755,
+          "originalSize": [
+            190,
+            147
+          ],
+          "originalSha256": "4ee0248be7e872c1ca5de41ee4e976d629cc553ae1aaf397b1ce9730bc2cf886",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "walk": {
+          "file": "sprites/cow/walk.png",
+          "width": 394,
+          "height": 312,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 115763,
+          "sha256": "fbd47323d2a1b8ef6680bfa112bd6a53b4a202d0e21eb8a237f6171d4c3ca3da",
+          "sourceFile": "source/redraw-2x/cow/walk.png",
+          "sourceSha256": "27989fb40f3ce747c4b7d98e8f492c3f5bd88a5681382793f6e5d93f6f3c6c2c",
+          "sourceCrop": [
+            41,
+            31,
+            1377,
+            1068
+          ],
+          "fitScale": 0.28892215568862273,
+          "originalSize": [
+            197,
+            156
+          ],
+          "originalSha256": "cce416a7f3f73002a7121b6438dce965507bf8d4f180eb8458c2e90c386b740b",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "extras": {
+        "adultWithPoop": {
+          "file": "sprites/cow/adult-with-poop.png",
+          "width": 368,
+          "height": 340,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 110642,
+          "sha256": "746988a3d8e0ca06474bc2e62128dc78de9cea558d9a6d8d59f97a97b3227759",
+          "sourceFile": "source/redraw-2x/cow/adult-with-poop.png",
+          "sourceSha256": "d6b26f024ffc5c5917a8e6f1d462c7a019cc8b010e6d638801d181a0ea7f65e5",
+          "sourceCrop": [
+            26,
+            35,
+            1277,
+            1157
+          ],
+          "fitScale": 0.28776978417266186,
+          "originalSize": [
+            184,
+            170
+          ],
+          "originalSha256": "c3bd21f4f2fe03c8e9c997b6aae96e47420fa1acf78ccef2b25227d3bdae8c41",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "notes": [
+        "All 15 PNGs individually redrawn with built-in imagegen. Every canvas is exactly twice the previous width and height. Transparent alpha preserved; source images are per-asset under source/redraw-2x/."
+      ],
+      "legacySource": {
+        "sourceFile": "cow.png",
+        "sourceSha256": "ada13817ebdd06dbd5a0e4e5d57b52dab9f6ef42c70cd9cfaf788dc14a830f1c"
+      }
+    },
+    {
+      "id": "goat",
+      "nameZh": "咩咩",
+      "nameEn": "Clover",
+      "sprites": {
+        "baby": {
+          "file": "sprites/goat/baby.png",
+          "width": 346,
+          "height": 226,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 75962,
+          "sha256": "cc681bec05f5fd689dd8b0fab6cfadddde90b4231684422a419e7c7a626e09e2",
+          "sourceFile": "source/redraw-2x/goat/baby.png",
+          "sourceSha256": "5314934832743301ccf08f637129227652c6a0ed054485a7fec818ad7c9bde7d",
+          "sourceCrop": [
+            35,
+            48,
+            1518,
+            952
+          ],
+          "fitScale": 0.22791638570465272,
+          "originalSize": [
+            173,
+            113
+          ],
+          "originalSha256": "e5861ede169c20f010a5a15d7d30607d2b587f4dbcf5adb41fed7a68e6c242e9",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "toddler": {
+          "file": "sprites/goat/toddler.png",
+          "width": 374,
+          "height": 310,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 104678,
+          "sha256": "628f7209666e5ebabbec982b95ff90184e44972baf680e481898a2cbd99994df",
+          "sourceFile": "source/redraw-2x/goat/toddler.png",
+          "sourceSha256": "9f34b672ceb30eeb78470743e1c8b3fb1521ef80b4a341cf9d82fe5069d55c12",
+          "sourceCrop": [
+            17,
+            10,
+            1364,
+            1121
+          ],
+          "fitScale": 0.2717149220489978,
+          "originalSize": [
+            187,
+            155
+          ],
+          "originalSha256": "83577851d46df0a09f571ddfad913f4bb1e7595c49d54540b52427473265bb25",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "child": {
+          "file": "sprites/goat/child.png",
+          "width": 408,
+          "height": 348,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 119519,
+          "sha256": "f656bf05cf6450e9901296173647af454ae2a471874dd42f9b8e4845288d7009",
+          "sourceFile": "source/redraw-2x/goat/child.png",
+          "sourceSha256": "544a912c12de76890fcbe2dc885a019bcac6b3e6d07cd4889049b28e082a0558",
+          "sourceCrop": [
+            42,
+            39,
+            1324,
+            1115
+          ],
+          "fitScale": 0.31201248049922,
+          "originalSize": [
+            204,
+            174
+          ],
+          "originalSha256": "3b8bf3215e1a6afba63a276803b878f0317a0c0794883f45069fc3b1477592fc",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "teen": {
+          "file": "sprites/goat/teen.png",
+          "width": 434,
+          "height": 400,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 147927,
+          "sha256": "9d9af1d2c49a0e5d173a40bc2c87e166427f3cde8330b42cd0545c3fc1957652",
+          "sourceFile": "source/redraw-2x/goat/teen.png",
+          "sourceSha256": "080b89ee0971b43824adff1c124ea27487e1f4913b181e7ee6f081e430c8b955",
+          "sourceCrop": [
+            25,
+            17,
+            1288,
+            1162
+          ],
+          "fitScale": 0.33729216152019004,
+          "originalSize": [
+            217,
+            200
+          ],
+          "originalSha256": "1c52d68ebe2094f8b6c8ec90814bad93444aea3fe9758b634baffe0c3e28224b",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "adult": {
+          "file": "sprites/goat/adult.png",
+          "width": 456,
+          "height": 400,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 157495,
+          "sha256": "04cd0c11cf99a9ddc9e014f9595b673f71d8f09af4a51514827ad1aa68d34f62",
+          "sourceFile": "source/redraw-2x/goat/adult.png",
+          "sourceSha256": "ab92d8f462d3b1b3d688b76fdbf4f9cbc2ec81853a19627b872140381d3e0ec5",
+          "sourceCrop": [
+            21,
+            16,
+            1315,
+            1143
+          ],
+          "fitScale": 0.3462132921174652,
+          "originalSize": [
+            228,
+            200
+          ],
+          "originalSha256": "37d76ef14e45bd278a5ba72189f71b5a0fd68e1215c5f310429dcbf91378f88b",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "elder": {
+          "file": "sprites/goat/elder.png",
+          "width": 420,
+          "height": 388,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 164581,
+          "sha256": "2eff9ff9090cd7b6fbd3fd89b95ce99daa0ed9bbbd59316ce85b1437ff35b73c",
+          "sourceFile": "source/redraw-2x/goat/elder.png",
+          "sourceSha256": "2cff8c83ec2d56233c853aef224c6b51883124d33543816737a0b553c79ec4d6",
+          "sourceCrop": [
+            38,
+            52,
+            1268,
+            1155
+          ],
+          "fitScale": 0.33495934959349594,
+          "originalSize": [
+            210,
+            194
+          ],
+          "originalSha256": "03f4c0a138d2477f6b88bcb04f39f5c5612f11dc7a0f33691b0cc05270a32383",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "poop": {
+          "file": "sprites/goat/poop.png",
+          "width": 140,
+          "height": 164,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 18678,
+          "sha256": "c1f2892fa7484ba552d7cee5052204a5905297d879a8c6cd72e149e458529a27",
+          "sourceFile": "source/redraw-2x/goat/poop.png",
+          "sourceSha256": "64fbc2508aecea263b2cb97f3bf901929b9bf1731cc227a524ce80b5bb7a8f5a",
+          "sourceCrop": [
+            124,
+            170,
+            1130,
+            1086
+          ],
+          "fitScale": 0.1312127236580517,
+          "originalSize": [
+            70,
+            82
+          ],
+          "originalSha256": "323e46be78ec3bd39817604cc5dfdf81f406b1b9de15603f906ba918235ae625",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "grave": {
+          "file": "sprites/goat/grave.png",
+          "width": 420,
+          "height": 334,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 91354,
+          "sha256": "c77deed7e204f630377c063c7ad7e24cc4719384b7d6a38a782acef91fd5b60f",
+          "sourceFile": "source/redraw-2x/goat/grave.png",
+          "sourceSha256": "49343fd5c0aefd55b4d96d78308201d24c7c2dcefbaadc3141da5144dc3801d0",
+          "sourceCrop": [
+            43,
+            40,
+            1363,
+            1103
+          ],
+          "fitScale": 0.3066792097836312,
+          "originalSize": [
+            210,
+            167
+          ],
+          "originalSha256": "e00e11e964583975352dcded01b9de8ebe07f85ce6a2cbc5306a819d88095958",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "cleanWaste": {
+          "file": "sprites/goat/cleanWaste.png",
+          "width": 456,
+          "height": 410,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 163702,
+          "sha256": "92ae2d97791381af1817fd02053cb7fb782b924d541aeae29cef2307340789ad",
+          "sourceFile": "source/redraw-2x/goat/cleanWaste.png",
+          "sourceSha256": "d28735527a58cb4c031536acdf3e4342c5f401ec9763a22ba90927bbf0d6a85c",
+          "sourceCrop": [
+            34,
+            29,
+            1300,
+            1149
+          ],
+          "fitScale": 0.353870458135861,
+          "originalSize": [
+            228,
+            205
+          ],
+          "originalSha256": "1e2f235c371de372ea6266be35acfd158b1dd2c0d9f2c6d2f20b20fec47febe3",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "bathe": {
+          "file": "sprites/goat/bathe.png",
+          "width": 444,
+          "height": 438,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 185178,
+          "sha256": "3ca7f62ed7895dffd80796cd876b6510954f2fbdc648564324d8e0d685490f12",
+          "sourceFile": "source/redraw-2x/goat/bathe.png",
+          "sourceSha256": "77235e7de85328210657fc53975c0e7751dd374f9b8a01f720de3dd52afc0af6",
+          "sourceCrop": [
+            56,
+            27,
+            1238,
+            1181
+          ],
+          "fitScale": 0.3688663282571912,
+          "originalSize": [
+            222,
+            219
+          ],
+          "originalSha256": "8e64d2d60107c257b72e5ccafddd5ea7e213bcfded30c55b4c23e807704b2ade",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "groom": {
+          "file": "sprites/goat/groom.png",
+          "width": 488,
+          "height": 374,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 190036,
+          "sha256": "0085e8dcffd732bd1a182f343f62990a9e4a06f5de8bf91e5fd2d96b3e18c5f0",
+          "sourceFile": "source/redraw-2x/goat/groom.png",
+          "sourceSha256": "2f0395ac1475976237ba0049a8948a01388669bc239d18c8d49a3609a130e115",
+          "sourceCrop": [
+            55,
+            47,
+            1400,
+            1042
+          ],
+          "fitScale": 0.35687732342007433,
+          "originalSize": [
+            244,
+            187
+          ],
+          "originalSha256": "38b9f3752d13be8e7dbd76306e137062a6b126c950f3adc341f22f8a19a64ca7",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "feed": {
+          "file": "sprites/goat/feed.png",
+          "width": 412,
+          "height": 370,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 156579,
+          "sha256": "65b95fa56771e2f0427b02e350aac4cc09152c7dae5aeb46382dad77a26820dd",
+          "sourceFile": "source/redraw-2x/goat/feed.png",
+          "sourceSha256": "b29f0bff99bcd2a6fa549540ef0dea06d5715c33f66e2e4d97e4f4b39c280dc2",
+          "sourceCrop": [
+            21,
+            21,
+            1319,
+            1151
+          ],
+          "fitScale": 0.31124807395993837,
+          "originalSize": [
+            206,
+            185
+          ],
+          "originalSha256": "8ee5e90a949c130f2f3881049798df5637f021c39995c3719991b1e3e5de5919",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "water": {
+          "file": "sprites/goat/water.png",
+          "width": 400,
+          "height": 366,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 140144,
+          "sha256": "8bf2b58a58e845ec5fd44026bb3764a43a6882bb947c6832382a9aec9a26f6de",
+          "sourceFile": "source/redraw-2x/goat/water.png",
+          "sourceSha256": "5c075185ece4166283256e9e101dc862cb7718c201adfa74ac9612e48643f22c",
+          "sourceCrop": [
+            36,
+            26,
+            1274,
+            1167
+          ],
+          "fitScale": 0.3137598597721297,
+          "originalSize": [
+            200,
+            183
+          ],
+          "originalSha256": "eb7953bb6464da9c36948ff6098d76f5afeed86c41f6d7f450fcff8742a6efef",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "walk": {
+          "file": "sprites/goat/walk.png",
+          "width": 388,
+          "height": 382,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 142303,
+          "sha256": "a9d6a62672f3402f209b0578e06d8ca842dc81d0120446285068ad27b4c8023a",
+          "sourceFile": "source/redraw-2x/goat/walk.png",
+          "sourceSha256": "d3f60f3b097624036113402f3933cb490e985aabb07c8d09893af2aa84116def",
+          "sourceCrop": [
+            35,
+            41,
+            1217,
+            1163
+          ],
+          "fitScale": 0.32148900169204736,
+          "originalSize": [
+            194,
+            191
+          ],
+          "originalSha256": "28fcb240c0525121be48ef1e5420115a7936b29d2fe7db09182f9cb4dc09c102",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "extras": {
+        "adultWithPoop": {
+          "file": "sprites/goat/adult-with-poop.png",
+          "width": 406,
+          "height": 340,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 127684,
+          "sha256": "d9f161afb7cb82e092d4e6fd7134b0026cf01a0b0379e4c838614ba2a80ebcac",
+          "sourceFile": "source/redraw-2x/goat/adult-with-poop.png",
+          "sourceSha256": "f14444545c75cb195e9e78a8cd1fa234a5d9442a7929121f8278111fd9b4dd0a",
+          "sourceCrop": [
+            26,
+            16,
+            1346,
+            1113
+          ],
+          "fitScale": 0.3015151515151515,
+          "originalSize": [
+            203,
+            170
+          ],
+          "originalSha256": "9d9fb28303319acaab3f5e633574a3259aee8abba87448bbeb22065dc32f0306",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "notes": [
+        "All 15 PNGs individually redrawn with built-in imagegen. Every canvas is exactly twice the previous width and height. Transparent alpha preserved; source images are per-asset under source/redraw-2x/."
+      ],
+      "legacySource": {
+        "sourceFile": "goat.png",
+        "sourceSha256": "160e8d95d8da4d41b3feab2b5e0911bd4eaeda6babb00fee00bf895b36a75839"
+      }
+    },
+    {
+      "id": "dinosaur",
+      "speciesZh": "恐龙",
+      "nameZh": "迪诺",
+      "nameEn": "Dinosaur",
+      "sprites": {
+        "baby": {
+          "file": "sprites/dinosaur/baby.png",
+          "width": 824,
+          "height": 548,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 351684,
+          "sha256": "d8f936a02d19fc851adb2effdf1649127f7e640f4e9d44784d93748f585a5b34",
+          "sourceFile": "source/redraw-2x/dinosaur/baby.png",
+          "sourceSha256": "7cda39f50c68fc9cc222075c62e4841c3049d3388af75618afa3d67f293f1e04",
+          "sourceCrop": [
+            27,
+            14,
+            1510,
+            983
+          ],
+          "fitScale": 0.550236008091706,
+          "originalSize": [
+            412,
+            274
+          ],
+          "originalSha256": "8c250f16df0cc8ce7135df4e606f24612a29c1e39626997685fe45ae4b4e09b3",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "toddler": {
+          "file": "sprites/dinosaur/toddler.png",
+          "width": 872,
+          "height": 864,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 578098,
+          "sha256": "76d906a30132801689e1893aaa16ffa458fff48f4921a12defd0ab873e611412",
+          "sourceFile": "source/redraw-2x/dinosaur/toddler.png",
+          "sourceSha256": "00a60c540064e8cd5a1ee44ce0f30e748e1576663871fefa9e3e1ab45d794c80",
+          "sourceCrop": [
+            29,
+            3,
+            1257,
+            1221
+          ],
+          "fitScale": 0.7027914614121511,
+          "originalSize": [
+            436,
+            432
+          ],
+          "originalSha256": "c93741ce6fa0964444eba89b5a019f059594f0897efff67bee4c990856681a77",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "child": {
+          "file": "sprites/dinosaur/child.png",
+          "width": 928,
+          "height": 876,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 484557,
+          "sha256": "6cdc0484572bb02d57c9f005f2799b75766d8a5f405590cd7957ece2fb4ebe80",
+          "sourceFile": "source/redraw-2x/dinosaur/child.png",
+          "sourceSha256": "b753aca80183a0f10b2f60416dc72a25096fcaaa4285cc296fea7dfc1bb21cb9",
+          "sourceCrop": [
+            42,
+            9,
+            1367,
+            1111
+          ],
+          "fitScale": 0.6943396226415094,
+          "originalSize": [
+            464,
+            438
+          ],
+          "originalSha256": "7b515d70e955da88ca9c1b4a68f98f104496bff09fee6ce88bc727aff9997de2",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "teen": {
+          "file": "sprites/dinosaur/teen.png",
+          "width": 1008,
+          "height": 1016,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 717729,
+          "sha256": "b2e66eed06dec6f631e819b3dc54fb1d00211f327c1f62d3675e469e7d5126cd",
+          "sourceFile": "source/redraw-2x/dinosaur/teen.png",
+          "sourceSha256": "2c27f5fc59c41e0900ec2c3fe11a0050f7e431c690b5445275a5af88b77b2a26",
+          "sourceCrop": [
+            24,
+            10,
+            1233,
+            1244
+          ],
+          "fitScale": 0.8168557536466775,
+          "originalSize": [
+            504,
+            508
+          ],
+          "originalSha256": "ee60c99ead7f14538ca32d58c983e4a2ff9f65cbf4fcf675a3aa99c863e05cbe",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "adult": {
+          "file": "sprites/dinosaur/adult.png",
+          "width": 1004,
+          "height": 1040,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 647284,
+          "sha256": "1f333f0976dbd6edeb98b8c2275f361468482af42b10f94b880c10ab0a4dc54a",
+          "sourceFile": "source/redraw-2x/dinosaur/adult.png",
+          "sourceSha256": "a30dec4d6faa64b94d2565459fce9806176167f08242d5ad107c6d9cd9855b4c",
+          "sourceCrop": [
+            29,
+            72,
+            1205,
+            1212
+          ],
+          "fitScale": 0.8469387755102041,
+          "originalSize": [
+            502,
+            520
+          ],
+          "originalSha256": "e2ad9c95f910b9b400576cb003271bcb6be23dcccdd1160001921de70858f379",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "elder": {
+          "file": "sprites/dinosaur/elder.png",
+          "width": 988,
+          "height": 980,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 753334,
+          "sha256": "6d7070cef57bb5da51c124f4fb4e2cf195e031bddc60a1291727c71bc5953807",
+          "sourceFile": "source/redraw-2x/dinosaur/elder.png",
+          "sourceSha256": "93db1c1327d5c0f2c3ecb89c92dfd9d522ddd5511260fceafe209f4f8429c5f2",
+          "sourceCrop": [
+            12,
+            4,
+            1243,
+            1239
+          ],
+          "fitScale": 0.7870445344129555,
+          "originalSize": [
+            494,
+            490
+          ],
+          "originalSha256": "2c3cb328d32879a769390b794c3b00147ffeebad8836ea251444154b18783e0f",
+          "redrawn": true,
+          "prebuilt": true,
+          "correction": "2026-10-29: left profile shows one near-side eye and one visible spectacle lens; extra eye on snout removed."
+        },
+        "poop": {
+          "file": "sprites/dinosaur/poop.png",
+          "width": 280,
+          "height": 476,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 63054,
+          "sha256": "071e39833b6788590d7760d17bb399134b9e94bae5d7360c8942b7c20aabbb06",
+          "sourceFile": "source/redraw-2x/dinosaur/poop.png",
+          "sourceSha256": "742648f01c09ded99e43cbf510419203f476c72c116efee66a56b62f8948ff1a",
+          "sourceCrop": [
+            78,
+            144,
+            1175,
+            1112
+          ],
+          "fitScale": 0.2479489516864175,
+          "originalSize": [
+            140,
+            238
+          ],
+          "originalSha256": "7ef06499b6517bff5a5abc3b9f879f1a5a96679e0c5316339589950c5026000a",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "grave": {
+          "file": "sprites/dinosaur/grave.png",
+          "width": 992,
+          "height": 720,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 541638,
+          "sha256": "c1e963247e1e6df0b07b35ecbfebadcbf1dfa9103c22b1395ce52b897ac8bb40",
+          "sourceFile": "source/redraw-2x/dinosaur/grave.png",
+          "sourceSha256": "d904b2da694ec938172bcf038291995b6bbf341cc2718ab1f1251ada411ee8b0",
+          "sourceCrop": [
+            7,
+            16,
+            1466,
+            1057
+          ],
+          "fitScale": 0.6744345442083619,
+          "originalSize": [
+            496,
+            360
+          ],
+          "originalSha256": "9fa2c0a5897a8e1fc4142a4b3e920364c871c4d6e174b5d515b714914f17d1e5",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "cleanWaste": {
+          "file": "sprites/dinosaur/cleanWaste.png",
+          "width": 1084,
+          "height": 928,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 713647,
+          "sha256": "317c22d68f89df961510a1903a47a6ab5319e38b5e65fb4269c14611ab684cdd",
+          "sourceFile": "source/redraw-2x/dinosaur/cleanWaste.png",
+          "sourceSha256": "69c6d7dc9ab1158b2a01397e73e531b554762a4a1a32b60c25bbe374f4741a72",
+          "sourceCrop": [
+            15,
+            17,
+            1345,
+            1136
+          ],
+          "fitScale": 0.8090225563909774,
+          "originalSize": [
+            542,
+            464
+          ],
+          "originalSha256": "80337f9fee75858c4df59eb4a56579cb543f0bb17cb10c3d758defa5c5965636",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "bathe": {
+          "file": "sprites/dinosaur/bathe.png",
+          "width": 1020,
+          "height": 1032,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 878437,
+          "sha256": "a7a40ef6ec611428979d9e80ef04f869a120b9cb9b6a391d516d54b5514d1c6d",
+          "sourceFile": "source/redraw-2x/dinosaur/bathe.png",
+          "sourceSha256": "ab04cdbdd9d6f1f8256b820eb57e62f5573a6cd2e55a00afa3fde603cdb4453b",
+          "sourceCrop": [
+            27,
+            15,
+            1221,
+            1232
+          ],
+          "fitScale": 0.8414133114215283,
+          "originalSize": [
+            510,
+            516
+          ],
+          "originalSha256": "a7c64e68c88ef12216065a566b2bbab54ca0004384559e946c7cfb11450a4007",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "groom": {
+          "file": "sprites/dinosaur/groom.png",
+          "width": 1068,
+          "height": 896,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 777188,
+          "sha256": "b09922c5979692e65cdb0cd32eb4c6cee1ffd0391d50db8b534189eb5b55118e",
+          "sourceFile": "source/redraw-2x/dinosaur/groom.png",
+          "sourceSha256": "c8a4afc8c9695c399345837edff839b9e819d65260ca204808c7764833d41f38",
+          "sourceCrop": [
+            17,
+            10,
+            1353,
+            1135
+          ],
+          "fitScale": 0.7893333333333333,
+          "originalSize": [
+            534,
+            448
+          ],
+          "originalSha256": "7d14b719847f8b075a10ead0344c67484c632aa04f1a51ace36e46ff0805dd68",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "feed": {
+          "file": "sprites/dinosaur/feed.png",
+          "width": 968,
+          "height": 896,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 688836,
+          "sha256": "0ca89c2bafbb17ac56155895882f0026f4fd208546932414e6b169125f2f94e6",
+          "sourceFile": "source/redraw-2x/dinosaur/feed.png",
+          "sourceSha256": "9c336b87dec899d4ac72fa6b4be13c813c72cd804c7a657ded4dc552d2bfedbb",
+          "sourceCrop": [
+            11,
+            3,
+            1294,
+            1192
+          ],
+          "fitScale": 0.7468460891505467,
+          "originalSize": [
+            484,
+            448
+          ],
+          "originalSha256": "1fa445214780f022e0b5b800ea63fe59b8361c4abb51999eea365f2ef65d38bd",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "water": {
+          "file": "sprites/dinosaur/water.png",
+          "width": 1056,
+          "height": 740,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 578607,
+          "sha256": "e72a47d29cc84d1b866a1e0237d99ab3e5afd22a79d57e429eec4f6a8cecdd8a",
+          "sourceFile": "source/redraw-2x/dinosaur/water.png",
+          "sourceSha256": "285db47f48c17f2ceff35755b8e2ee3889b4e17183503080dba50ed7a78184b6",
+          "sourceCrop": [
+            24,
+            5,
+            1483,
+            1020
+          ],
+          "fitScale": 0.7183002056202878,
+          "originalSize": [
+            528,
+            370
+          ],
+          "originalSha256": "69a47f127fa68f27fa0425a6f5a920f1fbc104b9f94ef1cb4b63c86a0cfa4664",
+          "redrawn": true,
+          "prebuilt": true
+        },
+        "walk": {
+          "file": "sprites/dinosaur/walk.png",
+          "width": 972,
+          "height": 920,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 629674,
+          "sha256": "049a895e07c4dd26835ef580331aba74ff252e50355d0dc692bad3e5ef671b78",
+          "sourceFile": "source/redraw-2x/dinosaur/walk.png",
+          "sourceSha256": "f010c75174ae8512dfea5b01fb2bcfed0f96f8776e143465a4d51fb68fd88d92",
+          "sourceCrop": [
+            33,
+            0,
+            1265,
+            1204
+          ],
+          "fitScale": 0.7574750830564784,
+          "originalSize": [
+            486,
+            460
+          ],
+          "originalSha256": "988c6bb4b0be548f90a0e154c668e60b17d9bd4a104756d668e7ed69e04eeed0",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "extras": {
+        "adultWithPoop": {
+          "file": "sprites/dinosaur/adult-with-poop.png",
+          "width": 844,
+          "height": 920,
+          "padding": 4,
+          "scale": 2,
+          "bytes": 573363,
+          "sha256": "b9c97f6734c63eda8abeef799b46a8f37dc67bfa09536bb8a776f1662f643cb1",
+          "sourceFile": "source/redraw-2x/dinosaur/adult-with-poop.png",
+          "sourceSha256": "b28ed5dbb3d56fd37303225ee094b57fb8a373a4141060659383f6a16a29d5bf",
+          "sourceCrop": [
+            45,
+            5,
+            1176,
+            1296
+          ],
+          "fitScale": 0.7064291247095275,
+          "originalSize": [
+            422,
+            460
+          ],
+          "originalSha256": "09ae2ce1789b8f2d99cebec8b7d84871ff52cb5531378e197a36edc98bc8f079",
+          "redrawn": true,
+          "prebuilt": true
+        }
+      },
+      "notes": [
+        "All 15 PNGs individually redrawn with built-in imagegen. Every canvas is exactly twice the previous width and height. Transparent alpha preserved; source images are per-asset under source/redraw-2x/."
+      ],
+      "legacySource": {
+        "sourceFile": "dinosaur.png",
+        "sourceSha256": "96d37ce5452ecf99062a73a2c48f7dd0a959c4ca276e2c04f872234a4d811e78",
+        "enhance": {
+          "unsharp": [
+            1.4,
+            220
+          ],
+          "contrast": 1.08,
+          "saturate": 1.06,
+          "hard_alpha": 200,
+          "supersample": 2
+        }
+      }
+    }
+  ],
+  "totals": {
+    "files": 135,
+    "bytes": 22707135
+  },
+  "legacyGrid": {
+    "cols": 4,
+    "rows": 4,
+    "imageSize": [
+      1254,
+      1254
+    ],
+    "slotOrder": [
+      "baby",
+      "toddler",
+      "child",
+      "teen",
+      "adult",
+      "elder",
+      "poop",
+      "grave",
+      "cleanWaste",
+      "bathe",
+      "groom",
+      "feed",
+      "water",
+      "walk"
+    ]
+  },
+  "legacySourceImages": [
+    {
+      "file": "whale.png",
+      "sha256": "4dc308f78f9fd99e362b188b5b5532059844ab568e353ebfe04b156771d4b4a5",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "monkey.png",
+      "sha256": "6ee211287a170e4c324eb622d606d5038d3aacafd9d415185510a039227c0c49",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "duck.png",
+      "sha256": "39ed67153c8e2a9c1b1457f689c18cbad82472ad3ff138e0156b7878c5d812ca",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "chick.png",
+      "sha256": "a1254058bb3738561e2f60a46c6a91d9c39d41c81ec95cd1fc8a0abe9ebf6e1b",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "cat.png",
+      "sha256": "5d90603f4209dce1359a6022bdf96835cbd483d9a53eeef1afa4cdb8fe750b81",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "dog.png",
+      "sha256": "1b0d864db39bb9753c2d9329cce1abcd0affdfe655afc24be37dba1bf0d0d988",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "cow.png",
+      "sha256": "ada13817ebdd06dbd5a0e4e5d57b52dab9f6ef42c70cd9cfaf788dc14a830f1c",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "goat.png",
+      "sha256": "160e8d95d8da4d41b3feab2b5e0911bd4eaeda6babb00fee00bf895b36a75839",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "file": "dinosaur.png",
+      "speciesId": "dinosaur",
+      "original": "source/dinosaur-original.webp"
+    }
+  ],
+  "hoverAnimation": {
+    "directory": "hover-v1",
+    "revision": "958d707ff663bdab",
+    "profiles": 54,
+    "frames": 432,
+    "implementation": "redrawn sprite atlas; hover only",
+    "manifest": "hover-v1/manifest.json"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "profiles": 54,
+  "checks": [
+    "54 installed atlases: loaded, real frame selection on hover, reset to first frame on leave; no old transform animations",
+    "Real overlay and dashboard: pointer press/cancel, context menu and blur cancel playback",
+    "Real pointer capture drag/release works and leaves neutral frame",
+    "Object-shaped host stages and live reduced-motion changes work",
+    "All six existing care poses take priority and remain hover-only",
+    "Sleep marker retained; touch does not latch animation",
+    "404 atlas falls back to visible static poster without a frame loop"
+  ],
+  "browserErrors": []
+}
