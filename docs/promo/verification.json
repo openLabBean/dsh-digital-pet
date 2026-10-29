@@ -1,17 +1,45 @@
 {
   "ok": true,
-  "localLinks": 10,
-  "images": 5,
-  "anchors": [
+  "defaultLanguage": "zh-CN",
+  "languages": [
     {
-      "href": "#领养你的第一位小伙伴",
-      "exists": true
+      "source": "README.md",
+      "file": "README-preview.html",
+      "lang": "zh-CN",
+      "label": "中文",
+      "localLinks": 11,
+      "anchors": [
+        {
+          "href": "#领养你的第一位小伙伴",
+          "exists": true
+        },
+        {
+          "href": "#先认识一下它们",
+          "exists": true
+        }
+      ],
+      "images": 5
     },
     {
-      "href": "#先认识一下它们",
-      "exists": true
+      "source": "README.en.md",
+      "file": "README-preview.en.html",
+      "lang": "en",
+      "label": "English",
+      "localLinks": 11,
+      "anchors": [
+        {
+          "href": "#adopt-your-first-companion",
+          "exists": true
+        },
+        {
+          "href": "#meet-your-little-companions",
+          "exists": true
+        }
+      ],
+      "images": 5
     }
   ],
+  "bidirectionalSwitch": true,
   "desktopAndMobileChecked": true,
   "errors": []
 }

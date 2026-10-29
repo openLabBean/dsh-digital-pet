@@ -212,6 +212,7 @@ export function emptyStore() {
       quiet: false,
       sleepStart: '23:00',
       sleepEnd: '07:00',
+      locale: 'zh',
     },
     pet: null,
     memorial: [],
@@ -274,6 +275,7 @@ function sanitize(raw) {
       quiet: settings.quiet === true,
       sleepStart: parseHHMM(settings.sleepStart, '23:00'),
       sleepEnd: parseHHMM(settings.sleepEnd, '07:00'),
+      locale: settings.locale === 'en' ? 'en' : 'zh',
     },
     pet: raw.pet !== null && typeof raw.pet === 'object' ? raw.pet : null,
     memorial: Array.isArray(raw.memorial) ? raw.memorial.slice(-24) : [],
@@ -932,6 +934,10 @@ export function updateSettings(store, body, nowMs) {
     store.settings.position = { x, y }
   }
   if (patch.quiet !== undefined) store.settings.quiet = patch.quiet === true
+  if (patch.locale !== undefined) {
+    if (patch.locale !== 'zh' && patch.locale !== 'en') throw httpError(400, 'INVALID_LOCALE', '语言只能是 zh 或 en')
+    store.settings.locale = patch.locale
+  }
   if (patch.sleepStart !== undefined) {
     const parsed = parseHHMM(patch.sleepStart, null)
     if (parsed === null) throw httpError(400, 'INVALID_SLEEP_WINDOW', '作息格式应为 HH:MM')

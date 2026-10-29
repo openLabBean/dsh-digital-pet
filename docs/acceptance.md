@@ -51,3 +51,10 @@
 - 时间模拟器已提供：`tools/simulate.mjs`（181 天 × 9 策略，`node tools/simulate.mjs` ≈1.8s 自动生成 `docs/balance-report.md`）。数值收敛结论见该报告与 `docs/design-doc-revisions.md` §6；V1 未按建议改常数（属设计变更）。
 - 深色主题（desktop profile 默认）：已把全部 CSS 改为 DSH 真实设计令牌并实测，见 `docs/v1-dark-overlay.png` / `docs/v1-dark-settings.png`。
 - 动画：待机呼吸浮动与动作动效（§4.20：单帧姿态 + CSS 形变 + 程序化道具）已做，未做逐帧序列（眨眼/连续行走帧）；真实序列帧需重新出图。
+
+## A24 界面语言切换（第 31 轮）
+
+- 默认语言为中文；「设置 → 电子宠物」底部「语言」卡可切换中文 / English。
+- 切换后插件内全部文案（标题、状态条、动作、操作盘、悬浮提示、商店、成长、纪念册、送养、错误提示）立即切换，刷新/重启后保持。
+- 非 `zh`/`en` 值被 Host 拒绝（400 INVALID_LOCALE），存档不被改写；旧存档无 `locale` 字段时按中文处理。
+- 自动化：`tests/host.integration.test.mjs` 的「界面语言」用例；界面证据 `docs/v1-i18n-zh.png` / `docs/v1-i18n-en.png`。
