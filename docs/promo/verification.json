@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "localLinks": 10,
+  "images": 5,
+  "anchors": [
+    {
+      "href": "#领养你的第一位小伙伴",
+      "exists": true
+    },
+    {
+      "href": "#先认识一下它们",
+      "exists": true
+    }
+  ],
+  "desktopAndMobileChecked": true,
+  "errors": []
+}
