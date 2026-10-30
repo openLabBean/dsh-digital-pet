@@ -127,6 +127,7 @@ plugins/dsh-digital-pet/
 ├── tests/core/            # 内核单测（131 例）
 ├── tests/host.integration.test.mjs   # Host 路由/存档/经济集成（8 例）
 ├── tests/accountant.test.mjs         # Token 用量记账（5 例）
+├── tests/i18n.test.mjs               # 中英词典一致性（5 例）
 ├── tools/simulate.mjs      # 181 天 × 9 策略时间模拟器（生成平衡报告）
 ├── tools/action-fx/        # 动作动效证据采集（capture.mjs：CDP 取帧 + 断言；compose.py：GIF/拼图）
 └── docs/                  # 截图、验收映射、实施报告、平衡报告、设计修订建议

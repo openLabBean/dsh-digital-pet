@@ -82,7 +82,8 @@ window.__ModuleLoader__.load({
 .dsh-digital-pet-panel-btn:disabled { opacity: .45; cursor: not-allowed; }
 .dsh-digital-pet-panel-btn:focus-visible { outline: 2px solid var(--dsw-alias-brand-primary, #4d6bfe); outline-offset: 1px; }
 .dsh-digital-pet-bars { display: grid; grid-template-columns: 1fr; gap: 4px; }
-.dsh-digital-pet-bar-row { display: grid; grid-template-columns: 30px 1fr 30px; align-items: center; gap: 6px; }
+.dsh-digital-pet-bar-row { display: grid; grid-template-columns: 5.2em 1fr 2.6em; align-items: center; gap: 6px; }
+.dsh-digital-pet-bar-row > span:first-child { white-space: nowrap; }
 .dsh-digital-pet-bar { height: 6px; border-radius: 99px; background: var(--dsw-alias-bg-layer-1, rgba(0,0,0,.08)); overflow: hidden; }
 .dsh-digital-pet-bar > i { display: block; height: 100%; border-radius: 99px; transition: width .3s ease; }
 .dsh-digital-pet-hint { margin-top: 6px; color: var(--dsw-alias-label-secondary, #777); font-size: 11px; line-height: 1.5; }
@@ -448,6 +449,7 @@ window.__ModuleLoader__.load({
       const [error, setError] = useState(null)
       const refresh = useCallback(() => {
         fetchState().then((data) => {
+          setUiLocale(data?.settings?.locale)
           setSnap(data)
           setError(null)
         }).catch((err) => setError(err.message ?? String(err)))
@@ -465,15 +467,315 @@ window.__ModuleLoader__.load({
     }
 
     // ---------------------------------------------------------------------
+    // 文案（中/英）
+    // ---------------------------------------------------------------------
+    // 默认中文；语言存在 Host 存档 settings.locale 里，切换后下一轮快照生效。
+    // 少量 Host 下发的中文字段（阶段名、诉求名、物种名）在客户端按 key 重新取词，
+    // 取不到时回退 Host 文案，保证老 Host 也能正常显示。
+    let uiLocale = 'zh'
+    const setUiLocale = (value) => { uiLocale = value === 'en' ? 'en' : 'zh' }
+    const isEn = () => uiLocale === 'en'
+    const localeTag = () => (isEn() ? 'en-US' : 'zh-CN')
+    const locNum = (value) => Number(value ?? 0).toLocaleString(localeTag())
+
+    const I18N = {
+      zh: {
+        app_title: '电子宠物',
+        nav_label: '电子宠物',
+        loading_pet: '正在读取宠物档案…',
+        load_failed: '读取失败：{err}',
+        subtitle_alive: '它正在 DSH 里陪你工作。鼠标悬停时它会做出成长阶段专属动作，移开即停止。桌面上可以拖动位置，点爪印打开操作盘照顾它。',
+        subtitle_empty: '还没有在养的宠物。领养后它会陪你六个月，用 DSH Token 换金币照顾它长大。',
+        display_label: '桌面显示',
+        display_shown: '显示中（点击隐藏）',
+        display_hidden: '已隐藏（点击显示）',
+        display_hint: '在 DSH 桌面上显示/隐藏宠物（隐藏后仍可在设置页照护）',
+        stage_up: '长大啦：进入{stage}',
+        stage_baby: '婴儿', stage_toddler: '幼儿', stage_child: '少儿', stage_teen: '青年', stage_adult: '壮年', stage_elder: '老年',
+        bar_hunger: '饱食', bar_mood: '心情', bar_clean: '清洁',
+        chip_companion: '陪伴 {dur}', chip_affinity: '亲密度 {n}/100', chip_care: '主动照顾 {n} 次',
+        act_feed: '喂食', act_walk: '逛街', act_bathe: '洗澡', act_cleanWaste: '铲屎', act_groom: '梳理',
+        act_running: '{action}中 · {sec}s', act_running_zero: '{action}中 · 完成', act_done_line: '{action}中，约 {sec} 秒后完成。',
+        act_processing: '处理中…',
+        reason_NOT_HUNGRY: '它还不饿（饱食低于 90 才能喂）',
+        reason_ITEM_MISSING: '背包里没有能喂的口粮',
+        reason_TOO_CLEAN: '已经很干净了',
+        reason_LOW_ENERGY: '体力不够，先让它休息',
+        reason_ON_COOLDOWN: '还在冷却中',
+        reason_NO_WASTE: '地面很干净',
+        reason_DAILY_LIMIT: '今天的额度用完了',
+        reason_BUSY: '正在照顾中',
+        reason_PET_DECEASED: '宠物已经离开了',
+        reason_unavailable: '暂时不可用',
+        reason_cannot_now: '现在还不能做这个动作',
+        token_title: '金币明细',
+        token_today: '今日已获 {granted} / {cap} 金币',
+        token_capped: '今日已封顶',
+        token_count: '今日有效 Token：{tokens}（{perCoin} Token = 1 金币）',
+        token_capped_desc: '按 Token 折算本应 {expected} 金币，但每日兑换上限 {cap} 金币，超出部分不再发放，次日 0 点重置。',
+        token_expected: '按当前 Token 折算可换 {expected} 金币，下一次模型调用后到账（今日上限 {cap}）。',
+        token_remaining: '再累计 {remain} Token 可再换 1 金币。',
+        token_source: '金币来源只有「模型调用用量」：每 {perCoin} 个有效 Token（输入 + 输出）换 1 金币，每日 0 点按 profile 时区重置；缓存命中不额外计算。',
+        adopt_title: '领养一只小宠物',
+        adopt_desc1: '它会陪你工作六个月：用 DSH 的 Token 换金币，买喜欢的食品，照顾它长大。',
+        adopt_desc2: '每天约 1～2 次照顾，忙起来可以免费托管，不会因为漏养提前离开。',
+        adopt_name_aria: '宠物昵称（1～12 个字符）',
+        adopt_name_placeholder: '给它起个名字（1～12 个字符）',
+        adopt_submit: '领取宠物',
+        adopt_submitting: '领取中…',
+        adopt_hint: '首次领养赠送 60 金币 + 3 份基础口粮；没有 Token 也能每天领免费救济口粮。',
+        adopt_disabled_note: '（即将开放）',
+        shop_title: '食品与背包',
+        shop_wallet: '{n} 金币',
+        bag_basic: '基础口粮 {whole} 份 + {half} 半份',
+        bag_favorite: '喜爱主食 {n} 份',
+        bag_snack: '零食 {n} 份',
+        bag_relief: '救济口粮 {n} 份',
+        food_basic: '基础口粮', food_favorite: '喜爱主食', food_snack: '小零食', food_relief: '救济口粮',
+        price_staple: '饱食 +{hunger}{mood}；半份 {half} 金币',
+        price_snack: '饱食 +{hunger}、心情 +{mood}，每天最多 {limit} 份',
+        price_mood_suffix: '、心情 +{mood}',
+        price_coins: '{n} 金币',
+        buy_one: '买 1 份', buying: '购买中…',
+        half_price: '半份 {n}', whole_price: '整份 {n}',
+        relief_free: '救济口粮 · 免费',
+        relief_desc: '每 24 小时可领 1 份（饱食 +60）；没有 Token 也能养育。',
+        relief_next: '下次可领：{time}（库存中还有 1 份时不能再领）',
+        relief_stock: '库存中还有 1 份时必须先用完。',
+        claim_relief: '领取救济', claiming: '领取中…',
+        growth_title: '成长记录',
+        growth_species: '物种', growth_born: '出生日期', growth_stage: '当前阶段', growth_next: '距离下一阶段',
+        growth_affinity: '亲密度', growth_care: '主动照顾',
+        growth_last_stage: '已是最后阶段',
+        growth_stage_value: '{stage} · 第 {day} 天',
+        growth_next_value: '约 {days} 天（{stage}）',
+        growth_times: '{n} 次',
+        pref_title: '偏好设置',
+        pref_quiet: '免打扰', pref_on: '开', pref_off: '关',
+        pref_size: '大小',
+        pref_sleep: '睡眠时间', pref_sleep_start: '睡眠开始时间（24 小时制）', pref_sleep_end: '睡眠结束时间（24 小时制）', pref_to: '至',
+        sleep_status_sleeping: '当前：睡眠中', sleep_status_awake: '当前：清醒',
+        sleep_hint_invalid: '按 24 小时制填写，例如 23:00 至 12:00。{status}',
+        sleep_hint_disabled: '起止时间相同：视为不启用睡眠（例如 23:00 至 12:00 表示睡到次日中午）。{status}',
+        sleep_hint: '每天 {start} 至 {cross}{end}，共 {dur}；改动即保存。{status}',
+        sleep_next_day: '次日 ',
+        dur_dh: '{d} 天 {h} 小时', dur_h: '{h} 小时', dur_hm: '{h} 小时 {m} 分', dur_ms: '{m} 分 {s} 秒',
+        pref_boarding: '免费托管', pref_boarding_on: '托管中（点击结束）', pref_boarding_off: '开始托管',
+        pref_boarding_hint: '托管期间自动维持状态，不扣金币与背包；寿命继续推进。',
+        lang_title: '语言', lang_hint: '界面语言；切换后立即生效，其它设置不受影响。',
+        lang_zh: '中文', lang_en: 'English',
+        memorial_title: '纪念册',
+        memorial_empty: '还没有离开的宠物。它会陪你走完六个月，留下这段记录。',
+        memorial_entry: '{birth} – {death} · 陪伴 {days} 天 · 照顾 {care} 次',
+        surrender_title: '送养',
+        surrender_desc: '把它送进宠物救助站会删除当前宠物的数据且不可恢复；金币和口粮会保留，之后可以重新领养一只（首次赠礼不会重复发放）。',
+        surrender_confirm: '确定要送走「{name}」吗？',
+        surrender_yes: '确认送走', surrender_cancel: '取消', surrender_busy: '送养中…',
+        surrender_open: '送进宠物救助站',
+        need_hunger: '想吃饭', need_water: '想喝水', need_waste: '需要铲屎', need_bathe: '想洗澡',
+        need_walk: '想出门', need_groom: '想梳理', need_rest: '想休息',
+        sleep_aria: '睡觉中',
+        pet_menu_aria: '宠物菜单',
+        pet_click_title: '点击照顾它',
+        care_menu_aria: '照顾菜单',
+        care_open_aria: '打开照顾菜单', care_close_aria: '关闭照顾菜单',
+        hide_menu_title: '把它从桌面隐藏（设置里可重新显示）',
+        hide_menu_item: '隐藏「{name}」',
+        pet_alt: '{name}（{stage}）',
+        pet_pet_aria: '{name}：Enter 抚摸',
+        fallback_pet_name: '电子宠物', fallback_pet_short: '宠物',
+        error_generic: '这个操作暂时不能进行',
+        err_UNKNOWN_SPECIES: '未知物种',
+        err_PET_EXISTS: '已经有在养的宠物了',
+        err_NO_PET: '还没有在养的宠物',
+        err_PET_DECEASED: '宠物已经离开了',
+        err_NOT_ENOUGH_COINS: '金币不够',
+        err_ITEM_MISSING: '背包里没有这个物品',
+        err_ON_COOLDOWN: '还在冷却中',
+        err_BUSY: '正在照顾中，等这次完成吧',
+        err_INVALID_SIZE: '大小只能是 72/96/128',
+        err_INVALID_SLEEP_WINDOW: '作息格式应为 HH:MM',
+        err_CONFIRM_REQUIRED: '需要二次确认',
+        err_DAILY_LIMIT: '今天的额度用完了',
+        err_RELIEF_IN_STOCK: '背包里还有一整份救济口粮，先吃完再领',
+        err_RELIEF_COOLDOWN: '今天已经领过了，明天再来',
+        err_NICKNAME: '昵称需要 1～12 个字符',
+        err_generic: '这个操作暂时不能进行',
+      },
+      en: {
+        app_title: 'Digital pet',
+        nav_label: 'Digital pet',
+        loading_pet: 'Loading your pet…',
+        load_failed: 'Failed to load: {err}',
+        subtitle_alive: 'It is here with you while you work. Hover to see its stage-specific animation; moving away stops it. Drag it anywhere on the page, or click the paw to open the care panel.',
+        subtitle_empty: 'No pet yet. Adopt one and it will stay with you for six months — tokens from DSH become coins to care for it.',
+        display_label: 'On desktop',
+        display_shown: 'Shown (click to hide)',
+        display_hidden: 'Hidden (click to show)',
+        display_hint: 'Show or hide the pet on the DSH desktop (you can still care for it in Settings)',
+        stage_up: 'It grew up: {stage}',
+        stage_baby: 'Baby', stage_toddler: 'Toddler', stage_child: 'Child', stage_teen: 'Teen', stage_adult: 'Adult', stage_elder: 'Elder',
+        bar_hunger: 'Fullness', bar_mood: 'Mood', bar_clean: 'Cleanliness',
+        chip_companion: 'Together {dur}', chip_affinity: 'Bond {n}/100', chip_care: 'Care actions {n}',
+        act_feed: 'Feed', act_walk: 'Walk', act_bathe: 'Bathe', act_cleanWaste: 'Clean', act_groom: 'Groom',
+        act_running: '{action} · {sec}s', act_running_zero: '{action} · done', act_done_line: '{action}, about {sec} seconds to finish.',
+        act_processing: 'Working…',
+        reason_NOT_HUNGRY: 'Not hungry yet (fullness must be below 90)',
+        reason_ITEM_MISSING: 'No food for it in the bag',
+        reason_TOO_CLEAN: 'Already clean',
+        reason_LOW_ENERGY: 'Too tired — let it rest first',
+        reason_ON_COOLDOWN: 'Still cooling down',
+        reason_NO_WASTE: 'The floor is clean',
+        reason_DAILY_LIMIT: 'Daily limit reached',
+        reason_BUSY: 'Already caring for it',
+        reason_PET_DECEASED: 'The pet has passed away',
+        reason_unavailable: 'Not available yet',
+        reason_cannot_now: 'That action is not possible right now',
+        token_title: 'Coin details',
+        token_today: 'Earned today {granted} / {cap} coins',
+        token_capped: 'Daily cap reached',
+        token_count: 'Tokens counted today: {tokens} ({perCoin} tokens = 1 coin)',
+        token_capped_desc: 'Your tokens would be worth {expected} coins, but the daily cap is {cap}; the rest is not paid out and resets at 00:00.',
+        token_expected: 'Your tokens are worth {expected} coins so far; they arrive after your next model call (daily cap {cap}).',
+        token_remaining: '{remain} more tokens until the next coin.',
+        token_source: 'Coins come only from model usage: every {perCoin} tokens (input + output) = 1 coin, reset daily at 00:00 in your profile time zone. Cache hits are not counted again.',
+        adopt_title: 'Adopt a little pet',
+        adopt_desc1: 'It will stay with you for six months: turn DSH tokens into coins, buy its favourite food, and watch it grow.',
+        adopt_desc2: 'About 1–2 care actions a day. When you are busy, free boarding keeps it safe — it never leaves early because of missed care.',
+        adopt_name_aria: 'Pet nickname (1–12 characters)',
+        adopt_name_placeholder: 'Give it a name (1–12 characters)',
+        adopt_submit: 'Adopt',
+        adopt_submitting: 'Adopting…',
+        adopt_hint: 'First adoption grants 60 coins + 3 basic rations. Without any tokens you can still claim free relief rations every day.',
+        adopt_disabled_note: '(coming soon)',
+        shop_title: 'Food & bag',
+        shop_wallet: '{n} coins',
+        bag_basic: '{whole} full + {half} half',
+        bag_favorite: 'Favourite {n}',
+        bag_snack: 'Snacks {n}',
+        bag_relief: 'Relief {n}',
+        food_basic: 'Basic ration', food_favorite: 'Favourite meal', food_snack: 'Snack', food_relief: 'Relief ration',
+        price_staple: 'Fullness +{hunger}{mood}; half {half} coins',
+        price_snack: 'Fullness +{hunger}, mood +{mood}; up to {limit} a day',
+        price_mood_suffix: ', mood +{mood}',
+        price_coins: '{n} coins',
+        buy_one: 'Buy 1', buying: 'Buying…',
+        half_price: 'Half {n}', whole_price: 'Full {n}',
+        relief_free: 'free',
+        relief_desc: 'One free claim every 24 hours (+60 fullness). No tokens needed to raise a pet.',
+        relief_next: 'Next claim: {time} (you cannot claim while a whole ration is in the bag).',
+        relief_stock: 'Finish the whole ration you already have first.',
+        claim_relief: 'Claim', claiming: 'Claiming…',
+        growth_title: 'Growth',
+        growth_species: 'Species', growth_born: 'Born', growth_stage: 'Stage', growth_next: 'Next stage',
+        growth_affinity: 'Bond', growth_care: 'Care actions',
+        growth_last_stage: 'Final stage',
+        growth_stage_value: '{stage} · day {day}',
+        growth_next_value: 'about {days} days ({stage})',
+        growth_times: '{n}',
+        pref_title: 'Preferences',
+        pref_quiet: 'Do not disturb', pref_on: 'On', pref_off: 'Off',
+        pref_size: 'Size',
+        pref_sleep: 'Sleep time', pref_sleep_start: 'Sleep starts (24-hour)', pref_sleep_end: 'Sleep ends (24-hour)', pref_to: 'to',
+        sleep_status_sleeping: 'Now: sleeping', sleep_status_awake: 'Now: awake',
+        sleep_hint_invalid: 'Use 24-hour time, e.g. 23:00 to 12:00. {status}',
+        sleep_hint_disabled: 'Same start and end: sleep is disabled (23:00 to 12:00 means sleeping until noon). {status}',
+        sleep_hint: '{start} to {cross}{end} every day, {dur} total; saved as you type. {status}',
+        sleep_next_day: 'next day ',
+        dur_dh: '{d}d {h}h', dur_h: '{h}h', dur_hm: '{h}h {m}m', dur_ms: '{m}m {s}s',
+        pref_boarding: 'Free boarding', pref_boarding_on: 'Boarding (click to stop)', pref_boarding_off: 'Start boarding',
+        pref_boarding_hint: 'Boarding keeps its stats up without spending coins or food; its lifespan keeps running.',
+        lang_title: 'Language', lang_hint: 'Interface language. Takes effect right away; other settings are unchanged.',
+        lang_zh: '中文', lang_en: 'English',
+        memorial_title: 'Memorial',
+        memorial_empty: 'No pet has left yet. It will stay with you for six months and leave this record.',
+        memorial_entry: '{birth} – {death} · {days} days together · {care} care actions',
+        surrender_title: 'Rehome',
+        surrender_desc: 'Sending it to the pet shelter deletes this pet permanently. Coins and food are kept, and you can adopt again afterwards (the first-adoption gift is not granted twice).',
+        surrender_confirm: 'Really send 「{name}」 away?',
+        surrender_yes: 'Send away', surrender_cancel: 'Cancel', surrender_busy: 'Sending…',
+        surrender_open: 'Send to pet shelter',
+        need_hunger: 'Hungry', need_water: 'Thirsty', need_waste: 'Needs cleanup', need_bathe: 'Wants a bath',
+        need_walk: 'Wants a walk', need_groom: 'Wants grooming', need_rest: 'Tired',
+        sleep_aria: 'Sleeping',
+        pet_menu_aria: 'Pet menu',
+        pet_click_title: 'Click to care for it',
+        care_menu_aria: 'Care menu',
+        care_open_aria: 'Open care menu', care_close_aria: 'Close care menu',
+        hide_menu_title: 'Hide it from the desktop (show it again in Settings)',
+        hide_menu_item: 'Hide 「{name}」',
+        pet_alt: '{name} ({stage})',
+        pet_pet_aria: '{name}: press Enter to pet it',
+        fallback_pet_name: 'Digital pet', fallback_pet_short: 'Pet',
+        error_generic: 'That action is not possible right now',
+        err_UNKNOWN_SPECIES: 'Unknown species',
+        err_PET_EXISTS: 'You already have a pet',
+        err_NO_PET: 'No pet yet',
+        err_PET_DECEASED: 'The pet has passed away',
+        err_NOT_ENOUGH_COINS: 'Not enough coins',
+        err_ITEM_MISSING: 'That item is not in your bag',
+        err_ON_COOLDOWN: 'Still cooling down',
+        err_BUSY: 'Already caring for it — wait for this action to finish',
+        err_INVALID_SIZE: 'Size must be 72 / 96 / 128',
+        err_INVALID_SLEEP_WINDOW: 'Time format should be HH:MM',
+        err_CONFIRM_REQUIRED: 'Confirmation required',
+        err_DAILY_LIMIT: 'Daily limit reached',
+        err_RELIEF_IN_STOCK: 'You still have a whole relief ration — finish it first',
+        err_RELIEF_COOLDOWN: 'Already claimed today, come back tomorrow',
+        err_NICKNAME: 'Nickname must be 1–12 characters',
+        err_generic: 'That action is not possible right now',
+      },
+    }
+
+    const fmtTemplate = (text, vars) => String(text).replace(/\{(\w+)\}/g, (hit, key) => (
+      vars !== undefined && vars !== null && Object.prototype.hasOwnProperty.call(vars, key) ? String(vars[key]) : hit
+    ))
+    /** 取词：当前语言缺失时回退中文，再缺回退 key。 */
+    const tx = (key, vars) => {
+      const table = I18N[uiLocale] ?? I18N.zh
+      const text = table[key] ?? I18N.zh[key] ?? key
+      return fmtTemplate(text, vars)
+    }
+    const specLabel = (spec) => {
+      if (spec === null || spec === undefined) return ''
+      return isEn()
+        ? `${spec.speciesEn ?? spec.speciesZh ?? ''}`
+        : `${spec.speciesZh ?? ''}`
+    }
+    const specRoleLabel = (spec) => (spec === null || spec === undefined ? '' : (isEn() ? (spec.nameEn ?? spec.nameZh ?? '') : (spec.nameZh ?? '')))
+    const foodNameOf = (item) => {
+      if (item === null || item === undefined) return ''
+      const key = `food_${item.id}`
+      const localized = tx(key)
+      return localized === key ? (item.nameZh ?? item.id ?? '') : localized
+    }
+    const stageLabelOf = (key) => (key === undefined || key === null ? '' : tx(`stage_${key}`))
+    const needLabelOf = (need) => {
+      if (need === null || need === undefined) return ''
+      const key = typeof need === 'string' ? need : need.key
+      const fallback = typeof need === 'string' ? null : need.label
+      const localized = key === undefined || key === null ? key : I18N[uiLocale]?.[`need_${key}`]
+      return localized ?? fallback ?? (key ?? '')
+    }
+    /** Host 错误码 → 当前语言；未知错误码回退 Host 文案（老 Host 也还能用），再回退通用句。 */
+    const errorTextOf = (code, serverMessage) => {
+      if (code !== undefined && code !== null) {
+        const hit = I18N[uiLocale]?.[`err_${code}`]
+        if (hit !== undefined) return hit
+      }
+      return isEn() ? tx('err_generic') : (serverMessage ?? tx('err_generic'))
+    }
+
+    // ---------------------------------------------------------------------
     // 展示辅助
     // ---------------------------------------------------------------------
     const STAGES = [
-      { key: 'baby', label: '婴儿', endDays: 3 },
-      { key: 'toddler', label: '幼儿', endDays: 14 },
-      { key: 'child', label: '少儿', endDays: 45 },
-      { key: 'teen', label: '青年', endDays: 90 },
-      { key: 'adult', label: '壮年', endDays: 150 },
-      { key: 'elder', label: '老年', endDays: Infinity },
+      { key: 'baby', endDays: 3 },
+      { key: 'toddler', endDays: 14 },
+      { key: 'child', endDays: 45 },
+      { key: 'teen', endDays: 90 },
+      { key: 'adult', endDays: 150 },
+      { key: 'elder', endDays: Infinity },
     ]
 
     /** 仅用于显示的阶段回退；权威阶段以 Host 快照的 pet.stage 为准。 */
@@ -533,6 +835,7 @@ window.__ModuleLoader__.load({
 
     const fmtDate = (ms) => {
       if (typeof ms !== 'number' || !Number.isFinite(ms)) return '—'
+      if (isEn()) return new Date(ms).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
       const d = new Date(ms)
       return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
     }
@@ -573,65 +876,63 @@ window.__ModuleLoader__.load({
         const minutes = Number(match[2])
         return hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59 ? hours * 60 + minutes : null
       }
-      const status = sleeping ? '当前：睡眠中' : '当前：清醒'
+      const status = sleeping ? tx('sleep_status_sleeping') : tx('sleep_status_awake')
       const start = toMin(startHHMM)
       const end = toMin(endHHMM)
-      if (start === null || end === null) return `按 24 小时制填写，例如 23:00 至 12:00。${status}`
-      if (start === end) return `起止时间相同：视为不启用睡眠（例如 23:00 至 12:00 表示睡到次日中午）。${status}`
+      if (start === null || end === null) return tx('sleep_hint_invalid', { status })
+      if (start === end) return tx('sleep_hint_disabled', { status })
       const cross = end < start
       const span = cross ? 24 * 60 - start + end : end - start
       const hours = Math.floor(span / 60)
       const minutes = span % 60
-      const dur = minutes === 0 ? `${hours} 小时` : `${hours} 小时 ${minutes} 分`
-      return `每天 ${startHHMM} 至 ${cross ? '次日 ' : ''}${endHHMM}，共 ${dur}；改动即保存。${status}`
+      const dur = minutes === 0 ? tx('dur_h', { h: hours }) : tx('dur_hm', { h: hours, m: minutes })
+      return tx('sleep_hint', { start: startHHMM, cross: cross ? tx('sleep_next_day') : '', end: endHHMM, dur, status })
     }
 
     const fmtDuration = (ms) => {
       const total = Math.max(0, Math.round((ms ?? 0) / 1000))
       const days = Math.floor(total / 86400)
       const hours = Math.floor((total % 86400) / 3600)
-      if (days > 0) return `${days} 天 ${hours} 小时`
       const minutes = Math.floor((total % 3600) / 60)
-      if (hours > 0) return `${hours} 小时 ${minutes} 分`
-      return `${minutes} 分 ${total % 60} 秒`
+      if (days > 0) return tx('dur_dh', { d: days, h: hours })
+      if (hours > 0) return minutes === 0 ? tx('dur_h', { h: hours }) : tx('dur_hm', { h: hours, m: minutes })
+      return tx('dur_ms', { m: minutes, s: total % 60 })
     }
 
     // 照顾操作（UI 入口）：按用户反馈依次移除「梳理/皮肤刷洗」「喂水」，只保留 4 项。
     // 引擎与 HTTP 接口仍支持 groom / water（老存档、外部调用与自动化不受影响），
     // 但客户端不再提供这两个按钮。
     const CARE_ACTIONS = [
-      { type: 'feed', label: '喂食', slot: 'feed' },
-      { type: 'walk', label: '逛街', slot: 'walk' },
-      { type: 'bathe', label: '洗澡', slot: 'bathe' },
-      { type: 'cleanWaste', label: '铲屎', slot: 'cleanWaste' },
+      { type: 'feed', slot: 'feed' },
+      { type: 'walk', slot: 'walk' },
+      { type: 'bathe', slot: 'bathe' },
+      { type: 'cleanWaste', slot: 'cleanWaste' },
     ]
 
     // 宿主仍可能报告「想梳理」「想喝水」诉求；客户端已没有对应按钮，不再展示这类死胡同提示。
     const HIDDEN_NEEDS = new Set(['groom', 'water'])
 
     /** 动作不可用原因（Host 只下发结构化 code；这里翻成用户能看懂的一句话，用于按钮 title）。 */
-    const ACTION_REASON_TEXT = {
-      NOT_HUNGRY: '它还不饿（饱食低于 90 才能喂）',
-      ITEM_MISSING: '背包里没有能喂的口粮',
-      TOO_CLEAN: '已经很干净了',
-      LOW_ENERGY: '体力不够，先让它休息',
-      ON_COOLDOWN: '还在冷却中',
-      NO_WASTE: '地面很干净',
-      DAILY_LIMIT: '今天的额度用完了',
-      BUSY: '正在照顾中',
-      PET_DECEASED: '宠物已经离开了',
-    }
+    const ACTION_REASON_KEYS = new Set([
+      'NOT_HUNGRY', 'ITEM_MISSING', 'TOO_CLEAN', 'LOW_ENERGY', 'ON_COOLDOWN',
+      'NO_WASTE', 'DAILY_LIMIT', 'BUSY', 'PET_DECEASED',
+    ])
     const actionReasonText = (entry) => {
       if (entry === null || entry === undefined || entry.enabled !== false) return null
-      return ACTION_REASON_TEXT[entry.reason] ?? '暂时不可用'
+      if (ACTION_REASON_KEYS.has(entry.reason)) return tx(`reason_${entry.reason}`)
+      return tx('reason_unavailable')
     }
-    /** 前置校验失败时的用户可见文案：优先查中文映射表，未知 code 用兜底句（不直接暴露 code）。 */
-    const actionReasonMessage = (entry) => ACTION_REASON_TEXT[entry?.reason] ?? '现在还不能做这个动作'
+    /** 前置校验失败时的用户可见文案：优先查文案表，未知 code 用兜底句（不直接暴露 code）。 */
+    const actionReasonMessage = (entry) => (ACTION_REASON_KEYS.has(entry?.reason) ? tx(`reason_${entry.reason}`) : tx('reason_cannot_now'))
 
     function actionLabel(actionType, spec) {
-      if (actionType === 'groom' && spec?.grooming !== undefined) return spec.grooming
-      const hit = CARE_ACTIONS.find((item) => item.type === actionType)
-      return hit?.label ?? actionType
+      if (actionType === 'groom') {
+        if (isEn()) return tx('act_groom')
+        if (spec?.grooming !== undefined) return spec.grooming
+      }
+      const known = ['feed', 'walk', 'bathe', 'cleanWaste']
+      if (known.includes(actionType)) return tx(`act_${actionType}`)
+      return actionType
     }
 
     /** 金币图标：不依赖 emoji（系统字体的硬币 emoji 偏银色），用 SVG 画一枚金色硬币。 */
@@ -846,7 +1147,7 @@ window.__ModuleLoader__.load({
         ...props, className: `${className} dsh-digital-pet-hover-stage`,
         style,
         'data-hovering': hovering ? 'true' : 'false', 'data-species': species, 'data-stage': stage,
-        'data-hover-gesture': '逐帧眨眼与肢体动作',
+        'data-hover-gesture': isEn() ? 'Frame-by-frame blinking and gestures' : '逐帧眨眼与肢体动作',
         onPointerEnter: enter, onPointerLeave: () => setHovering(false),
         onPointerDownCapture: () => setHovering(false),
         onPointerUpCapture: (event) => {
@@ -889,7 +1190,7 @@ window.__ModuleLoader__.load({
         const stageKey = snap?.pet?.stage
         if (stageKey === undefined || stageKey === null) return
         if (prevStageRef.current !== null && prevStageRef.current !== stageKey) {
-          setToast(`长大啦：进入${snap.pet.stageLabel ?? stageKey}`)
+          setToast(tx('stage_up', { stage: stageLabelOf(stageKey) }))
         }
         prevStageRef.current = stageKey
       }, [snap?.pet?.stage])
@@ -1046,7 +1347,7 @@ window.__ModuleLoader__.load({
             refresh()
           }
         } catch (err) {
-          setError(err.message ?? String(err))
+          setError(errorTextOf(err?.code, err?.message))
         } finally {
           setBusy(null)
         }
@@ -1089,7 +1390,7 @@ window.__ModuleLoader__.load({
           await postJson('/settings', { visible: false })
           refresh()
         } catch (err) {
-          setError(err.message ?? String(err))
+          setError(errorTextOf(err?.code, err?.message))
         }
       }
 
@@ -1113,9 +1414,9 @@ window.__ModuleLoader__.load({
       const needKey = typeof need === 'object' && need !== null ? need.key : null
       const needText = need === null || HIDDEN_NEEDS.has(needKey)
         ? ''
-        : (typeof need === 'string' ? need : (need.label ?? need.text ?? ''))
+        : (typeof need === 'string' ? need : (needLabelOf(need) || need.text || ''))
       return h('div', { className: 'dsh-digital-pet-overlay' },
-        h('div', { className: 'dsh-digital-pet-sr', 'aria-live': 'polite' }, [mood === 'sleep' ? '睡觉中' : '', needText, error ?? ''].filter(Boolean).join('；')),
+        h('div', { className: 'dsh-digital-pet-sr', 'aria-live': 'polite' }, [mood === 'sleep' ? tx('sleep_aria') : '', needText, error ?? ''].filter(Boolean).join('；')),
         h('div', { className: 'dsh-digital-pet-float', style },
           h('div', { className: 'dsh-digital-pet-hints' },
             ring || activeAction !== null || needText === '' ? null
@@ -1124,12 +1425,14 @@ window.__ModuleLoader__.load({
                 : h('button', {
                     type: 'button',
                     className: 'dsh-digital-pet-need dsh-digital-pet-need-btn',
-                    title: '点击照顾它',
+                    title: tx('pet_click_title'),
                     onClick: () => { care(NEED_ACTION[need.key]) },
                   }, needText)),
             error === null ? null : h('div', { className: 'dsh-digital-pet-pill-error' }, error),
             activeAction === null ? null : h('div', { className: 'dsh-digital-pet-need' },
-              `${actionLabel(activeAction.type, spec)}中 · ${countdown === null ? '' : (countdown > 0 ? Math.ceil(countdown / 1000) + 's' : '完成')}`),
+              countdown === null || countdown > 0
+                ? tx('act_running', { action: actionLabel(activeAction.type, spec), sec: countdown === null ? '' : Math.ceil(countdown / 1000) })
+                : tx('act_running_zero', { action: actionLabel(activeAction.type, spec) })),
           ),
           h(HoverStage, {
             snap,
@@ -1153,11 +1456,11 @@ window.__ModuleLoader__.load({
               'data-action': activeAction === null ? undefined : activeAction.type,
               src: petSprite.src,
               style: { height: size, width: 'auto', maxWidth: size * 1.4 },
-              alt: `${pet.nickname ?? '电子宠物'}（${stageOf(snap).label}）`,
+              alt: tx('pet_alt', { name: pet.nickname ?? tx('fallback_pet_name'), stage: stageLabelOf(stageOf(snap).key) }),
               draggable: false,
               tabIndex: 0,
               role: 'button',
-              'aria-label': `${pet.nickname ?? '宠物'}：Enter 抚摸`,
+              'aria-label': tx('pet_pet_aria', { name: pet.nickname ?? tx('fallback_pet_short') }),
               onPointerDown,
               onPointerMove,
               onPointerUp,
@@ -1190,7 +1493,7 @@ window.__ModuleLoader__.load({
             ref: panelRef,
             className: `dsh-digital-pet-panel ${panelSide}`,
             role: 'menu',
-            'aria-label': '照顾菜单',
+            'aria-label': tx('care_menu_aria'),
           },
             CARE_ACTIONS.map((action, index) => h('button', {
               key: action.type,
@@ -1208,9 +1511,9 @@ window.__ModuleLoader__.load({
             }, actionLabel(action.type, spec)))) : null,
           h('button', {
             className: 'dsh-digital-pet-paw',
-            title: '照顾它',
+            title: tx('pet_click_title'),
             ref: pawRef,
-            'aria-label': ring ? '关闭照顾菜单' : '打开照顾菜单',
+            'aria-label': ring ? tx('care_close_aria') : tx('care_open_aria'),
             'aria-haspopup': 'menu',
             'aria-expanded': ring,
             onClick: () => { setRing((value) => !value); setFocusIndex(firstEnabledIndex()) },
@@ -1220,7 +1523,7 @@ window.__ModuleLoader__.load({
         ctxMenu === null ? null : h('div', {
           className: 'dsh-digital-pet-ctx',
           role: 'menu',
-          'aria-label': '宠物菜单',
+          'aria-label': tx('pet_menu_aria'),
           ref: ctxMenuRef,
           style: { left: ctxMenu.x, top: ctxMenu.y },
         },
@@ -1228,9 +1531,9 @@ window.__ModuleLoader__.load({
             type: 'button',
             role: 'menuitem',
             className: 'dsh-digital-pet-ctx-item',
-            title: '把它从桌面隐藏（设置里可重新显示）',
+            title: tx('hide_menu_title'),
             onClick: hidePet,
-          }, `隐藏「${pet.nickname ?? '宠物'}」`),
+          }, tx('hide_menu_item', { name: pet.nickname ?? tx('fallback_pet_short') })),
         ),
       )
     }
@@ -1248,23 +1551,23 @@ window.__ModuleLoader__.load({
       const capped = granted >= cap
       const remainTokens = capped ? 0 : Math.max(0, (granted + 1) * perCoin - tokens)
       return h('div', { className: 'dsh-digital-pet-card' },
-        h('h2', null, '金币明细'),
+        h('h2', null, tx('token_title')),
         h('div', { className: 'dsh-digital-pet-chip-row', style: { marginBottom: 6 } },
-          h('span', { className: 'dsh-digital-pet-chip gold' }, CoinIcon(), `今日已获 ${granted} / ${cap} 金币`),
-          capped ? h('span', { className: 'dsh-digital-pet-chip' }, '今日已封顶') : null,
+          h('span', { className: 'dsh-digital-pet-chip gold' }, CoinIcon(), tx('token_today', { granted, cap })),
+          capped ? h('span', { className: 'dsh-digital-pet-chip' }, tx('token_capped')) : null,
         ),
         h('div', { className: 'dsh-digital-pet-muted', style: { fontSize: 12, lineHeight: 1.6 } },
-          `今日有效 Token：${tokens.toLocaleString()}（${perCoinText} Token = 1 金币）`,
+          tx('token_count', { tokens: locNum(tokens), perCoin: perCoinText }),
         ),
         h('div', { className: 'dsh-digital-pet-muted', style: { fontSize: 12, lineHeight: 1.6 } },
           capped
-            ? `按 Token 折算本应 ${Math.floor(tokens / perCoin).toLocaleString()} 金币，但每日兑换上限 ${cap} 金币，超出部分不再发放，次日 0 点重置。`
+            ? tx('token_capped_desc', { expected: locNum(Math.floor(tokens / perCoin)), cap })
             : pending > 0
-              ? `按当前 Token 折算可换 ${expected} 金币，下一次模型调用后到账（今日上限 ${cap}）。`
-              : `再累计 ${remainTokens.toLocaleString()} Token 可再换 1 金币。`,
+              ? tx('token_expected', { expected, cap })
+              : tx('token_remaining', { remain: locNum(remainTokens) }),
         ),
         h('div', { className: 'dsh-digital-pet-hint', style: { marginTop: 4 } },
-          `金币来源只有「模型调用用量」：每 ${perCoinText} 个有效 Token（输入 + 输出）换 1 金币，每日 0 点按 profile 时区重置；缓存命中不额外计算。`,
+          tx('token_source', { perCoin: perCoinText }),
         ),
       )
     }
@@ -1291,11 +1594,11 @@ window.__ModuleLoader__.load({
           tabIndex: disabled ? -1 : 0,
           'aria-disabled': disabled,
           'aria-pressed': selected === item.id,
-          title: `${item.speciesZh} · ${item.nameZh} · ${item.nameEn}${disabled ? '（v1.1 开放）' : ''}`,
+          title: `${isEn() ? `${item.speciesEn} · ${item.nameEn}` : `${item.speciesZh} · ${item.nameZh}`}${disabled ? tx('adopt_disabled_note') : ''}`,
         },
-          h('img', { src: assetUrl(snap, `sprites/${item.id}/baby.png`), alt: item.speciesZh, draggable: false }),
-          h('div', { className: 'dsh-digital-pet-species-name' }, item.speciesZh ?? item.nameZh),
-          h('div', { className: 'dsh-digital-pet-species-en' }, `${item.nameZh} · ${item.nameEn}`),
+          h('img', { src: assetUrl(snap, `sprites/${item.id}/baby.png`), alt: isEn() ? (item.speciesEn ?? item.nameEn) : item.speciesZh, draggable: false }),
+          h('div', { className: 'dsh-digital-pet-species-name' }, isEn() ? (item.speciesEn ?? item.nameEn) : (item.speciesZh ?? item.nameZh)),
+          h('div', { className: 'dsh-digital-pet-species-en' }, isEn() ? item.nameEn : `${item.nameZh} · ${item.nameEn}`),
         )
       }))
     }
@@ -1312,31 +1615,31 @@ window.__ModuleLoader__.load({
           await postJson('/adopt', { speciesId, nickname: nickname.trim() })
           onDone()
         } catch (err) {
-          setError(err.message ?? String(err))
+          setError(errorTextOf(err?.code, err?.message))
         } finally {
           setBusy(false)
         }
       }
       return h('div', { className: 'dsh-digital-pet-card' },
-        h('h2', null, '领养一只小宠物'),
+        h('h2', null, tx('adopt_title')),
         h('p', { className: 'dsh-digital-pet-sub', style: { marginBottom: 12 } },
-          '它会陪你工作六个月：用 DSH 的 Token 换金币，买喜欢的食品，照顾它长大。',
-          '每天约 1～2 次照顾，忙起来可以免费托管，不会因为漏养提前离开。'),
+          tx('adopt_desc1'),
+          tx('adopt_desc2')),
         h(SpeciesPicker, { snap, selected: speciesId, onSelect: setSpeciesId }),
         h('div', { className: 'dsh-digital-pet-row' },
           h('input', {
             className: 'dsh-digital-pet-input',
-            'aria-label': '宠物昵称（1～12 个字符）',
-            placeholder: '给它起个名字（1～12 个字符）',
+            'aria-label': tx('adopt_name_aria'),
+            placeholder: tx('adopt_name_placeholder'),
             value: nickname,
             maxLength: 12,
             onChange: (event) => setNickname(event.target.value),
           }),
           h('button', { className: 'dsh-digital-pet-btn', disabled: busy || nickname.trim() === '', onClick: submit },
-            busy ? '领取中…' : '领取宠物'),
+            busy ? tx('adopt_submitting') : tx('adopt_submit')),
         ),
         error === null ? null : h('div', { className: 'dsh-digital-pet-error', role: 'alert' }, error),
-        h('div', { className: 'dsh-digital-pet-hint' }, '首次领养赠送 60 金币 + 3 份基础口粮；没有 Token 也能每天领免费救济口粮。'),
+        h('div', { className: 'dsh-digital-pet-hint' }, tx('adopt_hint')),
       )
     }
 
@@ -1373,7 +1676,7 @@ window.__ModuleLoader__.load({
           await postJson('/care', { action: type })
           refresh()
         } catch (err) {
-          setError(err.message ?? String(err))
+          setError(errorTextOf(err?.code, err?.message))
         } finally {
           setBusy(null)
         }
@@ -1400,25 +1703,25 @@ window.__ModuleLoader__.load({
               ),
             ),
             h('div', { style: { fontWeight: 700, fontSize: 15 } }, pet.nickname),
-            h('div', { className: 'dsh-digital-pet-muted' }, `${spec?.speciesZh ?? ''} · ${spec?.nameZh ?? ''}`),
+            h('div', { className: 'dsh-digital-pet-muted' }, spec === undefined ? '' : `${specLabel(spec)} · ${specRoleLabel(spec)}`),
             h('div', { className: 'dsh-digital-pet-chip-row' },
-              h('span', { className: 'dsh-digital-pet-chip' }, stageOf(snap).label),
+              h('span', { className: 'dsh-digital-pet-chip' }, stageLabelOf(stageOf(snap).key)),
               h('span', { className: 'dsh-digital-pet-chip gold' }, CoinIcon(), `${snap.wallet?.balance ?? 0}`),
             ),
           ),
           h('div', null,
             h('div', { className: 'dsh-digital-pet-bars', style: { gap: 8 } },
-              h(Bar, { label: '饱食', value: pet.H, color: '#f0a05a' }),
-              h(Bar, { label: '心情', value: pet.M, color: '#f08ac0' }),
-              h(Bar, { label: '清洁', value: pet.C, color: '#5aa9f0' }),
+              h(Bar, { label: tx('bar_hunger'), value: pet.H, color: '#f0a05a' }),
+              h(Bar, { label: tx('bar_mood'), value: pet.M, color: '#f08ac0' }),
+              h(Bar, { label: tx('bar_clean'), value: pet.C, color: '#5aa9f0' }),
             ),
             h('div', { className: 'dsh-digital-pet-row', style: { marginTop: 8 } },
-              h('span', { className: 'dsh-digital-pet-chip' }, `陪伴 ${fmtDuration(pet.ageMs)}`),
-              h('span', { className: 'dsh-digital-pet-chip' }, `亲密度 ${pet.affinity ?? 0}/100`),
-              h('span', { className: 'dsh-digital-pet-chip' }, `主动照顾 ${pet.careCount ?? 0} 次`),
+              h('span', { className: 'dsh-digital-pet-chip' }, tx('chip_companion', { dur: fmtDuration(pet.ageMs) })),
+              h('span', { className: 'dsh-digital-pet-chip' }, tx('chip_affinity', { n: pet.affinity ?? 0 })),
+              h('span', { className: 'dsh-digital-pet-chip' }, tx('chip_care', { n: pet.careCount ?? 0 })),
             ),
             activeAction === null || (countdown !== null && countdown <= 0) ? null : h('div', { className: 'dsh-digital-pet-hint' },
-              `${actionLabel(activeAction.type, spec)}中，约 ${countdown === null ? '' : Math.ceil(countdown / 1000) + ' 秒'}后完成。`),
+              tx('act_done_line', { action: actionLabel(activeAction.type, spec), sec: countdown === null ? '' : Math.ceil(countdown / 1000) })),
             h('div', { className: 'dsh-digital-pet-actions' }, CARE_ACTIONS.map((action) => {
               const entry = Array.isArray(pet?.availableActions) ? pet.availableActions.find((item) => item.type === action.type) : null
               const reason = actionReasonText(entry)
@@ -1430,7 +1733,7 @@ window.__ModuleLoader__.load({
                 onClick: () => care(action.type),
               },
                 h('img', { src: spriteUrl(snap, action.slot), alt: '', draggable: false }),
-                h('span', null, busy === action.type ? '处理中…' : actionLabel(action.type, spec)),
+                h('span', null, busy === action.type ? tx('act_processing') : actionLabel(action.type, spec)),
               )
             })),
             error === null ? null : h('div', { className: 'dsh-digital-pet-error', role: 'alert' }, error),
@@ -1455,7 +1758,7 @@ window.__ModuleLoader__.load({
           await postJson('/buy', { itemId: item.id, ...payload })
           refresh()
         } catch (err) {
-          setError(err.message ?? String(err))
+          setError(errorTextOf(err?.code, err?.message))
         } finally {
           setBusy(null)
         }
@@ -1467,69 +1770,68 @@ window.__ModuleLoader__.load({
           await postJson('/claim-relief', {})
           refresh()
         } catch (err) {
-          setError(err.message ?? String(err))
+          setError(errorTextOf(err?.code, err?.message))
         } finally {
           setBusy(null)
         }
       }
       return h('div', { className: 'dsh-digital-pet-card' },
-        h('h2', null, '食品与背包'),
+        h('h2', null, tx('shop_title')),
         h('div', { className: 'dsh-digital-pet-chip-row', style: { marginBottom: 8 } },
-          h('span', { className: 'dsh-digital-pet-chip gold' }, CoinIcon(), `${wallet} 金币`),
-          h('span', { className: 'dsh-digital-pet-chip' }, `基础口粮 ${Math.floor((inventory.basic ?? 0) / 2)} 份 + ${(inventory.basic ?? 0) % 2} 半份`),
-          h('span', { className: 'dsh-digital-pet-chip' }, `喜爱主食 ${Math.floor((inventory.favorite ?? 0) / 2)} 份`),
-          h('span', { className: 'dsh-digital-pet-chip' }, `零食 ${inventory.snack ?? 0} 份`),
-          h('span', { className: 'dsh-digital-pet-chip' }, `救济口粮 ${Math.floor((inventory.relief ?? 0) / 2)} 份`),
+          h('span', { className: 'dsh-digital-pet-chip gold' }, CoinIcon(), tx('shop_wallet', { n: locNum(wallet) })),
+          h('span', { className: 'dsh-digital-pet-chip' }, tx('bag_basic', { whole: Math.floor((inventory.basic ?? 0) / 2), half: (inventory.basic ?? 0) % 2 })),
+          h('span', { className: 'dsh-digital-pet-chip' }, tx('bag_favorite', { n: Math.floor((inventory.favorite ?? 0) / 2) })),
+          h('span', { className: 'dsh-digital-pet-chip' }, tx('bag_snack', { n: inventory.snack ?? 0 })),
+          h('span', { className: 'dsh-digital-pet-chip' }, tx('bag_relief', { n: Math.floor((inventory.relief ?? 0) / 2) })),
         ),
         foods.map((item) => {
           const isSnack = item.halfPrice === null
           return h('div', { key: item.id, className: 'dsh-digital-pet-shop-item' },
             h('div', null,
               h('div', { className: 'dsh-digital-pet-shop-name' },
-                item.nameZh,
+                foodNameOf(item),
                 ' · ',
-                h('span', { className: 'dsh-digital-pet-shop-price' }, CoinIcon({ size: 12 }), `${item.price}`),
-                ' 金币'),
+                h('span', { className: 'dsh-digital-pet-shop-price' }, CoinIcon({ size: 12 }), tx('price_coins', { n: item.price }))),
               h('div', { className: 'dsh-digital-pet-shop-desc' },
                 isSnack
-                  ? `饱食 +${item.hunger}、心情 +${item.mood}，每天最多 ${item.dailyLimit} 份`
-                  : `饱食 +${item.hunger}${item.mood > 0 ? `、心情 +${item.mood}` : ''}；半份 ${item.halfPrice} 金币`),
+                  ? tx('price_snack', { hunger: item.hunger, mood: item.mood, limit: item.dailyLimit })
+                  : tx('price_staple', { hunger: item.hunger, mood: item.mood > 0 ? tx('price_mood_suffix', { mood: item.mood }) : '', half: item.halfPrice })),
             ),
             isSnack
               ? h('button', {
                   className: 'dsh-digital-pet-btn sm ghost',
                   disabled: busy !== null || wallet < item.price,
                   onClick: () => buy(item, { quantity: 1 }),
-                }, busy === `${item.id}:${JSON.stringify({ quantity: 1 })}` ? '购买中…' : '买 1 份')
+                }, busy === `${item.id}:${JSON.stringify({ quantity: 1 })}` ? tx('buying') : tx('buy_one'))
               : h('div', { className: 'dsh-digital-pet-chip-row' },
                   h('button', {
                     className: 'dsh-digital-pet-btn sm ghost',
                     disabled: busy !== null || wallet < item.halfPrice,
                     onClick: () => buy(item, { halfUnits: 1 }),
-                  }, `半份 ${item.halfPrice}`),
+                  }, tx('half_price', { n: item.halfPrice })),
                   h('button', {
                     className: 'dsh-digital-pet-btn sm',
                     disabled: busy !== null || wallet < item.price,
                     onClick: () => buy(item, { halfUnits: 2 }),
-                  }, `整份 ${item.price}`),
+                  }, tx('whole_price', { n: item.price })),
                 ),
           )
         }),
         h('div', { className: 'dsh-digital-pet-shop-item' },
           h('div', null,
-            h('div', { className: 'dsh-digital-pet-shop-name' }, '救济口粮 · 免费'),
+            h('div', { className: 'dsh-digital-pet-shop-name' }, `${tx('food_relief')} · ${tx('relief_free')}`),
             h('div', { className: 'dsh-digital-pet-shop-desc' },
               snap.relief?.claimable === true
-                ? '每 24 小时可领 1 份（饱食 +60）；没有 Token 也能养育。'
+                ? tx('relief_desc')
                 : snap.relief?.nextClaimAtMs !== null && snap.relief?.nextClaimAtMs !== undefined
-                  ? `下次可领：${fmtDate(snap.relief.nextClaimAtMs)}（库存中还有 1 份时不能再领）`
-                  : '库存中还有 1 份时必须先用完。'),
+                  ? tx('relief_next', { time: fmtDate(snap.relief.nextClaimAtMs) })
+                  : tx('relief_stock')),
           ),
           h('button', {
             className: 'dsh-digital-pet-btn sm',
             disabled: busy !== null || snap.relief?.claimable !== true,
             onClick: claimRelief,
-          }, busy === 'relief' ? '领取中…' : '领取救济'),
+          }, busy === 'relief' ? tx('claiming') : tx('claim_relief')),
         ),
         error === null ? null : h('div', { className: 'dsh-digital-pet-error', role: 'alert' }, error),
       )
@@ -1547,14 +1849,14 @@ window.__ModuleLoader__.load({
       const ageDays = (pet.ageMs ?? 0) / DAY_MS
       const endDays = stage.endDays
       return h('div', { className: 'dsh-digital-pet-card' },
-        h('h2', null, '成长记录'),
+        h('h2', null, tx('growth_title')),
         h('dl', { className: 'dsh-digital-pet-kv' },
-          h('dt', null, '物种'), h('dd', null, `${spec?.speciesZh ?? ''}（${spec?.nameZh ?? ''} / ${spec?.nameEn ?? ''}）`),
-          h('dt', null, '出生日期'), h('dd', null, fmtDate(pet.adoptedAtMs)),
-          h('dt', null, '当前阶段'), h('dd', null, `${stage.label} · 第 ${Math.floor(ageDays) + 1} 天`),
-          h('dt', null, '距离下一阶段'), h('dd', null, next === null ? '已是最后阶段' : `约 ${Math.max(0, Math.ceil(endDays - ageDays))} 天（${next.label}）`),
-          h('dt', null, '亲密度'), h('dd', null, `${pet.affinity ?? 0} / 100`),
-          h('dt', null, '主动照顾'), h('dd', null, `${pet.careCount ?? 0} 次`),
+          h('dt', null, tx('growth_species')), h('dd', null, spec === undefined ? '' : (isEn() ? `${spec.nameEn} (${spec.speciesEn} / ${spec.speciesZh})` : `${spec.speciesZh}（${spec.nameZh} / ${spec.nameEn}）`)),
+          h('dt', null, tx('growth_born')), h('dd', null, fmtDate(pet.adoptedAtMs)),
+          h('dt', null, tx('growth_stage')), h('dd', null, tx('growth_stage_value', { stage: stageLabelOf(stage.key), day: Math.floor(ageDays) + 1 })),
+          h('dt', null, tx('growth_next')), h('dd', null, next === null ? tx('growth_last_stage') : tx('growth_next_value', { days: Math.max(0, Math.ceil(endDays - ageDays)), stage: stageLabelOf(next.key) })),
+          h('dt', null, tx('growth_affinity')), h('dd', null, `${pet.affinity ?? 0} / 100`),
+          h('dt', null, tx('growth_care')), h('dd', null, tx('growth_times', { n: pet.careCount ?? 0 })),
         ),
       )
     }
@@ -1574,7 +1876,7 @@ window.__ModuleLoader__.load({
           await postJson('/settings', payload)
           refresh()
         } catch (err) {
-          setError(err.message ?? String(err))
+          setError(errorTextOf(err?.code, err?.message))
         } finally {
           setBusy(false)
         }
@@ -1582,17 +1884,17 @@ window.__ModuleLoader__.load({
       const settings = snap.settings ?? {}
       const sizes = [72, 96, 128]
       return h('div', { className: 'dsh-digital-pet-card' },
-        h('h2', null, '偏好设置'),
+        h('h2', null, tx('pref_title')),
         h('div', { className: 'dsh-digital-pet-row', style: { marginTop: 0 } },
-          h('span', { className: 'dsh-digital-pet-muted' }, '免打扰'),
+          h('span', { className: 'dsh-digital-pet-muted' }, tx('pref_quiet')),
           h('button', {
             className: 'dsh-digital-pet-btn sm ghost',
             disabled: busy,
             onClick: () => update({ quiet: settings.quiet !== true }),
-          }, settings.quiet === true ? '开' : '关'),
+          }, settings.quiet === true ? tx('pref_on') : tx('pref_off')),
         ),
         h('div', { className: 'dsh-digital-pet-row' },
-          h('span', { className: 'dsh-digital-pet-muted' }, '大小'),
+          h('span', { className: 'dsh-digital-pet-muted' }, tx('pref_size')),
           h('div', { className: 'dsh-digital-pet-chip-row' }, sizes.map((size) =>
             h('button', {
               key: size,
@@ -1602,16 +1904,16 @@ window.__ModuleLoader__.load({
             }, `${size}px`))),
         ),
         h('div', { className: 'dsh-digital-pet-row' },
-          h('span', { className: 'dsh-digital-pet-muted' }, '睡眠时间'),
+          h('span', { className: 'dsh-digital-pet-muted' }, tx('pref_sleep')),
           h(SleepTimeInput, {
             value: sleepStart,
-            label: '睡眠开始时间（24 小时制）',
+            label: tx('pref_sleep_start'),
             onCommit: (value) => { setSleepStart(value); update({ sleepStart: value, sleepEnd }) },
           }),
-          h('span', { className: 'dsh-digital-pet-muted' }, '至'),
+          h('span', { className: 'dsh-digital-pet-muted' }, tx('pref_to')),
           h(SleepTimeInput, {
             value: sleepEnd,
-            label: '睡眠结束时间（24 小时制）',
+            label: tx('pref_sleep_end'),
             onCommit: (value) => { setSleepEnd(value); update({ sleepStart, sleepEnd: value }) },
           }),
         ),
@@ -1620,13 +1922,13 @@ window.__ModuleLoader__.load({
             sleepWindowHint(sleepStart, sleepEnd, snap.pet?.sleeping === true)),
         ),
         h('div', { className: 'dsh-digital-pet-row' },
-          h('span', { className: 'dsh-digital-pet-muted' }, '免费托管'),
+          h('span', { className: 'dsh-digital-pet-muted' }, tx('pref_boarding')),
           h('button', {
             className: 'dsh-digital-pet-btn sm ghost',
             disabled: busy,
             onClick: () => update({ boarding: settings.boarding !== true }),
-          }, settings.boarding === true ? '托管中（点击结束）' : '开始托管'),
-          h('span', { className: 'dsh-digital-pet-hint', style: { margin: 0 } }, '托管期间自动维持状态，不扣金币与背包；寿命继续推进。'),
+          }, settings.boarding === true ? tx('pref_boarding_on') : tx('pref_boarding_off')),
+          h('span', { className: 'dsh-digital-pet-hint', style: { margin: 0 } }, tx('pref_boarding_hint')),
         ),
         error === null ? null : h('div', { className: 'dsh-digital-pet-error', role: 'alert' }, error),
       )
@@ -1638,15 +1940,15 @@ window.__ModuleLoader__.load({
     function MemorialCard({ snap }) {
       const list = snap.memorial ?? []
       return h('div', { className: 'dsh-digital-pet-card' },
-        h('h2', null, '纪念册'),
+        h('h2', null, tx('memorial_title')),
         list.length === 0
-          ? h('p', { className: 'dsh-digital-pet-muted', style: { margin: 0 } }, '还没有离开的宠物。它会陪你走完六个月，留下这段记录。')
+          ? h('p', { className: 'dsh-digital-pet-muted', style: { margin: 0 } }, tx('memorial_empty'))
           : list.slice().reverse().map((item) => h('div', { key: item.petId, className: 'dsh-digital-pet-mem-item' },
               h('img', { src: assetUrl(snap, `sprites/${item.speciesId}/adult.png`), alt: item.nickname, draggable: false }),
               h('div', null,
                 h('div', { style: { fontWeight: 600, fontSize: 13 } }, item.nickname),
                 h('div', { className: 'dsh-digital-pet-muted' },
-                  `${fmtDate(item.adoptedAtMs)} – ${fmtDate(item.deceasedAtMs)} · 陪伴 ${Math.max(1, Math.round((item.deceasedAtMs - item.adoptedAtMs) / DAY_MS))} 天 · 照顾 ${item.careCount ?? 0} 次`),
+                  tx('memorial_entry', { birth: fmtDate(item.adoptedAtMs), death: fmtDate(item.deceasedAtMs), days: Math.max(1, Math.round((item.deceasedAtMs - item.adoptedAtMs) / DAY_MS)), care: item.careCount ?? 0 })),
               ),
             )),
       )
@@ -1666,24 +1968,50 @@ window.__ModuleLoader__.load({
           setConfirming(false)
           refresh()
         } catch (err) {
-          setError(err.message ?? String(err))
+          setError(errorTextOf(err?.code, err?.message))
         } finally {
           setBusy(false)
         }
       }
       return h('div', { className: 'dsh-digital-pet-card' },
-        h('h2', null, '送养'),
+        h('h2', null, tx('surrender_title')),
         h('p', { className: 'dsh-digital-pet-muted', style: { margin: '0 0 10px', lineHeight: 1.6 } },
-          '把它送进宠物救助站会删除当前宠物的数据且不可恢复；金币和口粮会保留，之后可以重新领养一只（首次赠礼不会重复发放）。'),
+          tx('surrender_desc')),
         confirming
           ? h('div', { className: 'dsh-digital-pet-row' },
               h('span', { className: 'dsh-digital-pet-error', role: 'alert', style: { margin: 0 } },
-                `确定要送走「${pet?.nickname ?? '它'}」吗？`),
+                tx('surrender_confirm', { name: pet?.nickname ?? tx('fallback_pet_short') })),
               h('button', { className: 'dsh-digital-pet-btn', disabled: busy, onClick: surrender },
-                busy ? '送养中…' : '确认送走'),
-              h('button', { className: 'dsh-digital-pet-btn ghost', disabled: busy, onClick: () => setConfirming(false) }, '取消'),
+                busy ? tx('surrender_busy') : tx('surrender_yes')),
+              h('button', { className: 'dsh-digital-pet-btn ghost', disabled: busy, onClick: () => setConfirming(false) }, tx('surrender_cancel')),
             )
-          : h('button', { className: 'dsh-digital-pet-btn ghost', onClick: () => setConfirming(true) }, '送进宠物救助站'),
+          : h('button', { className: 'dsh-digital-pet-btn ghost', onClick: () => setConfirming(true) }, tx('surrender_open')),
+        error === null ? null : h('div', { className: 'dsh-digital-pet-error', role: 'alert' }, error),
+      )
+    }
+
+    /** 界面语言：默认中文；切换写入 Host 设置，快照回来后立即生效。 */
+    function LanguageCard({ snap, refresh }) {
+      const current = snap?.settings?.locale === 'en' ? 'en' : 'zh'
+      const [error, setError] = useState(null)
+      const choose = async (locale) => {
+        if (locale === current) return
+        setError(null)
+        try {
+          await postJson('/settings', { locale })
+          refresh()
+        } catch (err) {
+          setError(errorTextOf(err?.code, err?.message))
+        }
+      }
+      const cls = (locale) => (current === locale ? 'dsh-digital-pet-btn sm' : 'dsh-digital-pet-btn sm ghost')
+      return h('div', { className: 'dsh-digital-pet-card' },
+        h('h2', null, tx('lang_title')),
+        h('p', { className: 'dsh-digital-pet-sub', style: { marginBottom: 10 } }, tx('lang_hint')),
+        h('div', { className: 'dsh-digital-pet-chip-row' },
+          h('button', { className: cls('zh'), 'aria-pressed': current === 'zh', onClick: () => choose('zh') }, tx('lang_zh')),
+          h('button', { className: cls('en'), 'aria-pressed': current === 'en', onClick: () => choose('en') }, tx('lang_en')),
+        ),
         error === null ? null : h('div', { className: 'dsh-digital-pet-error', role: 'alert' }, error),
       )
     }
@@ -1700,36 +2028,34 @@ window.__ModuleLoader__.load({
           await postJson('/settings', { visible: snap.settings?.visible === false })
           refresh()
         } catch (err) {
-          setActionError(err.message ?? String(err))
+          setActionError(errorTextOf(err?.code, err?.message))
         } finally {
           setBusy(false)
         }
       }
       if (snap === null) {
         return h('div', { className: 'dsh-digital-pet-settings' },
-          h('h1', { className: 'dsh-digital-pet-h1' }, '电子宠物'),
-          h('p', { className: 'dsh-digital-pet-sub' }, error === null ? '正在读取宠物档案…' : `读取失败：${error}`))
+          h('h1', { className: 'dsh-digital-pet-h1' }, tx('app_title')),
+          h('p', { className: 'dsh-digital-pet-sub' }, error === null ? tx('loading_pet') : tx('load_failed', { err: error })))
       }
       const hasPet = snap.hasPet === true
       const visible = snap.settings?.visible !== false
       return h('div', { className: 'dsh-digital-pet-settings' },
         h('div', { className: 'dsh-digital-pet-head' },
           h('div', { className: 'dsh-digital-pet-head-main' },
-            h('h1', { className: 'dsh-digital-pet-h1' }, '电子宠物'),
-            h('p', { className: 'dsh-digital-pet-sub' }, hasPet
-              ? '它正在 DSH 里陪你工作。鼠标悬停时它会做出成长阶段专属动作，移开即停止。桌面上可以拖动位置，点爪印打开操作盘照顾它。'
-              : '还没有在养的宠物。领养后它会陪你六个月，用 DSH Token 换金币照顾它长大。'),
+            h('h1', { className: 'dsh-digital-pet-h1' }, tx('app_title')),
+            h('p', { className: 'dsh-digital-pet-sub' }, hasPet ? tx('subtitle_alive') : tx('subtitle_empty')),
           ),
           hasPet
             ? h('div', { className: 'dsh-digital-pet-head-toggle' },
-              h('span', { className: 'dsh-digital-pet-muted' }, '桌面显示'),
+              h('span', { className: 'dsh-digital-pet-muted' }, tx('display_label')),
               h('button', {
                 className: 'dsh-digital-pet-btn sm ghost',
                 disabled: busy,
                 'aria-pressed': visible,
-                title: '在 DSH 桌面上显示/隐藏宠物（隐藏后仍可在设置页照护）',
+                title: tx('display_hint'),
                 onClick: toggleVisible,
-              }, visible ? '显示中（点击隐藏）' : '已隐藏（点击显示）'),
+              }, visible ? tx('display_shown') : tx('display_hidden')),
             )
             : null,
         ),
@@ -1741,6 +2067,7 @@ window.__ModuleLoader__.load({
         hasPet ? h(PreferencesCard, { snap, refresh }) : null,
         h(MemorialCard, { snap }),
         hasPet ? h(SurrenderCard, { snap, refresh }) : null,
+        h(LanguageCard, { snap, refresh }),
       )
     }
 
@@ -1757,7 +2084,7 @@ window.__ModuleLoader__.load({
           name: 'settings.section',
           id: 'dsh-digital-pet',
           order: 70,
-          label: () => '电子宠物',
+          label: () => tx('nav_label'),
         }, () => h(PetSettings, null)))
         return () => dispose()
       }, 'dsh-digital-pet: settings section')

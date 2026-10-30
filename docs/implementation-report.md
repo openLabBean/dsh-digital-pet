@@ -482,6 +482,24 @@ shell.overlay   → 悬浮宠物/操作盘    ←   GET  /state（权威快照�
   - 强制点击禁用按钮 800ms 内 `/care` 请求数 = 0。
 - 截图 `docs/v1-panel-disabled.png`；`node --check client.js`；`npm test` 148/148（仅客户端）。
 
+## 4.30 中英双语与界面语言切换（第 31 轮）
+
+**需求**：新增英语，支持语言切换；入口在「设置 → 电子宠物」底部；默认中文。
+
+### 实现
+
+- Host：`settings.locale`（默认 `'zh'`，仅接受 `zh`/`en`；`sanitize` 对旧存档回落 `zh`，`/settings` 新增 `locale` 字段与 `INVALID_LOCALE` 400），快照透传给客户端。
+- Client：文件内新增 `I18N` 词典（中/英各 167 个 key：标题、阶段、状态条、动作与原因、金币明细、领养、商店、成长、偏好、纪念册、送养、语言卡、错误码）与 `tx(key, vars)`；`setUiLocale()` 由快照 `settings.locale` 驱动，切换后所有组件重渲染。
+- 语言卡 `LanguageCard`：设置页最底部（送养之后），「中文 / English」二选一，`POST /settings {locale}` 后立即生效并持久化。
+- 全部写死中文的 UI 字符串改为 `tx`；阶段名/物种名/食品名/诉求名/错误码都走词典；日期与数字按 `en-US`/`zh-CN` 本地化；睡眠提示、倒计时、金币明细等模板变量化。
+
+### 验证
+
+- `npm test` **154/154**：Host 侧新增 1 条 locale 用例（默认 zh、切换 en、非法值 400 且不改存档、旧存档回落 zh）；新增 `tests/i18n.test.mjs` 5 条静态回归（中英 key 集合一致、value 非空、英文不含中文、`tx('key')` 引用的字面量 key 均存在、语言卡契约 key 存在）。
+- ui-test 实测：默认中文；点 English 后标题/卡片/按钮/悬浮层/错误文案全部切英文（`Fullness / Mood / Cleanliness / Together / Bond / Care actions / Feed / Walk / Bathe / Clean / Food & bag / Coin details / Growth / Preferences / Memorial / Rehome / Language`），`/state.settings.locale` 同步为 `en` 并持久化；切回中文同样立即生效。
+- 截图：`docs/v1-i18n-zh.png`、`docs/v1-i18n-en.png`。
+- 已知边界：DSH 自身设置弹窗外壳（左侧导航「账号与余额/通用设置」等）由宿主提供，仍跟随宿主语言；插件内的内容（含「电子宠物」页）全部中英切换。
+
 ## 5. 未完成 / 后续
 
 - **原生桌面窗口**（可拖出窗口的桌面宠物）需要宿主原生桥接，V1 未做；当前为应用内悬浮。
@@ -495,7 +513,7 @@ shell.overlay   → 悬浮宠物/操作盘    ←   GET  /state（权威快照�
 
 ```bash
 cd plugins/dsh-digital-pet
-npm test                                   # 148/148
+npm test                                   # 154/154
 node --check index.js client.js
 python3 assets/tools/optimize_sprites.py --verify   # 135 PNG（9 物种 × 15）/ manifest v2
 python3 assets/tools/make_sleep_sprites.py --report  # 54 张睡觉精灵校验

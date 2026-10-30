@@ -10,3 +10,7 @@
 - `readme-desktop.png`、`readme-mobile.png`：桌面和手机宽度的排版检查截图。
 
 README 图片均使用仓库相对路径，不依赖本机绝对地址或外部图床。这一轮只修改文档和宣传素材，没有修改插件逻辑及运行时素材。
+
+## English documentation
+
+The `.en.png` and `.en.gif` variants reuse the same existing pet artwork and animation frames with English labels. `README-preview.html` opens in Simplified Chinese; its language links navigate to `README-preview.en.html` and back. The GitHub source files are root `README.md` and `README.en.md`.

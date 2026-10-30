@@ -4,7 +4,7 @@
  */
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { mkdtempSync, rmSync } from 'node:fs'
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 
@@ -280,5 +280,35 @@ test('自动饮水：喂水按钮移除后，到点由 host 自动补水且不�
     assert.equal(snap.pet.lastWaterAtMs, at, '到点自动补水，饮水计时重置')
     assert.equal(readStore(file).pet.waterPenaltyM, 0, '不累计缺水惩罚')
     assert.notEqual(snap.pet.need?.key, 'water', '补水后不再出现「想喝水」诉求')
+  })
+})
+
+test('界面语言：默认 zh、可切换 en、非法值拒绝、快照与存档透传', async () => {
+  await withStore(async (file) => {
+    const initial = await mutateStore(file, (store) => {
+      store.profile.lastSeenAtMs = T0
+      return internals.snapshotOf(store, T0)
+    })
+    assert.equal(initial.settings.locale, 'zh', '默认中文')
+
+    const en = await mutateStore(file, (store) => {
+      store.profile.lastSeenAtMs = T0 + 1000
+      internals.updateSettings(store, { locale: 'en' }, T0 + 1000)
+      return internals.snapshotOf(store, T0 + 1000)
+    })
+    assert.equal(en.settings.locale, 'en', '切换到英文')
+    assert.equal(readStore(file).settings.locale, 'en', '存档透传')
+
+    await assert.rejects(
+      () => mutateStore(file, (store) => internals.updateSettings(store, { locale: 'fr' }, T0 + 2000)),
+      /语言|INVALID_LOCALE/,
+    )
+    assert.equal(readStore(file).settings.locale, 'en', '非法值不改存档')
+
+    // 旧存档没有 locale 字段时回落到 zh
+    const raw = JSON.parse(readFileSync(file, 'utf8'))
+    delete raw.settings.locale
+    writeFileSync(file, JSON.stringify(raw), 'utf8')
+    assert.equal(readStore(file).settings.locale, 'zh', '旧存档回落中文')
   })
 })
