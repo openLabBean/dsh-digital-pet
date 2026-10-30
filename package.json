@@ -31,10 +31,11 @@
     }
   },
   "scripts": {
-    "test": "node --test tests/core/*.test.js tests/host.integration.test.mjs tests/accountant.test.mjs",
+    "test": "node --test tests/core/*.test.js tests/host.integration.test.mjs tests/accountant.test.mjs tests/i18n.test.mjs",
     "test:core": "node --test tests/core/*.test.js",
     "test:host": "node --test tests/host.integration.test.mjs",
     "test:accountant": "node --test tests/accountant.test.mjs",
-    "test:all": "node --test tests/core/*.test.js tests/host.integration.test.mjs tests/accountant.test.mjs"
+    "test:all": "node --test tests/core/*.test.js tests/host.integration.test.mjs tests/accountant.test.mjs tests/i18n.test.mjs",
+    "test:i18n": "node --test tests/i18n.test.mjs"
   }
 }

@@ -495,7 +495,7 @@ shell.overlay   → 悬浮宠物/操作盘    ←   GET  /state（权威快照�
 
 ### 验证
 
-- `npm test` **149/149**（新增 1 条 locale 用例：默认 zh、切换 en、非法值 400 且不改存档、旧存档回落 zh）。
+- `npm test` **154/154**：Host 侧新增 1 条 locale 用例（默认 zh、切换 en、非法值 400 且不改存档、旧存档回落 zh）；新增 `tests/i18n.test.mjs` 5 条静态回归（中英 key 集合一致、value 非空、英文不含中文、`tx('key')` 引用的字面量 key 均存在、语言卡契约 key 存在）。
 - ui-test 实测：默认中文；点 English 后标题/卡片/按钮/悬浮层/错误文案全部切英文（`Fullness / Mood / Cleanliness / Together / Bond / Care actions / Feed / Walk / Bathe / Clean / Food & bag / Coin details / Growth / Preferences / Memorial / Rehome / Language`），`/state.settings.locale` 同步为 `en` 并持久化；切回中文同样立即生效。
 - 截图：`docs/v1-i18n-zh.png`、`docs/v1-i18n-en.png`。
 - 已知边界：DSH 自身设置弹窗外壳（左侧导航「账号与余额/通用设置」等）由宿主提供，仍跟随宿主语言；插件内的内容（含「电子宠物」页）全部中英切换。
@@ -513,7 +513,7 @@ shell.overlay   → 悬浮宠物/操作盘    ←   GET  /state（权威快照�
 
 ```bash
 cd plugins/dsh-digital-pet
-npm test                                   # 148/148
+npm test                                   # 154/154
 node --check index.js client.js
 python3 assets/tools/optimize_sprites.py --verify   # 135 PNG（9 物种 × 15）/ manifest v2
 python3 assets/tools/make_sleep_sprites.py --report  # 54 张睡觉精灵校验
